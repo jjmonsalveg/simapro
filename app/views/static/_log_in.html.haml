@@ -1,0 +1,35 @@
+.loginColumns.animated.fadeInDown
+  .row
+    .col-md-6
+      %h3.small-logo-name SIMAPRO
+      %p
+        SimaPro is the most widely used LCA software. It offers standardisation - so stakeholders will trust your results - as well as the ultimate flexibility so that you can do things your way.
+      %p
+        It has unique features such as parameterised modelling and interactive results analysis. It comes with a uniquely complete implementation of the world’s leading database, Ecoinvent.
+      %p
+        When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      %p
+        %small It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+    .col-md-6
+      .ibox-content
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'm-t'}) do |f|
+          .form-group
+            = f.text_field :username, placeholder: 'Usuario', class:'form-control', required: ''
+          .form-group
+            = f.password_field :password, autocomplete: "off", placeholder: "Contraseña", class: 'form-control', required: ''
+          .form-group
+            - if devise_mapping.rememberable?
+              = f.check_box :remember_me
+              = f.label :remember_me, 'Mantener Conectado'
+          = f.submit 'Entrar', class: 'btn btn-primary block full-width m-b'
+          -#%button.btn.btn-primary.block.full-width.m-b{:type => "submit"} Login
+          = link_to new_user_password_path, class: 'small' do
+            ¿Olvido su contraseña?
+        -#%p.m-t
+        -#  %small Inspinia we app framework base on Bootstrap 3 © 2014
+  %hr/
+  .row
+    .col-md-6
+      Copyright Biosoft
+    .col-md-6.text-right
+      %small © 2015 - Venezuela

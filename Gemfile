@@ -6,7 +6,7 @@ gem 'bootstrap-sass', '3.3.0.0'
 gem 'font-awesome-rails', '4.3.0.0'
 
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -23,6 +23,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+#HAML Porque HTML SUCKS!
+gem 'haml'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
@@ -31,14 +34,21 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+# devise for authentication
+gem 'devise'
+# Seguridad añadida a devise
+gem 'devise_security_extension'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :development do
+  gem 'better_errors'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+  gem 'binding_of_caller'
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+  #revisar en çonfig/environments/development.rb
+  #correo en http://127.0.0.1:1080
+  gem 'mailcatcher'
+
+  # gem 'sqlite3'
+
+  gem 'annotate'
+end
