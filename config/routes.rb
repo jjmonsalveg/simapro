@@ -4,9 +4,11 @@ Myapp::Application.routes.draw do
   root to: 'static#index'
 
   devise_for :users, controllers: {
-    passwords: 'users/passwords',
-    sessions: 'users/sessions'
-  }
+                       passwords: 'users/passwords',
+                       sessions: 'users/sessions'
+                   }
+
+  resources :paises
 
   # All routes
   get "dashboards/dashboard_1"

@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601124809) do
+ActiveRecord::Schema.define(version: 20150601154715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "idiomas", force: true do |t|
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "paises", force: true do |t|
+    t.string   "nombre"
+    t.integer  "idioma_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "paises", ["idioma_id"], name: "index_paises_on_idioma_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",                          default: "", null: false
