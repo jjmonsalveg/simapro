@@ -1,8 +1,12 @@
 Myapp::Application.routes.draw do
 
-  devise_for :users
   # You can have the root of your site routed with "root"
   root to: 'static#index'
+
+  devise_for :users, controllers: {
+    passwords: 'users/passwords',
+    sessions: 'users/sessions'
+  }
 
   # All routes
   get "dashboards/dashboard_1"

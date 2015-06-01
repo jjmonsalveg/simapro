@@ -1,15 +1,17 @@
 .loginColumns.animated.fadeInDown
   .row
     .col-md-6
+      %br
+      %br
       %h3.small-logo-name SIMAPRO
-      %p
-        SimaPro is the most widely used LCA software. It offers standardisation - so stakeholders will trust your results - as well as the ultimate flexibility so that you can do things your way.
-      %p
-        It has unique features such as parameterised modelling and interactive results analysis. It comes with a uniquely complete implementation of the world’s leading database, Ecoinvent.
-      %p
-        When an unknown printer took a galley of type and scrambled it to make a type specimen book.
-      %p
-        %small It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+      -#%p
+      -#  SimaPro is the most widely used LCA software. It offers standardisation - so stakeholders will trust your results - as well as the ultimate flexibility so that you can do things your way.
+      -#%p
+      -#  It has unique features such as parameterised modelling and interactive results analysis. It comes with a uniquely complete implementation of the world’s leading database, Ecoinvent.
+      -#%p
+      -#  When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      -#%p
+      -#  %small It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
     .col-md-6
       .ibox-content
         = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'm-t'}) do |f|
