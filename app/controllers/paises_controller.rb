@@ -1,5 +1,6 @@
 class PaisesController < ApplicationController
   before_action :set_pais, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /pais
   # GET /pais.json
