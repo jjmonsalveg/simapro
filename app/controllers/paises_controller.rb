@@ -28,7 +28,7 @@ class PaisesController < ApplicationController
 
     respond_to do |format|
       if @pais.save
-        format.html { redirect_to pais_path, notice: 'Pais creado existosamente.' }
+        format.html { redirect_to paises_path, notice: 'Pais creado existosamente.' }
         format.json { render :index, status: :created, location: @pais }
       else
         format.html { render :new }
@@ -41,8 +41,8 @@ class PaisesController < ApplicationController
   # PATCH/PUT /pais/1.json
   def update
     respond_to do |format|
-      if @pais.update(pai_params)
-        format.html { redirect_to pais_path, notice: 'Pais actualizado exitosamente.' }
+      if @pais.update(pais_params)
+        format.html { redirect_to paises_path, notice: 'Pais actualizado exitosamente.' }
         format.json { render :index, status: :ok, location: @pais }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PaisesController < ApplicationController
   def destroy
     @pais.destroy
     respond_to do |format|
-      format.html { redirect_to pais_url, notice: 'Pais se ha eliminado exitosamente.' }
+      format.html { redirect_to paises_url, notice: 'Pais se ha eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class PaisesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pais
-      @pais = Pais.find(params[:id])
+      @pais = Pais.find_by(id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
