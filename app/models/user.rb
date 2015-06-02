@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
           :rememberable, :trackable, :validatable, :session_limitable
 
   devise :database_authenticatable,:authentication_keys => [:username]
+
+  mount_uploader :avatar, AvatarUploader
 end
