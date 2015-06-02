@@ -21,4 +21,6 @@
 
 class EmpresaForestal < ActiveRecord::Base
   self.table_name = :empresas_forestales
+  belongs_to :pais
+  accepts_nested_attributes_for :pais
 end

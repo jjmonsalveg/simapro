@@ -14,7 +14,7 @@
             %span.amarillo
               Nueva Empresa
     .ibox-content.text-center
-      %h3.font-bold No posee Escuelas De Transporte
+      %h3.font-bold No hay Empresas Forestales Registradas
       =link_to  'Nueva Empresa',new_empresa_forestal_path ,  class: 'btn btn-warning pull-center'
   -else
     .row
@@ -44,6 +44,9 @@
                     %td= empresa_forestal.direccion_fiscal
                     %td= empresa_forestal.telefono
                     %td
-                      = link_to 'Show', empresa_forestal
-                      = link_to 'Edit', edit_empresa_forestal_path(empresa_forestal)
-                      = link_to 'Destroy', empresa_forestal, method: :delete, data: { confirm: 'Are you sure?' }
+                      = link_to empresa_forestal do
+                        %i.fa.fa-search
+                      = link_to  edit_empresa_forestal_path(empresa_forestal) do
+                        %i.fa.fa-pencil-square-o
+                      = link_to  empresa_forestal, method: :delete, data: { confirm: '¿Seguro que desea Eliminar Empresa?' } do
+                        %i.fa.fa-trash-o
