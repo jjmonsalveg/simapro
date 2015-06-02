@@ -52,7 +52,8 @@ group :development do
   #correo en http://127.0.0.1:1080
   gem 'mailcatcher'
 
-  # gem 'sqlite3'
-
   gem 'annotate'
+
+  gem 'html2haml'
+
 end
