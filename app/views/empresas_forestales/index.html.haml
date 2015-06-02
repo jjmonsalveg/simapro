@@ -1,0 +1,25 @@
+%h1 Listing empresas_forestales
+%table
+  %thead
+    %tr
+      %th Nombre
+      %th Abreviado
+      %th Rif
+      %th Direccion fiscal
+      %th Telefono
+      %th
+      %th
+      %th
+  %tbody
+    - @empresas_forestales.each do |empresa_forestal|
+      %tr
+        %td= empresa_forestal.nombre
+        %td= empresa_forestal.abreviado
+        %td= empresa_forestal.rif
+        %td= empresa_forestal.direccion_fiscal
+        %td= empresa_forestal.telefono
+        %td= link_to 'Show', empresa_forestal
+        %td= link_to 'Edit', edit_empresa_forestal_path(empresa_forestal)
+        %td= link_to 'Destroy', empresa_forestal, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'Nueva Empresa', new_empresa_forestal_path

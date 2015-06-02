@@ -1,0 +1,31 @@
+= form_for(@empresa_forestal) do |f|
+  - if @empresa_forestal.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@empresa_forestal.errors.count, "error")
+        prohibited this empresa_forestal from being saved:
+      %ul
+        - @empresa_forestal.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :nombre
+    %br/
+    = f.text_field :nombre
+  .field
+    = f.label :abreviado
+    %br/
+    = f.text_field :abreviado
+  .field
+    = f.label :rif
+    %br/
+    = f.text_field :rif
+  .field
+    = f.label :direccion_fiscal
+    %br/
+    = f.text_field :direccion_fiscal
+  .field
+    = f.label :telefono
+    %br/
+    = f.text_field :telefono
+  .actions
+    = f.submit

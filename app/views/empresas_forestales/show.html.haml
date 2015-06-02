@@ -1,0 +1,19 @@
+%p#notice= notice
+%p
+  %strong Nombre:
+  = @empresa_forestal.nombre
+%p
+  %strong Abreviado:
+  = @empresa_forestal.abreviado
+%p
+  %strong Rif:
+  = @empresa_forestal.rif
+%p
+  %strong Direccion fiscal:
+  = @empresa_forestal.direccion_fiscal
+%p
+  %strong Telefono:
+  = @empresa_forestal.telefono
+= link_to 'Edit', edit_empresa_forestal_path(@empresa_forestal)
+|
+= link_to 'Back', empresas_forestales_path
