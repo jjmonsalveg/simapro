@@ -1,0 +1,35 @@
+<h1>Listing empresas_forestales</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Abreviado</th>
+      <th>Rif</th>
+      <th>Direccion fiscal</th>
+      <th>Telefono</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @empresas_forestales.each do |empresa_forestal| %>
+      <tr>
+        <td><%= empresa_forestal.nombre %></td>
+        <td><%= empresa_forestal.abreviado %></td>
+        <td><%= empresa_forestal.rif %></td>
+        <td><%= empresa_forestal.direccion_fiscal %></td>
+        <td><%= empresa_forestal.telefono %></td>
+        <td><%= link_to 'Show', empresa_forestal %></td>
+        <td><%= link_to 'Edit', edit_empresa_forestal_path(empresa_forestal) %></td>
+        <td><%= link_to 'Destroy', empresa_forestal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Empresa forestal', new_empresa_forestal_path %>

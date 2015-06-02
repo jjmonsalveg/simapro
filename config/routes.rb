@@ -1,5 +1,7 @@
 Myapp::Application.routes.draw do
 
+  resources :empresas_forestales
+
   # You can have the root of your site routed with "root"
   root to: 'static#index'
 
