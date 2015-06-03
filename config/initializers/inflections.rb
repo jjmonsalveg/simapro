@@ -11,10 +11,30 @@
 # end
 
 # These inflection rules are supported but not enabled by default:
-ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.acronym 'RESTful'
+ActiveSupport::Inflector.inflections(:es) do |inflect|
+  # inflect.acronym 'RESTful'
+  inflect.plural(/$/, 's')
+  inflect.plural(/([^aeéiou])$/i, '\1es')
+  inflect.plural(/([aeiou]s)$/i, '\1')
+  inflect.plural(/z$/i, 'ces')
+  inflect.plural(/á([sn])$/i, 'a\1es')
+  inflect.plural(/é([sn])$/i, 'e\1es')
+  inflect.plural(/í([sn])$/i, 'i\1es')
+  inflect.plural(/ó([sn])$/i, 'o\1es')
+  inflect.plural(/ú([sn])$/i, 'u\1es')
+
+  inflect.singular(/s$/, '')
+  inflect.singular(/es$/, '')
+
+  inflect.irregular('el', 'los')
+end
+
+ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'pais', 'paises'
   inflect.plural  'paises', 'pais'
+
+  inflect.irregular 'EmpresaForestal', 'EmpresasForestales'
+  inflect.plural 'EmpresasForestales', 'EmpresaForestal'
   inflect.irregular 'empresa_forestal', 'empresas_forestales'
   inflect.plural  'empresas_forestales', 'empresa_forestal'
 end
