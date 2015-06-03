@@ -32,15 +32,16 @@ gem 'haml'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# devise for authentication
+gem 'devise'
+# Seguridad añadida a devise
+gem 'devise_security_extension'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
-# devise for authentication
-gem 'devise'
-# Seguridad añadida a devise
-gem 'devise_security_extension'
 
 group :development do
   gem 'better_errors'
@@ -51,9 +52,10 @@ group :development do
   #correo en http://127.0.0.1:1080
   gem 'mailcatcher'
 
-  # gem 'sqlite3'
-
   gem 'annotate'
+
+  gem 'html2haml'
+
 end
 
 #Carga de Imagenes

@@ -1,0 +1,49 @@
+= provide(:title, 'Listar Empresas Forestales')
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      Empresas Forestales
+
+.wrapper.wrapper-content.animated.fadeInRight
+  - if @empresas_forestales.empty?
+    .row
+      .col-md-12.col-md-offset-0
+        %ul.text-muted.leyenda
+          %li.text-justify
+            Puede registrar una Empresa Forestal haciendo click en
+            %span.amarillo
+              Nueva Empresa
+    .ibox-content.text-center
+      %h3.font-bold No posee Escuelas De Transporte
+      =link_to  'Nueva Empresa',new_empresa_forestal_path ,  class: 'btn btn-warning pull-center'
+  -else
+    .row
+      .col-md-12.col-md-offset-0
+        .ibox.float-e-margins
+          .ibox-content
+            .col-sm-2
+              = link_to 'Nueva Empresa', new_empresa_forestal_path, class: "btn btn-primary btn-block"
+            %br
+            %br
+            %br
+            %table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %tr
+                  %th Nombre
+                  %th Abreviado
+                  %th RIF
+                  %th Direccion fiscal
+                  %th Telefono
+                  %th{colspan:3} Acciones
+              %tbody
+                - @empresas_forestales.each do |empresa_forestal|
+                  %tr
+                    %td= empresa_forestal.nombre
+                    %td= empresa_forestal.abreviado
+                    %td= empresa_forestal.rif
+                    %td= empresa_forestal.direccion_fiscal
+                    %td= empresa_forestal.telefono
+                    %td
+                      = link_to 'Show', empresa_forestal
+                      = link_to 'Edit', edit_empresa_forestal_path(empresa_forestal)
+                      = link_to 'Destroy', empresa_forestal, method: :delete, data: { confirm: 'Are you sure?' }

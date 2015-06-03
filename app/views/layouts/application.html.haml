@@ -4,7 +4,7 @@
     %head
       %meta{:charset => "utf-8"}/
       %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-      %title SIMAPRO
+      %title= full_title(yield(:title))
       = favicon_link_tag 'tree_icon.gif'
       / Include style per-controller - vendor plugins
       = stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css")

@@ -1,5 +1,6 @@
 Myapp::Application.routes.draw do
 
+
   # You can have the root of your site routed with "root"
   root to: 'static#index'
 
@@ -8,7 +9,10 @@ Myapp::Application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+  
+  resources :empresas_forestales
 
+  resources :paises
   devise_scope :user do
     # get 'users/new', to: 'users/registrations#new_user'
     # post 'users/create_user',
