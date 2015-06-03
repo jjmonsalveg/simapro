@@ -1,60 +1,88 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+  before_action :set_user, only: [:show, :update_user, :edit_user, :delete_user]
+  before_action :set_roles, only: [:new_user, :edit_user]
+  @@password = ""
 
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new_user
+    unless user_signed_in?
+      redirect_to root_url and return
+    end
+    @user ||= User.new
+    authorize! :new, User
+  end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  def create_user
+    if signed_in?
+      @user = User.new(user_params)
+      @@password = user_params[:password]
+      respond_to do |format|
+        if @user.save
+          PasswordMailer.send_password(@user, @@password).deliver
+          format.html { redirect_to  user_show_path(@user), notice: 'El usuario de MallRental se ha creado exitosamente.' }
+          format.json { render :show, status: :created, location: @user }
+        else
+          set_roles
+          format.html { render :new_user }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      redirect_to root_url and return
+    end
+    authorize! :create, User
+  end
 
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def show
+    @pass = @@password
+    @@password = ""
+    authorize! :show, User
+  end
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+  def index
+    unless user_signed_in?
+      redirect_to root_url and return
+    end
+    authorize! :show, User
+  end
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def edit_user
+    unless user_signed_in?
+      redirect_to root_url and return
+    end
 
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
+    authorize! :update, User
+  end
 
-  # protected
+  def update_user
+    if user_signed_in?
+      respond_to do |format|
+        if @user.update(user_params)
+          format.html { redirect_to user_show_path(@user), notice: 'Usuario actualizado satisfactoriamente.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          set_roles
+          format.html { render :edit_user }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+    authorize! :update, User
+  end
 
-  # You can put the params you want to permit in the empty array.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
+  def delete_user
+    if user_signed_in?
+      if @user.destroy
+        redirect_to users_index_path, alert: 'Usuario eliminado satisfactoriamente.' and return
+      end
+    end
+    authorize! :update, User
+  end
 
-  # You can put the params you want to permit in the empty array.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.for(:account_update) << :attribute
-  # end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  private
+    # def set_roles
+    #   @roles = Role.where(role_type: Role.role_types[:administrador_cliente])
+    #   if @roles.blank?
+    #     redirect_to new_role_path, alert: 'No existen roles para Administradores Mall.' and return
+    #   end
+    # end
 end
