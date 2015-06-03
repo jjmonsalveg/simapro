@@ -1,0 +1,1 @@
+admin_role = Role.create!(name: 'Administrador del Sistema Simapro', permissions: Permission.where(name: 'manage'), role_type: Role.role_types[:administrador_sistema])

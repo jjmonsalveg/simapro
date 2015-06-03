@@ -21,4 +21,6 @@
 
 class EmpresaForestal < ActiveRecord::Base
   self.table_name = :empresas_forestales
+  has_many :users
+
 end

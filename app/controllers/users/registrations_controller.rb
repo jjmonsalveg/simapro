@@ -79,10 +79,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-    # def set_roles
-    #   @roles = Role.where(role_type: Role.role_types[:administrador_cliente])
-    #   if @roles.blank?
-    #     redirect_to new_role_path, alert: 'No existen roles para Administradores Mall.' and return
-    #   end
-    # end
+    def set_roles
+      @roles = Role.where(role_type: Role.role_types[:administrador_cliente])
+      if @roles.blank?
+        redirect_to new_role_path, alert: 'No existen roles para Administradores Mall.' and return
+      end
+    end
 end

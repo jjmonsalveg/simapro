@@ -34,4 +34,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,:authentication_keys => [:username]
 
   mount_uploader :avatar, AvatarUploader
+
+  belongs_to :role
+  belongs_to :empresa_forestal
+
+  validates :username, presence: {message: 'es obligatorio'},
+            uniqueness: {message: 'ya en uso.'}
 end

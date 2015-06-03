@@ -81,16 +81,20 @@ ActiveRecord::Schema.define(version: 20150603121230) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "unique_session_id",      limit: 20
+    t.integer  "role_id"
     t.string   "name"
     t.string   "cellphone"
     t.string   "avatar"
     t.boolean  "locked",                            default: false
+    t.integer  "empresa_forestal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["empresa_forestal_id"], name: "index_users_on_empresa_forestal_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
