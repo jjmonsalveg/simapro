@@ -36,6 +36,14 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ##UNIQUE SESSION
       t.string :unique_session_id, :limit => 20
 
+      #ATRIBUTOS PROPIOS
+      t.references :role, index: true
+      t.string :name
+      t.string :cellphone
+      t.string :avatar
+      t.boolean :locked, default: false
+      t.references :empresa_forestal, index: true
+
 
       t.timestamps
     end

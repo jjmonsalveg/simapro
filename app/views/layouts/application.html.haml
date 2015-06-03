@@ -5,6 +5,7 @@
       %meta{:charset => "utf-8"}/
       %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
       %title= full_title(yield(:title))
+      = favicon_link_tag 'tree_icon.gif'
       / Include style per-controller - vendor plugins
       = stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css")
       / Main css styles
@@ -23,6 +24,7 @@
         #page-wrapper{class: "gray-bg #{@extra_class}"}
           / Page wrapper
           = render 'layouts/topnavbar'
+          = render 'layouts/flash_message'
           / Main view
           = yield
           / Footer
@@ -41,6 +43,7 @@
       %meta{:charset => "utf-8"}/
       %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
       %title SIMAPRO
+      = favicon_link_tag 'tree_icon.gif'
       / Include style per-controller - vendor plugins
       = stylesheet_link_tag params[:controller] if ::Rails.application.assets.find_asset("#{params[:controller]}.css")
       / Main css styles
@@ -50,6 +53,7 @@
       = csrf_meta_tags
     %body.gray-bg
       / Main view
+      = render 'layouts/flash_message'
       = yield
       / Footer
       = render 'layouts/footer'
