@@ -1,8 +1,8 @@
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     %h2
-      Rol
       %i.fa.fa-key
+      Rol
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
@@ -38,12 +38,14 @@
           %br/
           %br/
           .row
-            .col-sm-3.col-sm-offset-1
+            .col-sm-3
               - if can? :index, Role
-                = link_to roles_path, class: "btn btn-warning btn-block" do
-                  Volver
-            .col-sm-3.col-sm-offset-4
+                = link_to roles_path, class: "btn btn-success btn-block" do
+                  %i.fa.fa-arrow-left
+                  Regresar
+            .col-sm-3.col-sm-offset-6
               - if can? :edit, Role
-                = link_to edit_role_path(@role), class: "btn btn-mall btn-block" do
+                = link_to edit_role_path(@role), class: "btn btn-primary btn-block" do
                   Editar
+                  %i.fa.fa-edit
 
