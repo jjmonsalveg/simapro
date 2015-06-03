@@ -28,6 +28,17 @@
         = link_to profile_path do
           %i.fa.fa-user
           %span.nav-label Perfil
+      - if can? :index, Role
+        %li{class: is_active_controller('roles')}
+          %a{:href => ""}
+            %i.fa.fa-key
+            %span.nav-label Roles
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('roles')}"}
+            - if can? :index, Role
+              %li{class: is_active_action('index')}= link_to 'Visualizar Roles', roles_path
+            - if can? :new, Role
+              %li{class: is_active_action('new')}= link_to 'Nuevo Rol', new_role_path
       - if can? :manage, User
         %li{class: is_active_controller('users/registrations')}
           %a{:href => ""}

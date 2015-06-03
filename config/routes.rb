@@ -27,4 +27,6 @@ Myapp::Application.routes.draw do
     post 'profile/update', to: 'users/profiles#update'
   end
 
+  resources :roles
+
 end
