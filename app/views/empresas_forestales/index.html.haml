@@ -3,26 +3,31 @@
   .col-lg-10
     %h2
       Empresas Forestales
+      %span
+        %i.fa.fa-building
 
 .wrapper.wrapper-content.animated.fadeInRight
   - if @empresas_forestales.empty?
-    .row
-      .col-md-12.col-md-offset-0
-        %ul.text-muted.leyenda
-          %li.text-justify
-            Puede registrar una Empresa Forestal haciendo click en
-            %span.amarillo
-              Nueva Empresa
+    - if can? :create, EmpresaForestal
+      .row
+        .col-md-12.col-md-offset-0
+          %ul.text-muted.leyenda
+            %li.text-justify
+              Puede registrar una Empresa Forestal haciendo click en
+              %span.amarillo
+                Nueva Empresa
     .ibox-content.text-center
       %h3.font-bold No hay Empresas Forestales Registradas
-      =link_to  'Nueva Empresa',new_empresa_forestal_path ,  class: 'btn btn-warning pull-center'
+      - if can? :create, EmpresaForestal
+        =link_to  'Nueva Empresa',new_empresa_forestal_path ,  class: 'btn btn-warning pull-center'
   -else
     .row
       .col-md-12.col-md-offset-0
         .ibox.float-e-margins
           .ibox-content
             .col-sm-2
-              = link_to 'Nueva Empresa', new_empresa_forestal_path, class: "btn btn-primary btn-block"
+              - if can? :create, EmpresaForestal
+                = link_to 'Nueva Empresa', new_empresa_forestal_path, class: "btn btn-primary btn-block"
             %br
             %br
             %br
@@ -44,9 +49,15 @@
                     %td= empresa_forestal.direccion_fiscal
                     %td= empresa_forestal.telefono
                     %td
-                      = link_to empresa_forestal do
-                        %i.fa.fa-search
-                      = link_to  edit_empresa_forestal_path(empresa_forestal) do
-                        %i.fa.fa-pencil-square-o
-                      = link_to  empresa_forestal, method: :delete, data: { confirm: '¿Seguro que desea Eliminar Empresa?' } do
-                        %i.fa.fa-trash-o
+                      - if can? :view, EmpresaForestal
+                        = link_to empresa_forestal do
+                          %i.fa.fa-search
+                      - if can? :update, EmpresaForestal
+                        = link_to  edit_empresa_forestal_path(empresa_forestal) do
+                          %i.fa.fa-pencil-square-o
+                      - if can? :destroy, EmpresaForestal
+                        = link_to  empresa_forestal, method: :delete, data: { confirm: '¿Seguro que desea Eliminar Empresa?' } do
+                          %i.fa.fa-trash-o
+                      -#- if can? :destroy, EmpresaForestal
+                      -#  = link_to  empresa_forestal, method: :delete, data: { confirm: '¿Seguro que desea Eliminar Empresa?' } do
+                      -#    %i.fa.fa-trash-o

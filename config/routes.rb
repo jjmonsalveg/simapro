@@ -12,7 +12,7 @@ Myapp::Application.routes.draw do
   
   resources :empresas_forestales
 
-  resources :paises
+  resources :paises, except: :show
   devise_scope :user do
     get 'users/new', to: 'users/registrations#new_user'
     post 'users/create_user',

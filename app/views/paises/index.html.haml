@@ -2,7 +2,8 @@
   .col-lg-10
     %h2
       Paises Registrados
-
+      %span
+        %i.fa.fa-globe
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
@@ -16,7 +17,8 @@
         .ibox-content
           .row
             .col-sm-3
-              = link_to "Nuevo Pais", { controller: "paises", action: "new" }, class: "btn btn-primary btn-block"
+              -if can? :create, Pais
+                = link_to "Nuevo Pais", { controller: "paises", action: "new" }, class: "btn btn-primary btn-block"
           %hr
           %br
           .row
@@ -33,12 +35,14 @@
                       %td= pais.nombre
                       %td= pais.idioma.nombre
                       %td
-                        = link_to edit_pais_path(pais) do
-                          %i.fa.fa-pencil
-                          Editar
+                        -if can? :update, Pais
+                          = link_to edit_pais_path(pais) do
+                            %i.fa.fa-pencil
+                            Editar
                         &nbsp;
                         &nbsp;
                         &nbsp;
-                        = link_to pais, data: { confirm: "Seguro que desea eliminar el Pais ?" }, method: :delete do
-                          %i.fa.fa-trash
-                          Eliminar
+                        -if can? :destroy, Pais
+                          = link_to pais, data: { confirm: "Seguro que desea eliminar el Pais ?" }, method: :delete do
+                            %i.fa.fa-trash
+                            Eliminar

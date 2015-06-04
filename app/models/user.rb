@@ -15,13 +15,21 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  unique_session_id      :string(20)
+#  role_id                :integer
+#  name                   :string(255)
+#  cellphone              :string(255)
+#  avatar                 :string(255)
+#  locked                 :boolean          default(FALSE)
+#  empresa_forestal_id    :integer
 #  created_at             :datetime
 #  updated_at             :datetime
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_empresa_forestal_id   (empresa_forestal_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_role_id               (role_id)
 #  index_users_on_username              (username) UNIQUE
 #
 

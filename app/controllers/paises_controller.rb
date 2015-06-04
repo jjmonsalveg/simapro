@@ -1,18 +1,12 @@
 class PaisesController < ApplicationController
-  before_action :set_pais, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  load_and_authorize_resource
   #TODO AGREGAR ROLES
 
   # GET /pais
   # GET /pais.json
   def index
     @paises = Pais.all
-  end
-
-  # GET /pais/1
-  # GET /pais/1.json
-  def show
   end
 
   # GET /pais/new
@@ -65,11 +59,6 @@ class PaisesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pais
-      @pais = Pais.find_by(id: params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def pais_params
       params.require(:pais).permit(:nombre, :idioma_id, :moneda_id)

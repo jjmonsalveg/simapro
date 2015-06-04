@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20150603121230) do
   enable_extension "plpgsql"
 
   create_table "empresas_forestales", force: true do |t|
-    t.string   "nombre"
-    t.string   "abreviado"
-    t.string   "rif"
-    t.string   "direccion_fiscal"
-    t.string   "telefono"
-    t.integer  "pais_id"
+    t.string   "nombre",           null: false
+    t.string   "abreviado",        null: false
+    t.string   "rif",              null: false
+    t.string   "direccion_fiscal", null: false
+    t.string   "telefono",         null: false
+    t.integer  "pais_id",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
