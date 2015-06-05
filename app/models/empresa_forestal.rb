@@ -39,8 +39,8 @@ class EmpresaForestal < ActiveRecord::Base
             presence: { message: 'El campo Abreviado es obligatorio'}
   validates :rif, uniqueness:{message:'Otra Empresa a sido registrada con este RIF.'},
             presence: { message: 'El campo Rif es obligatorio'},
-            format: {with:RIF_REGEX_COMPLETE,
-                     message: 'El formato del campo Rif es inválido' },
+            # format: {with:RIF_REGEX_COMPLETE,
+            #          message: 'El formato del campo Rif es inválido' },
             :length => {  maximum: 10,
                           message:
                               'Rif debe contener máximo 10 caracteres'
@@ -48,12 +48,11 @@ class EmpresaForestal < ActiveRecord::Base
   validates :direccion_fiscal, presence: { message: 'El campo Dirección es obligatorio'}
   validates :telefono ,uniqueness:{message:'Otra Empresa a sido registrada con este Teléfono.'},
             presence: {message: 'El campo Teléfono es obligatorio'},
-      format: {with: TELEFONO_LOCAL_REGEX, message:  'El formato del campo Teléfono es inválido'},
+      # format: {with: TELEFONO_LOCAL_REGEX, message:  'El formato del campo Teléfono es inválido'},
       :length => {  maximum: 11,
                     message:
-                        'Teléfono debe contener máximo 10 caracteres'
+                        'Teléfono debe contener máximo 11 caracteres'
       }
-
 
   #callbacks definition
   def convert_format
