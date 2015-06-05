@@ -23,11 +23,15 @@ class EmpresaForestal < ActiveRecord::Base
   #configuracion/includes
   self.table_name = :empresas_forestales
   include RegexHelper
+  include ModeloGeneral::ManageDocument
 
   #asociaciones
   belongs_to :pais
   accepts_nested_attributes_for :pais
   has_many :users
+
+  has_many :documentos,  dependent: :destroy, as: :modelo
+  accepts_nested_attributes_for :documentos, allow_destroy: true
 
   #callback declaration
   before_validation :convert_format

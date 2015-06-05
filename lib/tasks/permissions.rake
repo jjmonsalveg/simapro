@@ -56,7 +56,7 @@ def eval_cancan_action(action)
     else
       #FUNCIONES NECESARIAS FUERA DEL REST TYPE
       #DEBEN COMENZAR CON EL PREFIJO MF DE MALL FUNCTION
-      if action =~ /^mf_/i
+      if action =~ /^wf_/i
         name = action.to_s
         cancan_action = action.to_s
         action_desc = "Other: " < cancan_action
