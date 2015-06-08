@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     end
 
     def user_params
-      params.require(:user).permit(:name, :username, :email, :password, :locked, :mall_id, :cellphone, :role_id)#, rol_ids: [])
+      params.require(:user).permit(:name, :username, :email, :password, :locked, :empresa_forestal_id, :cellphone, :role_id)#, rol_ids: [])
     end
 
     def params_id

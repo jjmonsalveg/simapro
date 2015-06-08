@@ -23,4 +23,7 @@ class EmpresaForestal < ActiveRecord::Base
   self.table_name = :empresas_forestales
   has_many :users
 
+  def self.forestales_without_admin
+    return EmpresaForestal.where.not(id: EmpresaForestal.joins(:users).merge(User.joins(:role).where(roles: {role_type: Role.role_types[:administrador_cliente]})))
+  end
 end
