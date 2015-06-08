@@ -55,8 +55,8 @@ class User < ActiveRecord::Base
 
   def admin
     if Role.find_by(id: role_id) != Role.find(1)
-      if mall_id.nil?
-        errors.add(:mall_id, "Debe asignar un mall al usuario")
+      if empresa_forestal_id.nil?
+        errors.add(:empresa_forestal_id, "Debe asignar una empresa forestal al usuario")
       end
     end
   end

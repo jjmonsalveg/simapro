@@ -1,12 +1,13 @@
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     %h2
-      Administradores Mall
+      %i.fa.fa-database
+      Administradores de Empresas Forestales
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
       %li
-        Administradores Mall
+        Administradores Registrados
 
 .wrapper.wrapper-content.animated.fadeInRight
   .row
@@ -18,7 +19,7 @@
               = link_to users_new_path, class: 'btn btn-primary' do
                 Nuevo Administrador Empresa Forestal
                 &nbsp;
-                %i.fa.fa-plus-square
+                %i.fa.fa-plus
           %br
           .row
             .col-md-12
@@ -31,19 +32,21 @@
                       %th Email
                       %th Nombre
                       %th Teléfono Celular
-                      %th Mall
+                      %th Empresa Forestal
                       %th Rol
+                      %th Bloqueado
                       %th Acciones
                   %tbody
                     - User.forestal_admins.each do |user|
                       %tr
-                        %td.text-center= image_tag user.avatar.url || 'building-avatar.gif', class: 'img-circle', height: 50
+                        %td.text-center= image_tag user.avatar.url || 'tree.png', class: 'img-circle', height: 50
                         %td= user.username
                         %td= user.email
                         %td= user.name
                         %td= user.cellphone
-                        %td= user.mall.nombre rescue 'NULL'
+                        %td= user.empresa_forestal.nombre rescue 'NULL'
                         %td= user.role.name_type rescue 'NULL'
+                        %td= user.locked ? 'Si' : 'No'
                         %td
                           = link_to user_edit_user_path(user) do
                             %i.fa.fa-pencil

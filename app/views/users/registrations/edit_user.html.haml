@@ -1,14 +1,15 @@
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     %h2
-      Editar Usuario
+      %i.fa.fa-database
+      Editar Administrador
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
       %li
-        = link_to 'Usuarios Registrados', users_index_path
+        = link_to 'Administradores Registrados', users_index_path
       %li
-        Editar Usuario
+        Editar Administrador
 
 .wrapper.wrapper-content
   .row.animated.fadeInRight
@@ -16,7 +17,7 @@
       .ibox.float-e-margins
         .ibox-title
           %h3
-            Editar Usuario:
+            Editar Administrador:
             = @user.username
         .ibox-content
           = form_for(@user, url:  users_update_user_path(id: @user), html: { method: :post, class:"form-horizontal m-t-md", id: "form_edit_user"}) do |f|
@@ -56,8 +57,14 @@
                       &nbsp;
                       %td= r.radio_button
             .form-group
-              .col-sm-3.col-sm-offset-9
-                = f.submit "Actualizar", class: "btn btn-warning btn-block"
+              .col-sm-3
+                = link_to  users_index_path,  class: 'btn btn-success btn-block' do
+                  %i.fa.fa-arrow-left
+                  Regresar
+              .col-sm-3.col-sm-offset-6
+                = f.button class: "btn btn-primary btn-block", data: { disable_with: 'Guardar'} do
+                  Guardar
+                  %i.fa.fa-floppy-o
 
 -#%h2
 -#  Edit #{resource_name.to_s.humanize}

@@ -28,4 +28,17 @@ Myapp::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  Myapp::Application.configure do
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+        address: "smtp-mail.outlook.com",
+        port: 587,
+        domain: "www.simapro.com",
+        authentication: "plain",
+        user_name: "mallrental@hotmail.com",
+        password: "holacamello1975",
+        enable_starttls_auto: true
+    }
+  end
 end
