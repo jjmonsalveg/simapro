@@ -1,12 +1,12 @@
 class CreateEmpresasForestales < ActiveRecord::Migration
   def change
     create_table :empresas_forestales do |t|
-      t.string :nombre
-      t.string :abreviado
-      t.string :rif
-      t.string :direccion_fiscal
-      t.string :telefono
-      t.references :pais
+      t.string :nombre, null: false
+      t.string :abreviado, null:false
+      t.string :rif, null: false
+      t.string :direccion_fiscal, null:false
+      t.string :telefono, null:false
+      t.references :pais, null: false
 
       t.timestamps
     end

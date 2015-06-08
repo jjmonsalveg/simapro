@@ -10,9 +10,7 @@ Myapp::Application.routes.draw do
     registrations: 'users/registrations'
   }
   
-  resources :empresas_forestales
 
-  resources :paises
   devise_scope :user do
     get 'users/new', to: 'users/registrations#new_user'
     post 'users/create_user',
@@ -28,5 +26,17 @@ Myapp::Application.routes.draw do
   end
 
   resources :roles
+
+
+  resources :empresas_forestales
+
+  resources :paises, except: :show
+
+  resources :jquery_file_uploads, only: [:create, :destroy, :index] do
+    member do
+      delete 'wf_destroy_no_paginado'
+    end
+  end
+
 
 end

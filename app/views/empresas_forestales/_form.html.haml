@@ -1,31 +1,68 @@
-= form_for(@empresa_forestal) do |f|
-  - if @empresa_forestal.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@empresa_forestal.errors.count, "error")
-        prohibited this empresa_forestal from being saved:
-      %ul
-        - @empresa_forestal.errors.full_messages.each do |msg|
-          %li= msg
-  .field
-    = f.label :nombre
-    %br/
-    = f.text_field :nombre
-  .field
-    = f.label :abreviado
-    %br/
-    = f.text_field :abreviado
-  .field
-    = f.label :rif
-    %br/
-    = f.text_field :rif
-  .field
-    = f.label :direccion_fiscal
-    %br/
-    = f.text_field :direccion_fiscal
-  .field
-    = f.label :telefono
-    %br/
-    = f.text_field :telefono
-  .actions
-    = f.submit
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12
+      = form_for(@empresa_forestal) do |f|
+        .row
+          .col-md-12
+            .ibox.float-e-margins
+              .ibox-title
+                %h3
+                  Datos
+              .ibox-content
+                .row
+                  = render 'shared/error_messages', object: f.object, model: 'Empresa Forestal'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :nombre , class: 'col-sm-4 control-label' do
+                        Nombre:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :nombre,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :abreviado , class: 'col-sm-4 control-label' do
+                        Abreviado:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :abreviado,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :rif , class: 'col-sm-4 control-label' do
+                        RIF:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :rif,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :direccion_fiscal , class: 'col-sm-4 control-label' do
+                        Dirección:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :direccion_fiscal,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :telefono , class: 'col-sm-4 control-label' do
+                        Teléfono:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :telefono,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :pais_id, class: 'col-sm-4 control-label' do
+                        País:
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.collection_select(:pais_id, Pais.all.order(:nombre), :id,:nombre,
+                        {selected:  f.object.pais_id.nil? ? Pais.find_by(nombre: :Venezuela).id : @empresa_forestal.pais_id },
+                         class:'form-control col-sm-1')
+          .row
+            .col-sm-12
+              .ibox.float-e-margins
+                .ibox-content
+                  .row
+                    .col-sm-2
+                      = link_to 'Listar Empresas Forestales', empresas_forestales_path,class: "btn btn-primary"
+                    .col-sm-3.col-sm-offset-7
+                      = f.submit 'Guardar Empresa',
+                       class: 'btn btn-success btn-block',
+                       data: { disable_with: 'Por favor espere...' }

@@ -2,14 +2,17 @@
   .col-lg-10
     %h2
       Editar País
+      %span
+        %i.fa.fa-globe
 
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
       %li
-        = link_to 'Paises Registrados', pais_path
+        = link_to 'Paises Registrados', paises_path
       %li
-        Editar País
+        %strong
+          Editar País
 
 .wrapper.wrapper-content
   .row.animated.fadeInRight
@@ -28,7 +31,7 @@
             .form-group
               = f.label :idioma_id, "Idioma: ", class: 'col-sm-2 control-label'
               .col-sm-10
-                = f.collection_select(:idioma_id, Idioma.all, :id, :nombre)
+                = f.collection_select(:idioma_id, Idioma.all, :id, :nombre,{},class:'form-control')
             .form-group
               .col-sm-3.col-sm-offset-9
                 = f.submit "Actualizar", class: "btn btn-warning btn-block"

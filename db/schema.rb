@@ -11,18 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603121230) do
+ActiveRecord::Schema.define(version: 20150605134207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "empresas_forestales", force: true do |t|
+  create_table "documento_requisitos", force: true do |t|
+    t.string   "nombre",              limit: 50,                  null: false
+    t.string   "descripcion",         limit: 100,                 null: false
+    t.string   "help",                limit: 100
+    t.integer  "cardinalidad_maxima",             default: 1
+    t.boolean  "paginado",                        default: false, null: false
+    t.boolean  "obligatorio",                     default: true,  null: false
+    t.boolean  "almenos_uno",                     default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documento_requisitos", ["nombre"], name: "index_documento_requisitos_on_nombre", unique: true, using: :btree
+
+  create_table "documentos", force: true do |t|
+    t.string   "doc"
     t.string   "nombre"
-    t.string   "abreviado"
-    t.string   "rif"
-    t.string   "direccion_fiscal"
-    t.string   "telefono"
-    t.integer  "pais_id"
+    t.integer  "modelo_id"
+    t.string   "modelo_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "documentos_requisitos_por_vista_id"
+  end
+
+  add_index "documentos", ["doc", "modelo_id", "modelo_type", "documentos_requisitos_por_vista_id"], name: "index_control_documentos", unique: true, using: :btree
+  add_index "documentos", ["documentos_requisitos_por_vista_id"], name: "index_documentos_on_documentos_requisitos_por_vista_id", using: :btree
+  add_index "documentos", ["modelo_id"], name: "index_documentos_on_modelo_id", using: :btree
+
+  create_table "documentos_requisitos_por_vistas", force: true do |t|
+    t.integer  "documento_requisito_id"
+    t.integer  "vista_id"
+    t.integer  "grupo_documentos_uno_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documentos_requisitos_por_vistas", ["documento_requisito_id", "vista_id"], name: "index_documentos_unique_vista", unique: true, using: :btree
+  add_index "documentos_requisitos_por_vistas", ["documento_requisito_id"], name: "index_doc_requisito_intermedia", using: :btree
+  add_index "documentos_requisitos_por_vistas", ["grupo_documentos_uno_id"], name: "index_grupo_documentos_uno_intermedia", using: :btree
+  add_index "documentos_requisitos_por_vistas", ["vista_id"], name: "index_vista_intermedia", using: :btree
+
+  create_table "empresas_forestales", force: true do |t|
+    t.string   "nombre",           null: false
+    t.string   "abreviado",        null: false
+    t.string   "rif",              null: false
+    t.string   "direccion_fiscal", null: false
+    t.string   "telefono",         null: false
+    t.integer  "pais_id",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,6 +71,13 @@ ActiveRecord::Schema.define(version: 20150603121230) do
   add_index "empresas_forestales", ["nombre"], name: "index_empresas_forestales_on_nombre", unique: true, using: :btree
   add_index "empresas_forestales", ["rif"], name: "index_empresas_forestales_on_rif", unique: true, using: :btree
   add_index "empresas_forestales", ["telefono"], name: "index_empresas_forestales_on_telefono", unique: true, using: :btree
+
+  create_table "grupo_documentos_unos", force: true do |t|
+    t.string   "mensaje",    limit: 100, default: "", null: false
+    t.string   "icon_color", limit: 15,  default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "idiomas", force: true do |t|
     t.string   "nombre"
@@ -96,5 +144,16 @@ ActiveRecord::Schema.define(version: 20150603121230) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "vistas", force: true do |t|
+    t.string   "descripcion",              limit: 100, default: ""
+    t.string   "nombre",                   limit: 35,                  null: false
+    t.integer  "index"
+    t.boolean  "any_grupo_documentos_uno",             default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vistas", ["nombre"], name: "index_vistas_on_nombre", unique: true, using: :btree
 
 end

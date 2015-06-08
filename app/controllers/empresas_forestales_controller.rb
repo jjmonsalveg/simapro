@@ -1,6 +1,7 @@
 class EmpresasForestalesController < ApplicationController
-  before_action :set_empresa_forestal, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  # before_action :set_empresa_forestal, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
   respond_to :html
 
   def index
@@ -37,11 +38,11 @@ class EmpresasForestalesController < ApplicationController
   end
 
   private
-    def set_empresa_forestal
-      @empresa_forestal = EmpresaForestal.find(params[:id])
-    end
+    # def set_empresa_forestal
+    #   @empresa_forestal = EmpresaForestal.find(params[:id])
+    # end
 
     def empresa_forestal_params
-      params.require(:empresa_forestal).permit(:nombre, :abreviado, :rif, :direccion_fiscal, :telefono)
+      params.require(:empresa_forestal).permit(:nombre, :abreviado, :rif, :direccion_fiscal, :telefono, :pais_id)
     end
 end

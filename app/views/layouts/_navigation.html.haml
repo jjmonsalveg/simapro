@@ -48,6 +48,27 @@
           %ul{:class => "nav nav-second-level #{is_active_controller('users/registrations')}"}
             %li{class: is_active_action('index')}= link_to 'Visualizar Administradores', users_index_path
             %li{class: is_active_action('new_user')}= link_to 'Nuevo Administrador', users_new_path
+      - if can? :read, EmpresaForestal
+        %li{class: is_active_controller('empresas_forestales')}
+          %a{:href => ""}
+            %i.fa.fa-building
+            %span.nav-label Empresas Forestales
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('empresas_forestales')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Empresas Forestales',empresas_forestales_path
+            - if can? :create, EmpresaForestal
+              %li{class: is_active_action('new')}= link_to 'Nueva Empresa Forestal', new_empresa_forestal_path
+      - if can? :read, Pais
+        %li{class: is_active_controller('paises')}
+          %a{:href => ""}
+            %i.fa.fa-globe
+            %span.nav-label Paises
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('paises')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Paises',paises_path
+            - if can? :create, Pais
+              %li{class: is_active_action('new')}= link_to 'Nuevo País', new_pais_path
+
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
       -#    %i.fa.fa-th-large

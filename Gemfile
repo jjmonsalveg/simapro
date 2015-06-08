@@ -61,6 +61,14 @@ end
 #Carga de Imagenes
 gem 'carrierwave'
 
+
+# Carga de documentos paginados
+gem 'jquery-fileupload-rails'
+gem 'remotipart', '~> 1.2'
+
+
 gem 'rmagick', '~> 2.13.4'
 
 gem 'cancancan', '~> 1.10'
+
+
