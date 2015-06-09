@@ -48,9 +48,9 @@ class User < ActiveRecord::Base
 
   validates :username, presence: {message: 'es obligatorio'},
             uniqueness: {message: 'ya en uso.'}
-  validates :email, presence: {message: 'Email Obligatorio'}
-  validates :name, presence: {message: 'Nombre Obligatorio'}
-  validates :role_id, presence: {message: 'Rol Obligatorio'}
+  validates :email, presence: {message: 'Obligatorio'}
+  validates :name, presence: {message: 'Obligatorio'}
+  validates :role_id, presence: {message: 'Obligatorio'}
   validate :admin
 
   def admin

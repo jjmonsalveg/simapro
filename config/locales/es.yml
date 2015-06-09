@@ -117,6 +117,12 @@ es:
       second: Segundos
       year: Año
   activerecord:
+    attributes:
+          user:
+            username: "Login"
+            name: "Nombre"
+            email: "E-mail"
+            role_id: "Rol"
     errors:
       format: ! '%{attribute} %{message}'
       messages:

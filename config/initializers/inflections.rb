@@ -37,4 +37,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural 'EmpresasForestales', 'EmpresaForestal'
   inflect.irregular 'empresa_forestal', 'empresas_forestales'
   inflect.plural  'empresas_forestales', 'empresa_forestal'
+
+
 end

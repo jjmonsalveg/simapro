@@ -1,0 +1,61 @@
+= provide(:title, "#{current_user.empresa_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-pagelines
+      = current_user.empresa_forestal.nombre rescue 'Simapro'
+      \- Cuencas
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        Cuencas
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          -#.row
+          -#  .col-sm-3
+          -#    = link_to new_tienda_path, class: 'btn btn-mall btn-block ' do
+          -#      Nueva Tienda
+          -#      %i.fa.fa-plus
+          -#  .col-sm-3.col-sm-offset-6
+          -#    = link_to notificar_usuarios_mall_path, class: 'btn btn-danger pull-right' do
+          -#      Notificar Contratos Vencidos
+          -#      %i.fa.fa-envelope
+          -#%br
+          -#%br
+          .row
+            .col-md-12
+              .table-responsive
+                %table.table.table-striped.table-bordered.table-hover#table_cuencas_index
+                  %thead
+                    %tr
+                      %th Nombre
+                      %th Abreviado
+                      %th Unidad de Ordenación
+                      %th Reserva Forestal
+                      %th Área
+                      %th Acciones
+                      %th
+                  %tbody
+                    - @bloque_ordenacions.each do |bloque_ordenacion|
+                      %tr
+                        %td= bloque_ordenacion.nombre
+                        %td= bloque_ordenacion.abreviado
+                        %td= bloque_ordenacion.unidad_ordenacion.nombre rescue 'NULL'
+                        %td= bloque_ordenacion.unidad_ordenacion.reserva_forestal.nombre rescue 'NULL'
+                        %td
+                        -#  = link_to edit_tienda_path(bloque_ordenacion) do
+                        -#    %i.fa.fa-edit
+                        -#  &nbsp;
+                        -#  &nbsp;
+                        -#  = link_to bloque_ordenacion, method: :delete, data: { confirm: "Seguro de que desea eliminar la tienda #{bloque_ordenacion.nombre}" }do
+                        -#    %i.fa.fa-trash
+                        -#%td
+                        -#  = link_to user_tiendas_path(tienda: bloque_ordenacion.nombre, id: bloque_ordenacion.id) do
+                        -#    Usuarios
+                        -#%td
+                        -#  = link_to contrato_alquilers_path(tienda: bloque_ordenacion.nombre, id: bloque_ordenacion.id) do
+                        -#    Contratos

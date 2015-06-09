@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605134207) do
+ActiveRecord::Schema.define(version: 20150609122948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bloque_manejos", force: true do |t|
+    t.integer  "bloque_manejo_id"
+    t.string   "codigo"
+    t.decimal  "area"
+    t.integer  "unidad_manejo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bloque_manejos", ["unidad_manejo_id"], name: "index_bloque_manejos_on_unidad_manejo_id", using: :btree
+
+  create_table "bloque_ordenacions", force: true do |t|
+    t.integer  "bloque_ordenacion_id"
+    t.string   "nombre",               limit: 64,                         null: false
+    t.string   "abreviado",            limit: 12,                         null: false
+    t.decimal  "area",                            precision: 9, scale: 2
+    t.text     "descripcion"
+    t.integer  "unidad_ordenacion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bloque_ordenacions", ["bloque_ordenacion_id"], name: "index_bloque_ordenacions_on_bloque_ordenacion_id", unique: true, using: :btree
+  add_index "bloque_ordenacions", ["unidad_ordenacion_id"], name: "index_bloque_ordenacions_on_unidad_ordenacion_id", using: :btree
 
   create_table "documento_requisitos", force: true do |t|
     t.string   "nombre",              limit: 50,                  null: false
@@ -72,6 +97,13 @@ ActiveRecord::Schema.define(version: 20150605134207) do
   add_index "empresas_forestales", ["rif"], name: "index_empresas_forestales_on_rif", unique: true, using: :btree
   add_index "empresas_forestales", ["telefono"], name: "index_empresas_forestales_on_telefono", unique: true, using: :btree
 
+  create_table "estados", force: true do |t|
+    t.string   "nombre"
+    t.string   "codificacion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "grupo_documentos_unos", force: true do |t|
     t.string   "mensaje",    limit: 100, default: "", null: false
     t.string   "icon_color", limit: 15,  default: "", null: false
@@ -85,6 +117,15 @@ ActiveRecord::Schema.define(version: 20150605134207) do
     t.datetime "updated_at"
   end
 
+  create_table "municipios", force: true do |t|
+    t.string   "nombre"
+    t.integer  "estado_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "municipios", ["estado_id"], name: "index_municipios_on_estado_id", using: :btree
+
   create_table "paises", force: true do |t|
     t.string   "nombre"
     t.integer  "idioma_id"
@@ -93,6 +134,18 @@ ActiveRecord::Schema.define(version: 20150605134207) do
   end
 
   add_index "paises", ["idioma_id"], name: "index_paises_on_idioma_id", using: :btree
+
+  create_table "parcela_manejos", force: true do |t|
+    t.integer  "parcela_manejo_id"
+    t.string   "codigo",            limit: 2
+    t.decimal  "area",                        precision: 5, scale: 2
+    t.integer  "bloque_manejo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "parcela_manejos", ["bloque_manejo_id"], name: "index_parcela_manejos_on_bloque_manejo_id", using: :btree
+  add_index "parcela_manejos", ["parcela_manejo_id"], name: "index_parcela_manejos_on_parcela_manejo_id", unique: true, using: :btree
 
   create_table "permissions", force: true do |t|
     t.string   "subject_class", limit: 60, default: ""
@@ -115,6 +168,24 @@ ActiveRecord::Schema.define(version: 20150605134207) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "unidad_manejos", force: true do |t|
+    t.integer  "unidad_manejo_id"
+    t.string   "nombre",               limit: 64,                         null: false
+    t.string   "abreviado",            limit: 12,                         null: false
+    t.string   "nro_providencia",      limit: 12,                         null: false
+    t.date     "fecha_otorgacion"
+    t.date     "fecha_vence"
+    t.decimal  "area",                            precision: 9, scale: 2
+    t.text     "ubicacion"
+    t.text     "descripcion"
+    t.integer  "bloque_ordenacion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "unidad_manejos", ["bloque_ordenacion_id"], name: "index_unidad_manejos_on_bloque_ordenacion_id", using: :btree
+  add_index "unidad_manejos", ["unidad_manejo_id"], name: "index_unidad_manejos_on_unidad_manejo_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",                          default: "",    null: false

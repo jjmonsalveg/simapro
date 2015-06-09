@@ -27,7 +27,6 @@ Myapp::Application.routes.draw do
 
   resources :roles
 
-
   resources :empresas_forestales
 
   resources :paises, except: :show
@@ -36,6 +35,10 @@ Myapp::Application.routes.draw do
     member do
       delete 'wf_destroy_no_paginado'
     end
+  end
+
+  namespace :unidad_ordenacion do
+    get 'cuencas', to: 'bloque_ordenacions#index', as: :bloque_ordenacions
   end
 
 

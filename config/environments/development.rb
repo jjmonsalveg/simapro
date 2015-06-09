@@ -32,11 +32,11 @@ Myapp::Application.configure do
   Myapp::Application.configure do
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-        address: "smtp-mail.outlook.com",
+        address: "smtp.gmail.com",
         port: 587,
         domain: "www.simapro.com",
         authentication: "plain",
-        user_name: "mallrental@hotmail.com",
+        user_name: "simapro2015@gmail.com",
         password: "holacamello1975",
         enable_starttls_auto: true
     }
