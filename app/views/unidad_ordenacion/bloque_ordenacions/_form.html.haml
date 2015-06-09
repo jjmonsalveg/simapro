@@ -1,0 +1,42 @@
+= form_for [:unidad_ordenacion , @bloque_ordenacion] , html: {id: 'form_bloque_ordenacion'} do |f|
+  = render 'shared/error_messages', object: f.object, model: 'Cuenca'
+
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-content.border-bottom.form-horizontal
+          .form-group
+            = f.label :nombre, class: 'col-sm-2 control-label' do
+              Nombre:
+            .col-sm-10
+              = f.text_field :nombre, class: 'form-control'
+          .form-group
+            = f.label :abreviado, class: 'col-sm-2 control-label' do
+              Nombre Abreviado:
+            .col-sm-10
+              = f.text_field :abreviado, class: 'form-control'
+          .form-group
+            = f.label :unidad_ordenacion_id, class: 'col-sm-2 control-label' do
+              Unidad de Ordenación:
+            .col-sm-6
+              -#= f.select :unidad_ordenacion_id, options_from_collection_for_select(UnidadOrdenacion.all, :id, :nombre, selected: f.object.unidad_ordenacion_id || nil), { include_blank: 'Seleccione una unidad de ordenación'}, {class: 'form-control}
+          .form-group
+            = f.label :area, class: 'col-sm-2 control-label' do
+              Área (ha):
+            .col-sm-10
+              = f.text_field :area, class: 'form-control'
+          .form-group
+            = f.label :descripcion, class: 'col-sm-2 control-label' do
+              Características Generales:
+            .col-sm-10
+              = f.text_area :descripcion, class: 'form-control', rows: 5
+
+          .form-group
+            .col-sm-3
+              = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success  btn-block' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3.col-sm-offset-6
+              = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Guardar'} do
+                Guardar
+                %i.fa.fa-floppy-o

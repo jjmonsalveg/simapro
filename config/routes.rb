@@ -39,6 +39,11 @@ Myapp::Application.routes.draw do
 
   namespace :unidad_ordenacion do
     get 'cuencas', to: 'bloque_ordenacions#index', as: :bloque_ordenacions
+    get 'cuencas/nueva', to: 'bloque_ordenacions#new', as: :bloque_ordenacion_new
+    post 'cuencas', to: 'bloque_ordenacions#create'
+    get 'cuencas/:id/editar', to: 'bloque_ordenacions#edit', as: :bloque_ordenacion_edit
+    put 'cuencas/:id/update', to: 'bloque_ordenacions#update', as: :bloque_ordenacion
+    patch 'cuencas/:id/update', to: 'bloque_ordenacions#update'
   end
 
 

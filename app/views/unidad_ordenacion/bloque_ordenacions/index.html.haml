@@ -1,9 +1,9 @@
-= provide(:title, "#{current_user.empresa_forestal.nombre rescue 'Simapro'} - Cuencas")
+= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     %h2
       %i.fa.fa-pagelines
-      = current_user.empresa_forestal.nombre rescue 'Simapro'
+      = current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
       \- Cuencas
     %ol.breadcrumb
       %li
@@ -15,17 +15,13 @@
     .col-lg-12
       .ibox.float-e-margins
         .ibox-content
-          -#.row
-          -#  .col-sm-3
-          -#    = link_to new_tienda_path, class: 'btn btn-mall btn-block ' do
-          -#      Nueva Tienda
-          -#      %i.fa.fa-plus
-          -#  .col-sm-3.col-sm-offset-6
-          -#    = link_to notificar_usuarios_mall_path, class: 'btn btn-danger pull-right' do
-          -#      Notificar Contratos Vencidos
-          -#      %i.fa.fa-envelope
-          -#%br
-          -#%br
+          .row
+            .col-sm-3
+              = link_to unidad_ordenacion_bloque_ordenacion_new_path, class: 'btn btn-primary btn-responsive ' do
+                Nueva Cuenca
+                %i.fa.fa-plus
+          %br
+          %br
           .row
             .col-md-12
               .table-responsive
@@ -46,13 +42,14 @@
                         %td= bloque_ordenacion.abreviado
                         %td= bloque_ordenacion.unidad_ordenacion.nombre rescue 'NULL'
                         %td= bloque_ordenacion.unidad_ordenacion.reserva_forestal.nombre rescue 'NULL'
+                        %td= bloque_ordenacion.area
                         %td
-                        -#  = link_to edit_tienda_path(bloque_ordenacion) do
-                        -#    %i.fa.fa-edit
-                        -#  &nbsp;
-                        -#  &nbsp;
-                        -#  = link_to bloque_ordenacion, method: :delete, data: { confirm: "Seguro de que desea eliminar la tienda #{bloque_ordenacion.nombre}" }do
-                        -#    %i.fa.fa-trash
+                          = link_to unidad_ordenacion_bloque_ordenacion_edit_path(id: bloque_ordenacion), title: 'Editar', rel: 'tooltip' do
+                            %i.fa.fa-edit
+                            &nbsp;
+                            &nbsp;
+                        %td
+
                         -#%td
                         -#  = link_to user_tiendas_path(tienda: bloque_ordenacion.nombre, id: bloque_ordenacion.id) do
                         -#    Usuarios
