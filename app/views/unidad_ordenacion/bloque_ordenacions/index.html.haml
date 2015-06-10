@@ -8,8 +8,9 @@
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
-      %li
-        Cuencas
+      %li.active
+        %strong
+          Cuencas
 .wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
   .row
     .col-lg-12
@@ -25,7 +26,7 @@
           .row
             .col-md-12
               .table-responsive
-                %table.table.table-striped.table-bordered.table-hover#table_cuencas_index
+                %table.table.table-striped.table-bordered.table-hover.datatable-table
                   %thead
                     %tr
                       %th Nombre
@@ -44,10 +45,14 @@
                         %td= bloque_ordenacion.unidad_ordenacion.reserva_forestal.nombre rescue 'NULL'
                         %td= bloque_ordenacion.area
                         %td
-                          = link_to unidad_ordenacion_bloque_ordenacion_edit_path(id: bloque_ordenacion), title: 'Editar', rel: 'tooltip' do
+                          = link_to
+
+                          = link_to unidad_ordenacion_bloque_ordenacion_edit_path(id: bloque_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
                             %i.fa.fa-edit
                             &nbsp;
                             &nbsp;
+                          = link_to unidad_ordenacion_bloque_ordenacion_destroy_path(id: bloque_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                            %i.fa.fa-trash
                         %td
 
                         -#%td

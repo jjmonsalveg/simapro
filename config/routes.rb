@@ -44,6 +44,7 @@ Myapp::Application.routes.draw do
     get 'cuencas/:id/editar', to: 'bloque_ordenacions#edit', as: :bloque_ordenacion_edit
     put 'cuencas/:id/update', to: 'bloque_ordenacions#update', as: :bloque_ordenacion
     patch 'cuencas/:id/update', to: 'bloque_ordenacions#update'
+    delete 'cuenca/:id', to: 'bloque_ordenacions#destroy', as: :bloque_ordenacion_destroy
   end
 
 

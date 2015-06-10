@@ -1,10 +1,14 @@
 class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
   before_action :authenticate_user!
   # load_and_authorize_resource
-  before_action :set_bloque_ordenacion, only: [:edit, :update]
+  before_action :set_bloque_ordenacion, only: [:show, :edit, :update, :destroy]
 
   def index
     @bloque_ordenacions = BloqueOrdenacion.all
+  end
+
+  def show
+
   end
 
   def new
@@ -35,6 +39,14 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @bloque_ordenacion.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @bloque_ordenacion.destroy
+    respond_to do |format|
+      format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice:  'Bloque de Ordenación eliminado satisfactoriamente.' }
+      format.json { head :no_content }
     end
   end
 

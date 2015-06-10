@@ -10,7 +10,8 @@
         = link_to 'Inicio', root_url
       %li
         = link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
-      %li
-        Edición de Cuenca
+      %li.active
+        %strong
+          Edición de Cuenca
 .wrapper.wrapper-content.animated.fadeInRight
   = render 'form'
