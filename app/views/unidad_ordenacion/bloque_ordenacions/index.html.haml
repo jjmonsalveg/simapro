@@ -53,13 +53,9 @@
                             %i.fa.fa-edit
                             &nbsp;
                             &nbsp;
-                          = link_to unidad_ordenacion_bloque_ordenacion_destroy_path(id: bloque_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                          = link_to unidad_ordenacion_bloque_ordenacion_destroy_path(id: bloque_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar la cuenca #{bloque_ordenacion.nombre}?"} do
                             %i.fa.fa-trash
                         %td
-
-                        -#%td
-                        -#  = link_to user_tiendas_path(tienda: bloque_ordenacion.nombre, id: bloque_ordenacion.id) do
-                        -#    Usuarios
-                        -#%td
-                        -#  = link_to contrato_alquilers_path(tienda: bloque_ordenacion.nombre, id: bloque_ordenacion.id) do
-                        -#    Contratos
+                          = link_to unidad_ordenacion_unidad_manejos_path(bo: bloque_ordenacion), rel: 'tooltip', title: 'Subcuencas' do
+                            Subcuencas
+                            %i.fa.fa-leaf

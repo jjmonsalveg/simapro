@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
 
   belongs_to :role
   belongs_to :empresa_forestal
+  belongs_to :unidad_manejo
 
   validates :username, presence: {message: 'es obligatorio'},
             uniqueness: {message: 'ya en uso.'}

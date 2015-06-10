@@ -22,22 +22,39 @@
             Cuenca
         .ibox-content
           .row
-            .col-sm-5
+            .col-sm-3
               %table.table.table-striped.table-bordered.table-condensed
                 %tbody
                   %tr
-                    %td.text-right
+                    %td
                       %strong Nombre:
                     %td= @bloque_ordenacion.nombre
                   %tr
-                    %td.text-right
+                    %td
                       %strong Nombre Abreviado:
                     %td= @bloque_ordenacion.abreviado
                   %tr
-                    %td.text-right
+                    %td
+                      %strong Reserva Forestal:
+                    %td= @bloque_ordenacion.unidad_ordenacion.reserva_forestal.nombre rescue ''
+                  %tr
+                    %td
+                      %strong Unidad de Ordenación:
+                    %td= @bloque_ordenacion.unidad_ordenacion.nombre rescue ''
+                  %tr
+                    %td
                       %strong Área:
                     %td= @bloque_ordenacion.area
                   %tr
-                    %td.text-right
+                    %td
                       %strong Descripción:
                     %td= @bloque_ordenacion.descripcion
+          .row
+            .col-sm-3
+              = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to unidad_ordenacion_bloque_ordenacion_edit_path(id: @bloque_ordenacion), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit

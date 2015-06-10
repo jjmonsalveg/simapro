@@ -16,6 +16,11 @@
             .col-sm-10
               = f.text_field :abreviado, class: 'form-control'
           .form-group
+            = label_tag :reserva_forestal, :reserva_forestal, class: 'col-sm-2 control-label' do
+              Reserva Forestal:
+            .col-sm-10
+              = text_field_tag :reserva_forestal, 'RESERVA FORESTAL - CAMBIAR CUANDO TERMINE JUAN', readonly: true, class: 'form-control'
+          .form-group
             = f.label :unidad_ordenacion_id, class: 'col-sm-2 control-label' do
               Unidad de Ordenación:
             .col-sm-6
@@ -33,7 +38,7 @@
 
           .form-group
             .col-sm-3
-              = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success  btn-block' do
+              = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success' do
                 %i.fa.fa-arrow-left
                 Regresar
             .col-sm-3.col-sm-offset-6

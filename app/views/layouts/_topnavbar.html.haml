@@ -3,11 +3,29 @@
     .navbar-header
       %a.navbar-minimalize.minimalize-styl-2.btn.btn-primary{:href => "#"}
         %i.fa.fa-bars
-      -#%form.navbar-form-custom{:action => "", :method => "post", :role => "search"}
-      -#  .form-group
+    -#%form.navbar-form-custom{:action => "", :method => "post", :role => "search"}
+    -#  .form-group
           -#%input#top-search.form-control{:name => "top-search", :placeholder => "Search for something...", :type => "text"}/
     %ul.nav.navbar-top-links.navbar-right
       %li
+        %span.m-r-sm.text-muted.welcome-message
+          = current_user.role.name rescue ''
+          \-
+          = current_user.unidad_manejo.bloque_ordenacion.nombre rescue 'Cuenca'
+          \-
+        %span.m-r-sm.text-muted
+          = current_user.unidad_manejo.nombre rescue 'Subcuenca'
+      %li
+        |
+      %li
+        = link_to settings_path do
+          %i.fa.fa-cogs
+          %span.welcome-message
+            Ajustes
+      %li
+        |
+      %li
         = link_to destroy_user_session_path, data: {confirm: '¿Seguro que desea cerrar sesión?' },  method: :delete do
           %i.fa.fa-sign-out
-          Cerrar Sesión
+          %span.welcome-message
+            Cerrar Sesión

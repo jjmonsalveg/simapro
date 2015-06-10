@@ -23,6 +23,9 @@ Myapp::Application.routes.draw do
     get 'profile', to: 'users/profiles#profile'
     get 'profile/edit', to: 'users/profiles#edit'
     post 'profile/update', to: 'users/profiles#update'
+
+    get 'ajustes', to: 'users/settings#index', as: :settings
+    get 'ajustes/subcuenca', to: 'settings#unidad_manejo', as: :settings_unidad_manejo
   end
 
   resources :roles
@@ -38,6 +41,8 @@ Myapp::Application.routes.draw do
   end
 
   namespace :unidad_ordenacion do
+
+    #BLOQUES DE ORDENACION
     get 'cuencas', to: 'bloque_ordenacions#index', as: :bloque_ordenacions
     get 'cuencas/nueva', to: 'bloque_ordenacions#new', as: :bloque_ordenacion_new
     post 'cuencas', to: 'bloque_ordenacions#create'
@@ -46,6 +51,10 @@ Myapp::Application.routes.draw do
     patch 'cuencas/:id/update', to: 'bloque_ordenacions#update'
     delete 'cuenca/:id', to: 'bloque_ordenacions#destroy', as: :bloque_ordenacion_destroy
     get 'cuenca/:id', to: 'bloque_ordenacions#show', as: :bloque_ordenacion_show
+
+    #UNIDADES DE MANEJO
+    get 'cuencas/:bo/subcuencas', to: 'unidad_manejos#index', as: :unidad_manejos
+
   end
 
 
