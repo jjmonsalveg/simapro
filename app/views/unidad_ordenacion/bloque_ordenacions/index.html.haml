@@ -45,8 +45,10 @@
                         %td= bloque_ordenacion.unidad_ordenacion.reserva_forestal.nombre rescue 'NULL'
                         %td= bloque_ordenacion.area
                         %td
-                          = link_to
-
+                          = link_to unidad_ordenacion_bloque_ordenacion_show_path(id: bloque_ordenacion),  rel: 'tooltip',  title: 'Ver' do
+                            %i.fa.fa-search
+                            &nbsp;
+                            &nbsp;
                           = link_to unidad_ordenacion_bloque_ordenacion_edit_path(id: bloque_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
                             %i.fa.fa-edit
                             &nbsp;
