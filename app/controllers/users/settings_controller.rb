@@ -5,6 +5,9 @@ class Users::SettingsController < ApplicationController
   def index
   end
 
+  def update_subcuenca
+  end
+
   def unidad_manejo
   end
 

@@ -48,6 +48,10 @@ Myapp::Application.routes.draw do
     delete 'cuenca/:id', to: 'bloque_ordenacions#destroy', as: :bloque_ordenacion_destroy
     get 'cuenca/:id', to: 'bloque_ordenacions#show', as: :bloque_ordenacion_show
   end
+  namespace :dynamic_select do
+    get ':bo/subcuencas', to: 'dynamic_subcuencas#index', as: :dynamic_subcuencas
+  end
+
 
 
 end

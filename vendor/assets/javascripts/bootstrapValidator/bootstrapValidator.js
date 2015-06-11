@@ -760,7 +760,7 @@
                             }
                         });
                     }
-                    // ... or object { valid: true/false, message: 'dynamic message' }
+                    // ... or object { valid: true/false, message: 'dynamic_select message' }
                     else if ('object' === typeof validateResult && validateResult.valid !== undefined && validateResult.message !== undefined) {
                         this.updateMessage(updateAll ? field : $field, validatorName, validateResult.message);
                         this.updateStatus(updateAll ? field : $field, validateResult.valid ? this.STATUS_VALID : this.STATUS_INVALID, validatorName);
@@ -1428,7 +1428,7 @@
         },
 
         /**
-         * Some validators have option which its value is dynamic.
+         * Some validators have option which its value is dynamic_select.
          * For example, the zipCode validator has the country option which might be changed dynamically by a select element.
          *
          * @param {jQuery|String} field The field name or element
@@ -4542,12 +4542,12 @@
                 url  = options.url,
                 type = options.type || 'POST';
 
-            // Support dynamic data
+            // Support dynamic_select data
             if ('function' === typeof data) {
                 data = data.call(this, validator);
             }
 
-            // Support dynamic url
+            // Support dynamic_select url
             if ('function' === typeof url) {
                 url = url.call(this, validator);
             }
