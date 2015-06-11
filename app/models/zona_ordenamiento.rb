@@ -2,20 +2,22 @@
 #
 # Table name: zonas_ordenamiento
 #
-#  id          :integer          not null, primary key
-#  nombre      :string(64)       not null
-#  abreviado   :string(12)       not null
-#  ubicacion   :text             not null
-#  area        :integer          not null
-#  usos        :string(64)       not null
-#  descripcion :text
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id                     :integer          not null, primary key
+#  nombre                 :string(64)       not null
+#  abreviado              :string(12)       not null
+#  ubicacion              :text             not null
+#  area                   :integer          not null
+#  usos                   :string(64)       not null
+#  descripcion            :text
+#  created_at             :datetime
+#  updated_at             :datetime
+#  unidad_ordenamiento_id :integer
 #
 # Indexes
 #
-#  index_zonas_ordenamiento_on_abreviado  (abreviado) UNIQUE
-#  index_zonas_ordenamiento_on_nombre     (nombre) UNIQUE
+#  index_zonas_ordenamiento_on_abreviado               (abreviado) UNIQUE
+#  index_zonas_ordenamiento_on_nombre                  (nombre) UNIQUE
+#  index_zonas_ordenamiento_on_unidad_ordenamiento_id  (unidad_ordenamiento_id)
 #
 
 class ZonaOrdenamiento < ActiveRecord::Base
@@ -23,6 +25,7 @@ class ZonaOrdenamiento < ActiveRecord::Base
   #asociaciones
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
+  belongs_to :unidad_ordenacion
   #callback declaration
 
   #validates field
@@ -47,6 +50,8 @@ class ZonaOrdenamiento < ActiveRecord::Base
             }
 
   validate :validar_area
+  validates_presence_of :unidad_ordenacion_id
+
   #callbacks definition
   #helps methods
   private
