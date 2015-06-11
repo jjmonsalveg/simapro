@@ -24,7 +24,6 @@ class ZonaOrdenamiento < ActiveRecord::Base
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
   #callback declaration
-  before_save :validar_area
 
   #validates field
   validates :nombre, presence: { message: 'El campo Nombre es obligatorio'},
@@ -33,6 +32,7 @@ class ZonaOrdenamiento < ActiveRecord::Base
                           message:
                               'Nombre debe contener máximo 64 caracteres'
             }
+  validate :validar_area
   validates :abreviado, presence: { message: 'El campo Abreviado es obligatorio'},
             uniqueness: {message: 'El campo Abreviado ha sido Tomado por otra Zona de Ordenamiento'},
             :length => {  maximum: 12,
@@ -47,10 +47,10 @@ class ZonaOrdenamiento < ActiveRecord::Base
                               'Usos debe contener máximo 64 caracteres'
             }
   #callbacks definition
-  def validar_area
-    self.errors.add(:area, 'Area debe ser mayor a 0')
-  end
   #helps methods
-
+  private
+  def validar_area
+    self.errors.add(:area, 'Area debe ser mayor a 0') if self.area.nil? or  self.area <= 0
+  end
 
 end
