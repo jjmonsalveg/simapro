@@ -1,16 +1,15 @@
--#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+= provide(:title, "Simapro - Reserva Forestal")
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     %h2
-      %i.fa.fa-pagelines
-      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
-      -#\- Cuencas
+      %i.fa.fa-tree
+      Reserva Forestal
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
       %li.active
         %strong
-          -#Cuencas
+          Reserva Forestal
 .wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
   .row
     .col-lg-12
@@ -29,25 +28,21 @@
                 %table.table.table-striped.table-bordered.table-hover.datatable-table
                   %thead
                     %tr
-                      %th Empresa forestal
                       %th Nombre
                       %th Abreviado
-                      %th Fecha creacion
-                      %th Fecha reglamento
-                      %th Area
-                      %th Descripcion
+                      %th Fecha de Creación
+                      %th Fecha del Reglamento de Uso
+                      %th Area(ha)
                       %th
                       %th
                 %tbody
                   - @reserva_forestales.each do |reserva_forestal|
                     %tr
-                      %td= reserva_forestal.empresa_forestal
                       %td= reserva_forestal.nombre
                       %td= reserva_forestal.abreviado
-                      %td= reserva_forestal.fecha_creacion
+                      %td= reserva_forestal.fecha_creacion.strftime('%d.%m.%Y')
                       %td= reserva_forestal.fecha_reglamento
                       %td= reserva_forestal.area
-                      %td= reserva_forestal.descripcion
                       %td
                         = link_to example_show_path,  rel: 'tooltip',  title: 'Ver' do
                           %i.fa.fa-search
@@ -60,3 +55,4 @@
                         = link_to example_destroy_path, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
                           %i.fa.fa-trash
                       %td
+                        = link_to new_unidad_ordenacion_path()

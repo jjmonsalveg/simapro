@@ -1,4 +1,5 @@
 class ReservaForestalesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_reserva_forestal, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -22,18 +23,34 @@ class ReservaForestalesController < ApplicationController
 
   def create
     @reserva_forestal = ReservaForestal.new(reserva_forestal_params)
-    @reserva_forestal.save
-    respond_with(@reserva_forestal)
+    @reserva_forestal.empresa_forestal = current_user.empresa_forestal.first
+    respond_to do |format|
+      if @reserva_forestal.save
+        format.html { redirect_to reserva_forestales_path, notice: 'Reserva Forestal creado satisfactoriamente.' }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @reserva_forestal.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
-    @reserva_forestal.update(reserva_forestal_params)
-    respond_with(@reserva_forestal)
+    respond_to do |format|
+      if @reserva_forestal.update(reserva_forestal_params)
+        format.html { redirect_to reserva_forestales_path, notice: 'Reserva Forestal actualizado satisfactoriamente.' }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @reserva_forestal.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
     @reserva_forestal.destroy
-    respond_with(@reserva_forestal)
+    respond_to do |format|
+      format.html { redirect_to reserva_forestales_path, notice:  'Reserva Forestal eliminado satisfactoriamente.' }
+      format.json { head :no_content }
+    end
   end
 
   private

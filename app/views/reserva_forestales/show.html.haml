@@ -1,10 +1,10 @@
-= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+= provide(:title, "Simapro - Reserva Forestal")
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-sm-10
     %h2
       %i.fa.fa-pagelines
-      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
-      -#\- Cuencas
+      = current_user.unidad_ordenacion.reserva_forestal.nombre rescue ''
+      Reserva Forestal
     %ol.breadcrumb
       %li
         -#= link_to 'Inicio', root_url
