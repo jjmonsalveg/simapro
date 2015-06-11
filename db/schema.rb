@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150610154728) do
     t.integer  "bloque_ordenacion_id"
     t.string   "nombre",               limit: 64,                         null: false
     t.string   "abreviado",            limit: 12,                         null: false
-    t.decimal  "area",                            precision: 9, scale: 2, null: false
+    t.decimal  "area",                            precision: 9, scale: 2
     t.text     "descripcion"
     t.integer  "unidad_ordenacion_id"
     t.datetime "created_at"
