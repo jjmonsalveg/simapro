@@ -14,5 +14,9 @@
 #
 
 class Municipio < ActiveRecord::Base
+  #asociaciones
   belongs_to :estado
+  has_many :division_politico_territorial
+  has_many :zonas_ordenamiento , through: :division_politico_territorial ,
+           source: :modelo, source_type: "ZonaOrdenamiento"
 end

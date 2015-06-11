@@ -39,4 +39,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural  'empresas_forestales', 'empresa_forestal'
 
 
+  inflect.irregular 'ZonaOrdenamiento', 'ZonasOrdenamiento'
+  inflect.plural 'ZonasOrdenamiento', 'ZonaOrdenamiento'
+  inflect.irregular 'zona_ordenamiento', 'zonas_ordenamiento'
+  inflect.plural  'zonas_ordenamiento', 'zona_ordenamiento'
 end
