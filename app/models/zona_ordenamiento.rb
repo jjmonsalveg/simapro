@@ -32,7 +32,6 @@ class ZonaOrdenamiento < ActiveRecord::Base
                           message:
                               'Nombre debe contener máximo 64 caracteres'
             }
-  validate :validar_area
   validates :abreviado, presence: { message: 'El campo Abreviado es obligatorio'},
             uniqueness: {message: 'El campo Abreviado ha sido Tomado por otra Zona de Ordenamiento'},
             :length => {  maximum: 12,
@@ -46,6 +45,8 @@ class ZonaOrdenamiento < ActiveRecord::Base
                           message:
                               'Usos debe contener máximo 64 caracteres'
             }
+
+  validate :validar_area
   #callbacks definition
   #helps methods
   private
