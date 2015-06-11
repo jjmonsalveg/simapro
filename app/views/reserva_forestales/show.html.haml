@@ -1,0 +1,62 @@
+= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-pagelines
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
+    %ol.breadcrumb
+      %li
+        -#= link_to 'Inicio', root_url
+      %li
+        -#= link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
+      %li.active
+        %strong
+          -#Datos de la Cuenca
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            reserva_forestal
+        .ibox-content
+          .row
+            .col-sm-5
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+                  %tr
+                    %td.text-right
+                      %strong Empresa forestal:
+                    %td
+                      @reserva_forestal.empresa_forestal
+                  %tr
+                    %td.text-right
+                      %strong Nombre:
+                    %td
+                      @reserva_forestal.nombre
+                  %tr
+                    %td.text-right
+                      %strong Abreviado:
+                    %td
+                      @reserva_forestal.abreviado
+                  %tr
+                    %td.text-right
+                      %strong Fecha creacion:
+                    %td
+                      @reserva_forestal.fecha_creacion
+                  %tr
+                    %td.text-right
+                      %strong Fecha reglamento:
+                    %td
+                      @reserva_forestal.fecha_reglamento
+                  %tr
+                    %td.text-right
+                      %strong Area:
+                    %td
+                      @reserva_forestal.area
+                  %tr
+                    %td.text-right
+                      %strong Descripcion:
+                    %td
+                      @reserva_forestal.descripcion

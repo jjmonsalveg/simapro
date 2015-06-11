@@ -1,0 +1,36 @@
+= form_for @reserva_forestal, html: { class: "form-horizontal", role: "form" } do |f|
+  -#= render 'shared/error_messages', object: f.object, model: 'Cuenca'
+
+  .ibox.float-e-margins
+    .ibox-content.border-bottom.form-horizontal
+      .form-group
+        = f.label :empresa_forestal, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :empresa_forestal, class: 'form-control'
+      .form-group
+        = f.label :nombre, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :nombre, class: 'form-control'
+      .form-group
+        = f.label :abreviado, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :abreviado, class: 'form-control'
+      .form-group
+        = f.label :fecha_creacion, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.date_select :fecha_creacion, class: 'form-control'
+      .form-group
+        = f.label :fecha_reglamento, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.date_select :fecha_reglamento, class: 'form-control'
+      .form-group
+        = f.label :area, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :area, class: 'form-control'
+      .form-group
+        = f.label :descripcion, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :descripcion, class: 'form-control'
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = f.submit class: 'btn btn-primary'

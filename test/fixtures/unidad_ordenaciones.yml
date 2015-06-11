@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reserva_forestal_id: 
+  codigo: MyString
+  nro_contrato: MyString
+  fecha_otorgacion: 2015-06-11
+  fecha_vence: 2015-06-11
+  area: 9.99
+  descripcion: MyString
+
+two:
+  reserva_forestal_id: 
+  codigo: MyString
+  nro_contrato: MyString
+  fecha_otorgacion: 2015-06-11
+  fecha_vence: 2015-06-11
+  area: 9.99
+  descripcion: MyString
