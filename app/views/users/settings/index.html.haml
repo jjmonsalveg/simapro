@@ -17,3 +17,14 @@
             Asignación de Subcuenca de Trabajo
             %i.fa.fa-leaf
         .ibox-content
+          .row
+            .col-sm-12.form-horizontal
+              .form-group
+                = label_tag :cuenca, class: 'col-sm-2 control-label' do
+                  Cuenca:
+                .col-sm-10
+                  = select_tag :cuenca, options_from_collection_for_select(BloqueOrdenacion.valid_cuencas, :id, :nombre, selected: (current_user.unidad_manejo.bloque_ordenacion rescue nil) || nil), {include_blank: 'Seleccione una cuenca', class: 'form-control'}
+              .form-group
+                = label_tag :sub_cuenca, class: 'col-sm-2 control-label' do
+                  = select_tag :cuenca, options_from_collection_for_select(BloqueOrdenacion.valid_cuencas, :id, :nombre, selected: (current_user.unidad_manejo.bloque_ordenacion rescue nil) || nil), {include_blank: 'Seleccione una cuenca', class: 'form-control'}
+

@@ -7,4 +7,8 @@ class BloqueOrdenacion < ActiveRecord::Base
   validates :abreviado, presence: true, uniqueness: true
   validates :area, presence: true
   # validates :unidad_ordenacion_id, presence: true
+
+  def self.valid_cuencas
+    BloqueOrdenacion.all
+  end
 end
