@@ -11,8 +11,10 @@
 # end
 
 # These inflection rules are supported but not enabled by default:
-ActiveSupport::Inflector.inflections(:es) do |inflect|
+ActiveSupport::Inflector.inflections(:en) do |inflect|
   # inflect.acronym 'RESTful'
+  inflect.clear
+
   inflect.plural(/$/, 's')
   inflect.plural(/([^aeéiou])$/i, '\1es')
   inflect.plural(/([aeiou]s)$/i, '\1')
@@ -33,10 +35,22 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'pais', 'paises'
   inflect.plural  'paises', 'pais'
 
+  inflect.irregular 'permission', 'permissions'
+  inflect.plural  'permissions', 'permission'
+
+  inflect.irregular 'bloque_ordenacion', 'bloque_ordenacions'
+  inflect.plural  'bloque_ordenacions', 'bloque_ordenacion'
+
+  inflect.irregular 'user', 'users'
+  inflect.plural  'users', 'user'
+
   inflect.irregular 'EmpresaForestal', 'EmpresasForestales'
   inflect.plural 'EmpresasForestales', 'EmpresaForestal'
   inflect.irregular 'empresa_forestal', 'empresas_forestales'
   inflect.plural  'empresas_forestales', 'empresa_forestal'
 
-
+  inflect.irregular 'ZonaOrdenamiento', 'ZonasOrdenamiento'
+  inflect.plural 'ZonasOrdenamiento', 'ZonaOrdenamiento'
+  inflect.irregular 'zona_ordenamiento', 'zonas_ordenamiento'
+  inflect.plural  'zonas_ordenamiento', 'zona_ordenamiento'
 end
