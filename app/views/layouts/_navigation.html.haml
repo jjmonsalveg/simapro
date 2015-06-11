@@ -71,6 +71,26 @@
             %li{class: is_active_action('index')}= link_to 'Visualizar Paises',paises_path
             - if can? :create, Pais
               %li{class: is_active_action('new')}= link_to 'Nuevo País', new_pais_path
+      - if can? :read, ReservaForestal
+        %li{class: is_active_controller('reserva_forestales')}
+          %a{:href => ""}
+            %i.fa.fa-tree
+            %span.nav-label Reservas Forestales
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('reserva_forestales')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Reservas Forestales',reserva_forestales_path
+            - if can? :create, ReservaForestal
+              %li{class: is_active_action('new')}= link_to 'Nueva Reserva Forestal', new_reserva_forestal_path
+      - if can? :read, UnidadOrdenacion
+        %li{class: is_active_controller('unidad_ordenaciones')}
+          %a{:href => ""}
+            %i.fa.fa-list-ol
+            %span.nav-label Unidades de Ordenación
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('unidad_ordenaciones')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Unidades de Ordenación',unidad_ordenaciones_path
+            - if can? :create, ReservaForestal
+              %li{class: is_active_action('new')}= link_to 'Nueva Unidad de Ordenación', new_unidad_ordenacion_path
 
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
