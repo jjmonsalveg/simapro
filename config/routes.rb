@@ -22,6 +22,9 @@ Myapp::Application.routes.draw do
     get 'profile', to: 'users/profiles#profile'
     get 'profile/edit', to: 'users/profiles#edit'
     post 'profile/update', to: 'users/profiles#update'
+
+    get 'ajustes', to: 'users/settings#index', as: :settings
+    get 'ajustes/subcuenca', to: 'settings#unidad_manejo', as: :settings_unidad_manejo
   end
 
   resources :roles
