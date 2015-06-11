@@ -20,6 +20,7 @@ module Myapp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :es
+    config.autoload_paths += %W["#{config.root}/app/validators/"]
 
     #TODO PARA LANZAR A PRODUCTION PONER LOS ASSESTS A PRECOMPILAR
     # config.assets.precompile += [ 'appviews.css', 'cssanimations.css', 'dashboards.css', 'forms.css', 'gallery.css', 'graphs.css', 'mailbox.css', 'miscellaneous.css', 'pages.css', 'tables.css', 'uielements.css', 'widgets.css' ]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610151903) do
+ActiveRecord::Schema.define(version: 20150610154728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150610151903) do
     t.integer  "bloque_ordenacion_id"
     t.string   "nombre",               limit: 64,                         null: false
     t.string   "abreviado",            limit: 12,                         null: false
-    t.decimal  "area",                            precision: 9, scale: 2
+    t.decimal  "area",                            precision: 9, scale: 2, null: false
     t.text     "descripcion"
     t.integer  "unidad_ordenacion_id"
     t.datetime "created_at"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20150610151903) do
 
   add_index "bloque_ordenacions", ["bloque_ordenacion_id"], name: "index_bloque_ordenacions_on_bloque_ordenacion_id", unique: true, using: :btree
   add_index "bloque_ordenacions", ["unidad_ordenacion_id"], name: "index_bloque_ordenacions_on_unidad_ordenacion_id", using: :btree
+
+  create_table "division_politico_territorial", force: true do |t|
+    t.integer "modelo_id",    null: false
+    t.string  "modelo_type",  null: false
+    t.integer "municipio_id", null: false
+  end
+
+  add_index "division_politico_territorial", ["modelo_id"], name: "index_division_politico_territorial_on_modelo_id", using: :btree
+  add_index "division_politico_territorial", ["municipio_id", "modelo_id", "modelo_type"], name: "moldelos_municipios_unique", unique: true, using: :btree
+  add_index "division_politico_territorial", ["municipio_id"], name: "index_division_politico_territorial_on_municipio_id", using: :btree
 
   create_table "documento_requisitos", force: true do |t|
     t.string   "nombre",              limit: 50,                  null: false
@@ -228,5 +238,19 @@ ActiveRecord::Schema.define(version: 20150610151903) do
   end
 
   add_index "vistas", ["nombre"], name: "index_vistas_on_nombre", unique: true, using: :btree
+
+  create_table "zonas_ordenamiento", force: true do |t|
+    t.string   "nombre",      limit: 64,                         null: false
+    t.string   "abreviado",   limit: 12,                         null: false
+    t.text     "ubicacion",                                      null: false
+    t.decimal  "area",                   precision: 5, scale: 0, null: false
+    t.string   "usos",        limit: 64,                         null: false
+    t.text     "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "zonas_ordenamiento", ["abreviado"], name: "index_zonas_ordenamiento_on_abreviado", unique: true, using: :btree
+  add_index "zonas_ordenamiento", ["nombre"], name: "index_zonas_ordenamiento_on_nombre", unique: true, using: :btree
 
 end
