@@ -56,6 +56,10 @@ Myapp::Application.routes.draw do
     get 'cuencas/:bo/subcuencas', to: 'unidad_manejos#index', as: :unidad_manejos
 
   end
+  namespace :dynamic_select do
+    get ':bo/subcuencas', to: 'dynamic_subcuencas#index', as: :dynamic_subcuencas
+  end
+
 
 
 end

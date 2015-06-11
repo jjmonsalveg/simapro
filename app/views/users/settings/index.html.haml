@@ -18,13 +18,19 @@
             %i.fa.fa-leaf
         .ibox-content
           .row
-            .col-sm-12.form-horizontal
-              .form-group
-                = label_tag :cuenca, class: 'col-sm-2 control-label' do
-                  Cuenca:
-                .col-sm-10
-                  = select_tag :cuenca, options_from_collection_for_select(BloqueOrdenacion.valid_cuencas, :id, :nombre, selected: (current_user.unidad_manejo.bloque_ordenacion rescue nil) || nil), {include_blank: 'Seleccione una cuenca', class: 'form-control'}
-              .form-group
-                = label_tag :sub_cuenca, class: 'col-sm-2 control-label' do
-                  = select_tag :cuenca, options_from_collection_for_select(BloqueOrdenacion.valid_cuencas, :id, :nombre, selected: (current_user.unidad_manejo.bloque_ordenacion rescue nil) || nil), {include_blank: 'Seleccione una cuenca', class: 'form-control'}
-
+            .col-md-12
+              .form-horizontal
+                .form-group
+                  = label_tag :cuenca, class: 'col-sm-2 control-label' do
+                    Cuenca:
+                  .col-sm-10
+                    = collection_select nil, :bo, BloqueOrdenacion.valid_cuencas, :id, :nombre,
+                           {include_blank: 'Seleccione una Cuenca'},
+                           { data: { dynamic_selectable_url: dynamic_select_dynamic_subcuencas_path(':bo'),
+                            dynamic_selectable_target: '#settings_subcuenca' },
+                            class: 'form-control'}
+                .form-group
+                  = label_tag :subcuenca, class: 'col-sm-2 control-label' do
+                    Subcuenca:
+                  .col-sm-10
+                    = collection_select nil, :id , [], :id, :nombre, {prompt: 'Seleccione una Subcuenca' }, {class: 'form-control', id: 'settings_subcuenca'}

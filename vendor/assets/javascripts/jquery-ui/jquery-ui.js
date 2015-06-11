@@ -2237,7 +2237,7 @@ $.ui.ddmanager = {
 	},
 	drag: function(draggable, event) {
 
-		//If you have a highly dynamic page, you might try this option. It renders positions every time you move the mouse.
+		//If you have a highly dynamic_select page, you might try this option. It renders positions every time you move the mouse.
 		if(draggable.options.refreshPositions) {
 			$.ui.ddmanager.prepareOffsets(draggable, event);
 		}
@@ -3895,7 +3895,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			if (itemElement !== this.currentItem[0] &&
 				this.placeholder[intersection === 1 ? "next" : "prev"]()[0] !== itemElement &&
 				!$.contains(this.placeholder[0], itemElement) &&
-				(this.options.type === "semi-dynamic" ? !$.contains(this.element[0], itemElement) : true)
+				(this.options.type === "semi-dynamic_select" ? !$.contains(this.element[0], itemElement) : true)
 			) {
 
 				this.direction = intersection === 1 ? "down" : "up";
@@ -8334,7 +8334,7 @@ $.extend(Datepicker.prototype, {
 		// determine sizing offscreen
 		inst.dpDiv.css({position: "absolute", display: "block", top: "-1000px"});
 		$.datepicker._updateDatepicker(inst);
-		// fix width for dynamic number of date pickers
+		// fix width for dynamic_select number of date pickers
 		// and adjust position before showing
 		offset = $.datepicker._checkOffset(inst, offset, isFixed);
 		inst.dpDiv.css({position: ($.datepicker._inDialog && $.blockUI ?

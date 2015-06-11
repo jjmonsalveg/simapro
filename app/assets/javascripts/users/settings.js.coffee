@@ -1,0 +1,1 @@
+#= require jquery-dynamic-selectable-unidad-manejo.coffee
