@@ -56,6 +56,12 @@ group :development do
 
   gem 'html2haml'
 
+  # Generacion de las vistas en formato haml
+  gem 'haml'
+  gem 'haml-rails'
+  #generador de scaffold con structura de bootstrap
+  gem 'bootstrap-generators', git: 'git://github.com/decioferreira/bootstrap-generators.git'
+
 end
 
 #Carga de Imagenes

@@ -1,0 +1,62 @@
+-#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-pagelines
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          -#Cuencas
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-sm-3
+              = link_to new_unidad_ordenacion_path, class: 'btn btn-primary btn-responsive' do
+                Nueva Unidad ordenacion
+                %i.fa.fa-plus
+          %br
+          %br
+          .row
+            .col-md-12
+              .table-responsive
+                %table.table.table-striped.table-bordered.table-hover.datatable-table
+                  %thead
+                    %tr
+                      %th Reserva forestal
+                      %th Codigo
+                      %th Nro contrato
+                      %th Fecha otorgacion
+                      %th Fecha vence
+                      %th Area
+                      %th Descripcion
+                      %th
+                      %th
+                %tbody
+                  - @unidad_ordenaciones.each do |unidad_ordenacion|
+                    %tr
+                      %td= unidad_ordenacion.reserva_forestal
+                      %td= unidad_ordenacion.codigo
+                      %td= unidad_ordenacion.nro_contrato
+                      %td= unidad_ordenacion.fecha_otorgacion
+                      %td= unidad_ordenacion.fecha_vence
+                      %td= unidad_ordenacion.area
+                      %td= unidad_ordenacion.descripcion
+                      %td
+                        = link_to example_show_path,  rel: 'tooltip',  title: 'Ver' do
+                          %i.fa.fa-search
+                          &nbsp;
+                          &nbsp;
+                        = link_to example_edit_path, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                          %i.fa.fa-edit
+                          &nbsp;
+                          &nbsp;
+                        = link_to example_destroy_path, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                          %i.fa.fa-trash
+                      %td

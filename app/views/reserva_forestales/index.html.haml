@@ -1,0 +1,58 @@
+= provide(:title, "Simapro - Reserva Forestal")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-tree
+      Reserva Forestal
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          Reserva Forestal
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-sm-3
+              = link_to new_reserva_forestal_path, class: 'btn btn-primary btn-responsive' do
+                Nueva Reserva forestal
+                %i.fa.fa-plus
+          %br
+          %br
+          .row
+            .col-md-12
+              .table-responsive
+                %table.table.table-striped.table-bordered.table-hover.datatable-table
+                  %thead
+                    %tr
+                      %th Nombre
+                      %th Abreviado
+                      %th Fecha de Creación
+                      %th Fecha del Reglamento de Uso
+                      %th Area(ha)
+                      %th
+                      %th
+                %tbody
+                  - @reserva_forestales.each do |reserva_forestal|
+                    %tr
+                      %td= reserva_forestal.nombre
+                      %td= reserva_forestal.abreviado
+                      %td= reserva_forestal.fecha_creacion.strftime('%d.%m.%Y')
+                      %td= reserva_forestal.fecha_reglamento
+                      %td= reserva_forestal.area
+                      %td
+                        = link_to example_show_path,  rel: 'tooltip',  title: 'Ver' do
+                          %i.fa.fa-search
+                          &nbsp;
+                          &nbsp;
+                        = link_to example_edit_path, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                          %i.fa.fa-edit
+                          &nbsp;
+                          &nbsp;
+                        = link_to example_destroy_path, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                          %i.fa.fa-trash
+                      %td
+                        = link_to new_unidad_ordenacion_path()

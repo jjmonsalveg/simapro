@@ -1,0 +1,62 @@
+= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-pagelines
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
+    %ol.breadcrumb
+      %li
+        -#= link_to 'Inicio', root_url
+      %li
+        -#= link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
+      %li.active
+        %strong
+          -#Datos de la Cuenca
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            unidad_ordenacion
+        .ibox-content
+          .row
+            .col-sm-5
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+                  %tr
+                    %td.text-right
+                      %strong Reserva forestal:
+                    %td
+                      @unidad_ordenacion.reserva_forestal
+                  %tr
+                    %td.text-right
+                      %strong Codigo:
+                    %td
+                      @unidad_ordenacion.codigo
+                  %tr
+                    %td.text-right
+                      %strong Nro contrato:
+                    %td
+                      @unidad_ordenacion.nro_contrato
+                  %tr
+                    %td.text-right
+                      %strong Fecha otorgacion:
+                    %td
+                      @unidad_ordenacion.fecha_otorgacion
+                  %tr
+                    %td.text-right
+                      %strong Fecha vence:
+                    %td
+                      @unidad_ordenacion.fecha_vence
+                  %tr
+                    %td.text-right
+                      %strong Area:
+                    %td
+                      @unidad_ordenacion.area
+                  %tr
+                    %td.text-right
+                      %strong Descripcion:
+                    %td
+                      @unidad_ordenacion.descripcion

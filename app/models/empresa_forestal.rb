@@ -28,6 +28,7 @@ class EmpresaForestal < ActiveRecord::Base
   belongs_to :pais
   accepts_nested_attributes_for :pais
   has_many :users
+  has_many :re
 
   has_many :documentos,  dependent: :destroy, as: :modelo
   accepts_nested_attributes_for :documentos, allow_destroy: true

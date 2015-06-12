@@ -19,6 +19,7 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
     @bloque_ordenacion = BloqueOrdenacion.new(bloque_ordenacion_params)
     respond_to do |format|
       if @bloque_ordenacion.save
+
         format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice: 'Bloque de Ordenación creado satisfactoriamente.' }
       else
         format.html { render action: 'new' }

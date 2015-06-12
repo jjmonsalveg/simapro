@@ -23,6 +23,7 @@
 #  empresa_forestal_id    :integer
 #  created_at             :datetime
 #  updated_at             :datetime
+#  unidad_manejo_id_id    :integer
 #
 # Indexes
 #
@@ -30,6 +31,7 @@
 #  index_users_on_empresa_forestal_id   (empresa_forestal_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_role_id               (role_id)
+#  index_users_on_unidad_manejo_id_id   (unidad_manejo_id_id)
 #  index_users_on_username              (username) UNIQUE
 #
 
