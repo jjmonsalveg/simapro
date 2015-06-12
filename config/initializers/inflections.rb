@@ -53,4 +53,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural 'ZonasOrdenamiento', 'ZonaOrdenamiento'
   inflect.irregular 'zona_ordenamiento', 'zonas_ordenamiento'
   inflect.plural  'zonas_ordenamiento', 'zona_ordenamiento'
+
+  inflect.irregular 'role', 'roles'
+  inflect.plural  'roles', 'role'
+
 end
