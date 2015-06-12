@@ -1,0 +1,58 @@
+= form_for [:unidad_ordenacion , @unidad_manejo] , html: {id: 'form_unidad_manejo'} do |f|
+  = render 'shared/error_messages', object: f.object, model: 'Subcuenca'
+
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-content.border-bottom.form-horizontal
+          .form-group
+            = f.label :nombre, class: 'col-sm-2 control-label' do
+              Nombre:
+            .col-sm-10
+              = f.text_field :nombre, class: 'form-control'
+          .form-group
+            = f.label :abreviado, class: 'col-sm-2 control-label' do
+              Nombre Abreviado:
+            .col-sm-10
+              = f.text_field :abreviado, class: 'form-control'
+          .form-group
+            = f.label :nro_providencia, class: 'col-sm-2 control-label' do
+              Nro de Providencia Administrativa:
+            .col-sm-10
+              = f.text_field :nro_providencia, class: 'form-control'
+          .form-group
+            = f.label :fecha_otorgacion, class: 'col-sm-2 control-label' do
+              Fecha de Otorgamiento:
+            .col-sm-6.form-inline
+              = f.date_select :fecha_otorgacion, {start_year: (Date.current.year - 20), end_year: Date.current.year }, {class: 'form-control'}
+          .form-group
+            = f.label :fecha_vence, class: 'col-sm-2 control-label' do
+              Fecha Vence:
+            .col-sm-6.form-inline
+              = f.date_select :fecha_vence, {start_year: (Date.current.year - 10), end_year: (Date.current.year + 10) }, {class: 'form-control'}
+          .form-group
+            = f.label :area, class: 'col-sm-2 control-label' do
+              Área (ha):
+            .col-sm-10
+              = f.text_field :area, class: 'form-control'
+          .form-group
+            = f.label :ubicacion, class: 'col-sm-2 control-label' do
+              Ubicación:
+            .col-sm-10
+              = f.text_area :ubicacion, class: 'form-control', rows: 3
+          .form-group
+            = f.label :descripcion, class: 'col-sm-2 control-label' do
+              Características Generales:
+            .col-sm-10
+              = f.text_area :descripcion, class: 'form-control', rows: 3
+  = render 'shared/documentos/modelo_documentos', model: f
+
+          -#.form-group
+          -#  .col-sm-3
+          -#    = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success' do
+          -#      %i.fa.fa-arrow-left
+          -#      Regresar
+          -#  .col-sm-3.col-sm-offset-6
+          -#    = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Guardar'} do
+          -#      Guardar
+          -#      %i.fa.fa-floppy-o

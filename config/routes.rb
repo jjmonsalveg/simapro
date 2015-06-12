@@ -50,6 +50,10 @@ Myapp::Application.routes.draw do
     patch 'cuencas/:id/update', to: 'bloque_ordenacions#update'
     delete 'cuenca/:id', to: 'bloque_ordenacions#destroy', as: :bloque_ordenacion_destroy
     get 'cuenca/:id', to: 'bloque_ordenacions#show', as: :bloque_ordenacion_show
+
+    #UNIDADES DE MANEJO
+    get 'cuencas/:bo/subcuencas', to: 'unidad_manejos#index', as: :unidad_manejos
+    get 'cuencas/:bo/subcuenca/nueva', to: 'unidad_manejos#new', as: :unidad_manejo_new
   end
   namespace :dynamic_select do
     get ':bo/subcuencas', to: 'dynamic_subcuencas#index', as: :dynamic_subcuencas
