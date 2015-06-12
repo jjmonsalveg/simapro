@@ -60,7 +60,7 @@ Myapp::Application.routes.draw do
 
     #UNIDADES DE MANEJO
     get 'cuencas/:bo/subcuencas', to: 'unidad_manejos#index', as: :unidad_manejos
-
+    get 'cuencas/:bo/subcuenca/nueva', to: 'unidad_manejos#new', as: :unidad_manejo_new
   end
   
   

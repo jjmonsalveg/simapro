@@ -7,8 +7,9 @@
 #= require jquery-ui/jquery-ui.min.js
 
 jQuery(document).ready ($) ->
-
+  console.log 'MORTALLLLLLLLLLL'
   $('.datatable-table').dataTable
+
     'dom': 'T<"clear">lfrtip'
     'tableTools':
       'sSwfPath': '../assets/dataTables/swf/copy_csv_xls_pdf.swf'

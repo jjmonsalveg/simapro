@@ -24,7 +24,9 @@ class EmpresasForestalesController < ApplicationController
   def create
     @empresa_forestal = EmpresaForestal.new(empresa_forestal_params)
     @empresa_forestal.save
-    respond_with(@empresa_forestal)
+    respond_with(@empresa_forestal) do |format|
+      format.html { redirect_to empresas_forestales_path, notice:  'Empresa Forestal Creada satisfactoriamente.' }
+    end
   end
 
   def update

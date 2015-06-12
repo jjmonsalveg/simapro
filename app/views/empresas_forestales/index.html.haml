@@ -40,7 +40,7 @@
                   %th Direccion
                   %th Teléfono
                   %th País
-                  %th.text-center{colspan:3} Acciones
+                  %th.text-center Acciones
               %tbody
                 - @empresas_forestales.each do |empresa_forestal|
                   %tr
@@ -64,19 +64,18 @@
                         -documento_requisito = Vista.find_documentos_requisitos(:registro_empresa_forestal).last
                         =link_to '#',{"data-toggle"=>"modal","data-target"=>"##{documento_requisito.nombre.camelize+empresa_forestal.id.to_s}"} do
                           %span.fa.fa-picture-o
-
-                  %div.modal.fade{id:documento_requisito.nombre.camelize+empresa_forestal.id.to_s,"aria-hidden" => "true", "aria-labelledby" => "poderNotariadoModalLabel", :role => "dialog", :tabindex => "-1"}
-                    .modal-dialog.modal-lg
-                      .modal-content
-                        .modal-header.blue-bg
-                          %button.close{"data-dismiss" => "modal", :type => "button"}
-                            %span{"aria-hidden" => "true"} &times;
-                          %h4.modal-title
-                            =documento_requisito.descripcion
-                        .modal-body
-                          = render 'shared/documentos/jquery_file_upload', modelo: empresa_forestal, vista: :registro_empresa_forestal, documento_requisito: documento_requisito
-                        .modal-footer
-                          Al cargar el documento completo:
-                          %a.btn{"data-dismiss" => "modal"}
-                            Cerrar Ventana
-                            %span{"aria-hidden" => "true"} &times;
+                        %div.modal.fade{id:documento_requisito.nombre.camelize+empresa_forestal.id.to_s,"aria-hidden" => "true", "aria-labelledby" => "poderNotariadoModalLabel", :role => "dialog", :tabindex => "-1"}
+                          .modal-dialog.modal-lg
+                            .modal-content
+                              .modal-header.blue-bg
+                                %button.close{"data-dismiss" => "modal", :type => "button"}
+                                  %span{"aria-hidden" => "true"} &times;
+                                %h4.modal-title
+                                  =documento_requisito.descripcion
+                              .modal-body
+                                = render 'shared/documentos/jquery_file_upload', modelo: empresa_forestal, vista: :registro_empresa_forestal, documento_requisito: documento_requisito
+                              .modal-footer
+                                Al cargar el documento completo:
+                                %a.btn{"data-dismiss" => "modal"}
+                                  Cerrar Ventana
+                                  %span{"aria-hidden" => "true"} &times;

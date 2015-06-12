@@ -21,6 +21,5 @@
 
 class UnidadOrdenacion < ActiveRecord::Base
   belongs_to :reserva_forestal
-
-
+  has_many :zona_ordenamientos, dependent: :destroy
 end
