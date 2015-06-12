@@ -1,5 +1,10 @@
 Myapp::Application.routes.draw do
 
+
+  resources :unidad_ordenaciones
+
+  resources :reserva_forestales
+
   # You can have the root of your site routed with "root"
   root to: 'static#index'
 
@@ -42,6 +47,8 @@ Myapp::Application.routes.draw do
   end
  #-----------------------------------------------------------------------
   namespace :unidad_ordenacion do
+
+    #BLOQUES DE ORDENACION
     get 'cuencas', to: 'bloque_ordenacions#index', as: :bloque_ordenacions
     get 'cuencas/nueva', to: 'bloque_ordenacions#new', as: :bloque_ordenacion_new
     post 'cuencas', to: 'bloque_ordenacions#create'
@@ -53,7 +60,10 @@ Myapp::Application.routes.draw do
 
     #UNIDADES DE MANEJO
     get 'cuencas/:bo/subcuencas', to: 'unidad_manejos#index', as: :unidad_manejos
+    get 'cuencas/:bo/subcuenca/nueva', to: 'unidad_manejos#new', as: :unidad_manejo_new
   end
+  
+  
   namespace :dynamic_select do
     get ':bo/subcuencas', to: 'dynamic_subcuencas#index', as: :dynamic_subcuencas
   end

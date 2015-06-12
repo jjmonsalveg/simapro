@@ -1,0 +1,79 @@
+= provide(:title, "#{@bloque_ordenacion.nombre rescue 'Cuenca'} - Subcuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-leaf
+      = current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      \-
+      = @bloque_ordenacion.nombre
+      \-
+      Subcuencas
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Cuencas', unidad_ordenacion_cuencas_path
+      %li.active
+        %strong
+          Subcuencas
+          = @bloque_ordenacion.nombre
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12.col-md-12.col-sm-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-sm-3
+              = link_to unidad_ordenacion_unidad_manejo_new_path, class: 'btn btn-primary btn-responsive ' do
+                Nueva Subcuenca
+                %i.fa.fa-plus
+          %br
+          %br
+          .row
+            .col-md-12
+              .table-responsive
+                %table.table.table-striped.table-bordered.table-hover.datatable-table
+                  %thead
+                    %tr
+                      %th Nombre
+                      %th Abreviado
+                      %th Cuenca
+                      %th Nro-Providencia
+                      %th Fecha de Ortorgamiento
+                      %th Fecha Vence
+                      %th Área
+                      %th
+                      %th
+                  %tbody
+                    - @unidad_manejos.each do |unidad_manejo|
+                      %tr
+                        %td= unidad_manejo.nombre
+                        %td= unidad_manejo.abreviado
+                        %td= unidad_manejo.bloque_ordenacion.nombre rescue 'NULL'
+                        %td= unidad_manejo.nro_providencia
+                        %td= unidad_manejo.fecha_otorgacion_fix
+                        %td= unidad_manejo.fecha_vente_fix
+                        %td= unidad_manejo.area
+                        %td
+                          -#= link_to unidad_ordenacion_bloque_ordenacion_show_path(id: unidad_manejo),  rel: 'tooltip',  title: 'Ver' do
+                          -#  %i.fa.fa-search
+                          -#  &nbsp;
+                          -#  &nbsp;
+                          -#= link_to unidad_ordenacion_bloque_ordenacion_edit_path(id: unidad_manejo), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                          -#  %i.fa.fa-edit
+                          -#  &nbsp;
+                          -#  &nbsp;
+                          -#= link_to unidad_ordenacion_bloque_ordenacion_destroy_path(id: unidad_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar la cuenca #{unidad_manejo.nombre}?"} do
+                          -#  %i.fa.fa-trash
+                        %td
+                          -#= link_to unidad_ordenacion_unidad_manejos_path(bo: unidad_manejo), rel: 'tooltip', title: 'Subcuencas' do
+                          -#  Subcuencas
+                          -#  %i.fa.fa-leaf
+  .row
+    .col-md-12.col-sm-12
+      .ibox-content.border-bottom
+        .row
+          .col-sm-3
+            = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success' do
+              A Cuencas
+              %i.fa.fa-pagelines

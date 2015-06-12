@@ -1,0 +1,14 @@
+= provide(:title, "Simapro - Reserva Forestal")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-tree
+      Reserva Forestal
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          Nueva Reserva Forestal
+.wrapper.wrapper-content.animated.fadeInRight
+  = render 'form'
