@@ -6,7 +6,9 @@ class ReservaForestalesController < ApplicationController
 
   def index
     @reserva_forestales = ReservaForestal.all
-    respond_with(@reserva_forestales)
+    # respond_with(@reserva_forestales)
+    p 'cantidad de registros'
+    p @reserva_forestales.length
   end
 
   def show
