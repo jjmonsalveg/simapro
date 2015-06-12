@@ -1,0 +1,38 @@
+= form_for @zona_ordenamiento, html: { class: "form-horizontal", role: "form" } do |f|
+  -#= render 'shared/error_messages', object: f.object, model: 'Cuenca'
+
+  .ibox.float-e-margins
+    .ibox-content.border-bottom.form-horizontal
+      .form-group
+        = f.label :nombre, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :nombre, class: 'form-control'
+      .form-group
+        = f.label :abreviado, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :abreviado, class: 'form-control'
+      .form-group
+        = f.label :ubicacion, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :ubicacion, class: 'form-control'
+      .form-group
+        = f.label :area, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :area, class: 'form-control'
+      .form-group
+        = f.label :usos, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :usos, class: 'form-control'
+      .form-group
+        = f.label :descripcion, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_area :descripcion, class: 'form-control'
+      .form-group
+        =render 'shared/ubicacion_territorial/modal', modelo: f
+      .form-group
+        .col-sm-3
+          = link_to zonas_ordenamiento_path, class: 'btn btn-success' do
+            %i.fa.fa-arrow-left
+            Regresar
+        .col-sm-3.col-sm-offset-6
+          = f.submit class: 'btn btn-primary'

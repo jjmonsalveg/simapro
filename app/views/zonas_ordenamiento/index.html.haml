@@ -1,0 +1,60 @@
+-#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-pagelines
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          -#Cuencas
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-sm-3
+              = link_to new_zona_ordenamiento_path, class: 'btn btn-primary btn-responsive' do
+                Nueva Zona ordenamiento
+                %i.fa.fa-plus
+          %br
+          %br
+          .row
+            .col-md-12
+              .table-responsive
+                %table.table.table-striped.table-bordered.table-hover.datatable-table
+                  %thead
+                    %tr
+                      %th Nombre
+                      %th Abreviado
+                      %th Ubicacion
+                      %th Area
+                      %th Usos
+                      %th Descripcion
+                      %th
+                      %th
+                  %tbody
+                    - @zonas_ordenamiento.each do |zona_ordenamiento|
+                      %tr
+                        %td= zona_ordenamiento.nombre
+                        %td= zona_ordenamiento.abreviado
+                        %td= zona_ordenamiento.ubicacion
+                        %td= zona_ordenamiento.area
+                        %td= zona_ordenamiento.usos
+                        %td= zona_ordenamiento.descripcion
+                        %td
+                          = link_to zona_ordenamiento,  rel: 'tooltip',  title: 'Ver' do
+                            %i.fa.fa-search
+                            &nbsp;
+                            &nbsp;
+                          = link_to edit_zona_ordenamiento_path(zona_ordenamiento), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                            %i.fa.fa-edit
+                            &nbsp;
+                            &nbsp;
+                          = link_to zona_ordenamiento, data: { confirm: 'Are you sure?' }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                            %i.fa.fa-trash
+                        %td
