@@ -27,7 +27,9 @@
           .ibox-content
             .col-sm-2
               - if can? :create, EmpresaForestal
-                = link_to 'Nueva Empresa', new_empresa_forestal_path, class: "btn btn-primary btn-block"
+                = link_to new_empresa_forestal_path, class: 'btn btn-primary btn-block' do
+                  Nueva Empresa
+                  %i.fa.fa-plus
             %br
             %br
             %br
