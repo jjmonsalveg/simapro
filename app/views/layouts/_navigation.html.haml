@@ -91,7 +91,16 @@
             %li{class: is_active_action('index')}= link_to 'Visualizar Unidades de Ordenación',unidad_ordenaciones_path
             - if can? :create, ReservaForestal
               %li{class: is_active_action('new')}= link_to 'Nueva Unidad de Ordenación', new_unidad_ordenacion_path
-
+        - if can? :read, ZonaOrdenamiento
+          %li{class: is_active_controller('zonas_ordenamiento')}
+            %a{:href => ""}
+              %i.fa.fa-map-marker
+              %span.nav-label Zonas de Ordenamiento
+              %span.fa.arrow
+            %ul{:class => "nav nav-second-level #{is_active_controller('zonas_ordenamiento')}"}
+              %li{class: is_active_action('index')}= link_to 'Visualizar Zonas Ordenamiento',zonas_ordenamiento_path
+              - if can? :create, EmpresaForestal
+                %li{class: is_active_action('new')}= link_to 'Nueva Zona de Ordenamiento', new_zona_ordenamiento_path
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
       -#    %i.fa.fa-th-large
