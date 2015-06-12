@@ -1,5 +1,5 @@
 = form_for @zona_ordenamiento, html: { class: "form-horizontal", role: "form" } do |f|
-  -#= render 'shared/error_messages', object: f.object, model: 'Cuenca'
+  = render 'shared/error_messages', object: f.object, model: 'Zona de Ordenamiento'
 
   .ibox.float-e-margins
     .ibox-content.border-bottom.form-horizontal
@@ -27,6 +27,15 @@
         = f.label :descripcion, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.text_area :descripcion, class: 'form-control'
+      .form-group
+        = f.label :unidad_ordenamiento_id , class: 'col-sm-2 control-label' do
+          Unidad Ordenación:
+          %span.fa.fa-asterisk.red
+        .col-sm-10
+          -#- listUnidadesOrdenacion= UnidadOrdenacion.unidades_empresa(current_user.empresa_forestal.id)
+          -#= f.collection_select(:unidad_ordenamiento_id , Pais.all.order(:nombre), :id,:nombre,
+          -#          {selected:  f.object.pais_id.nil? ? Pais.find_by(nombre: :Venezuela).id : @empresa_forestal.pais_id },
+          -#           class:'form-control col-sm-1')
       .form-group
         =render 'shared/ubicacion_territorial/modal', modelo: f
       .form-group

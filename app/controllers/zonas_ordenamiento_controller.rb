@@ -44,6 +44,7 @@ class ZonasOrdenamientoController < ApplicationController
     end
 
     def zona_ordenamiento_params
-      params.require(:zona_ordenamiento).permit(:nombre, :abreviado, :ubicacion, :area, :usos, :descripcion)
+      params.require(:zona_ordenamiento).permit(:nombre, :abreviado, :ubicacion, :area, :usos,
+                                                :descripcion,municipio_ids:[])
     end
 end

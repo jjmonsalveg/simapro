@@ -50,7 +50,7 @@ class ZonaOrdenamiento < ActiveRecord::Base
             }
 
   validate :validar_area
-  validates_presence_of :unidad_ordenacion_id
+  # validates_presence_of :unidad_ordenacion_id
 
   #callbacks definition
   #helps methods
