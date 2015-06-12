@@ -35,24 +35,24 @@
                       %th Area(ha)
                       %th
                       %th
-                %tbody
-                  - @reserva_forestales.each do |reserva_forestal|
-                    %tr
-                      %td= reserva_forestal.nombre
-                      %td= reserva_forestal.abreviado
-                      %td= reserva_forestal.fecha_creacion.strftime('%d.%m.%Y')
-                      %td= reserva_forestal.fecha_reglamento
-                      %td= reserva_forestal.area
-                      %td
-                        = link_to example_show_path,  rel: 'tooltip',  title: 'Ver' do
-                          %i.fa.fa-search
-                          &nbsp;
-                          &nbsp;
-                        = link_to example_edit_path, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
-                          %i.fa.fa-edit
-                          &nbsp;
-                          &nbsp;
-                        = link_to example_destroy_path, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
-                          %i.fa.fa-trash
-                      %td
-                        = link_to new_unidad_ordenacion_path()
+                  %tbody
+                    - @reserva_forestales.each do |reserva_forestal|
+                      %tr
+                        %td= reserva_forestal.nombre
+                        %td= reserva_forestal.abreviado
+                        %td= reserva_forestal.fecha_creacion.strftime('%d.%m.%Y')
+                        %td= reserva_forestal.fecha_reglamento
+                        %td= reserva_forestal.area
+                        %td
+                          = link_to reserva_forestal_path(reserva_forestal),  rel: 'tooltip',  title: 'Ver' do
+                            %i.fa.fa-search
+                            &nbsp;
+                            &nbsp;
+                          = link_to edit_reserva_forestal_path(reserva_forestal), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                            %i.fa.fa-edit
+                            &nbsp;
+                            &nbsp;
+                          = link_to reserva_forestal_path(reserva_forestal), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                            %i.fa.fa-trash
+                        %td
+                          = link_to new_unidad_ordenacion_path()

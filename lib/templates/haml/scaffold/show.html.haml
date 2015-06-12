@@ -30,5 +30,14 @@
                     %td.text-right
                       %strong <%= attribute.human_name %>:
                     %td
-                      @<%= singular_table_name %>.<%= attribute.name %>
+                      = @<%= singular_table_name %>.<%= attribute.name %>
                 <%- end -%>
+          .row
+            .col-sm-3
+              = link_to <%= index_helper %>_path, class: 'btn btn-default' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit
