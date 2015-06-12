@@ -6,7 +6,7 @@
         %i.fa.fa-upload.fileinput-new.pull-left{id: "icon_change_#{f.object.id}"}
       %span.fileinput-filename{id: "file_name_change_#{f.object.id}"}
         = name_file.present? ? name_file.to_s.split('/').last.sub(/\A\d+-/,'') : ""
-    %span.input-group-addon.btn.btn-default.btn-file
+    %span.input-group-addon.btn.btn-success.btn-file
 
       - if name_file.present?
         %span.fileinput-exists Cambiar
