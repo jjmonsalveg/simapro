@@ -59,8 +59,19 @@ Myapp::Application.routes.draw do
     get 'cuenca/:id', to: 'bloque_ordenacions#show', as: :bloque_ordenacion_show
 
     #UNIDADES DE MANEJO
-    get 'cuencas/:bo/subcuencas', to: 'unidad_manejos#index', as: :unidad_manejos
-    get 'cuencas/:bo/subcuenca/nueva', to: 'unidad_manejos#new', as: :unidad_manejo_new
+    get 'cuenca/:bo/subcuencas', to: 'unidad_manejos#index', as: :unidad_manejos
+    post 'cuenca/:bo/subcuencas', to: 'unidad_manejos#create'
+    get 'cuenca/:bo/subcuenca/nueva', to: 'unidad_manejos#new', as: :unidad_manejo_new
+    get 'cuenca/:bo/subcuenca/:id/ver', to: 'unidad_manejos#show', as: :unidad_manejo_show
+    get 'cuenca/:bo/subcuenca/:id', to: 'unidad_manejos#edit', as: :unidad_manejo_edit
+    put 'cuenca/:bo/subcuenca/:id', to: 'unidad_manejos#update', as: :unidad_manejo
+    patch 'cuenca/:bo/subcuenca/:id', to: 'unidad_manejos#update'
+    delete 'cuenca/:bo/subcuenca/:id', to: 'unidad_manejos#destroy', as: :unidad_manejo_destroy
+
+    get 'subcuencas', to: 'unidad_manejos#index_all', as: :unidad_manejos_all
+    get 'subcuenca/nueva', to: 'unidad_manejos#new_all', as: :unidad_manejo_new_all
+    post 'subcuenca/nueva', to: 'unidad_manejos#create_all'
+
   end
   
   

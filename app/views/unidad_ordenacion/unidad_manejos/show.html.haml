@@ -1,0 +1,74 @@
+= render partial: 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-leaf
+      = current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      \-
+      = @bloque_ordenacion.nombre
+      \-
+      = @unidad_manejo.nombre
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Cuencas', unidad_ordenacion_cuencas_path
+      %li
+        = link_to "Subcuencas #{@bloque_ordenacion.nombre}", unidad_ordenacion_unidad_manejos_path(bo: @bloque_ordenacion)
+      %li.active
+        %strong
+          = @unidad_manejo.nombre
+
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Subcuenca
+        .ibox-content
+          .row
+            .col-sm-3
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+                  %tr
+                    %td
+                      %strong Nombre:
+                    %td= @unidad_manejo.nombre
+                  %tr
+                    %td
+                      %strong Nombre Abreviado:
+                    %td= @unidad_manejo.abreviado
+                  %tr
+                    %td
+                      %strong Número de Providencia Administrativa:
+                    %td= @unidad_manejo.nro_providencia
+                  %tr
+                    %td
+                      %strong Fecha de Otorgamiento:
+                    %td= @unidad_manejo.fecha_otorgacion_fix
+                  %tr
+                    %td
+                      %strong Fecha Vence:
+                    %td= @unidad_manejo.fecha_vence_fix
+                  %tr
+                    %td
+                      %strong Área:
+                    %td= @unidad_manejo.area_fix
+                  %tr
+                    %td
+                      %strong Ubicación:
+                    %td= @unidad_manejo.ubicacion
+                  %tr
+                    %td
+                      %strong Características Generales:
+                    %td= @unidad_manejo.descripcion
+          .row
+            .col-sm-3
+              = link_to unidad_ordenacion_unidad_manejos_path(bo: @bloque_ordenacion), class: 'btn btn-success' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to unidad_ordenacion_unidad_manejo_edit_path(bo: @bloque_ordenacion, id: @unidad_manejo), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit

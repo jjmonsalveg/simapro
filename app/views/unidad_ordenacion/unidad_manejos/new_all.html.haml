@@ -1,0 +1,101 @@
+= render partial: 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-leaf
+      = current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      \-
+      Subcuencas
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to "Subcuencas", unidad_ordenacion_unidad_manejos_all_path
+      %li.active
+        %strong
+          Nueva
+
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  = form_for @unidad_manejo, url: { acion: :create_all }, method: :post , html: {id: 'form_unidad_manejo'} do |f|
+    = render 'shared/error_messages', object: f.object, model: 'Subcuenca'
+    .row
+      .col-lg-12.col-md-12.col-sm-12.col-xs-12
+        .ibox.float-e-margins
+          .ibox-content.border-bottom.form-horizontal
+            .form-group
+              = f.label :nombre, class: 'col-sm-2 control-label' do
+                Nombre:
+              .col-sm-10
+                = f.text_field :nombre, class: 'form-control'
+            .form-group
+              = f.label :abreviado, class: 'col-sm-2 control-label' do
+                Nombre Abreviado:
+              .col-sm-10
+                = f.text_field :abreviado, class: 'form-control'
+            .form-group
+              = f.label :nro_providencia, class: 'col-sm-2 control-label' do
+                Nro de Providencia Administrativa:
+              .col-sm-10
+                = f.text_field :nro_providencia, class: 'form-control'
+            .form-group
+              = f.label :fecha_otorgacion, class: 'col-sm-2 control-label' do
+                Fecha de Otorgamiento:
+              .col-sm-6.form-inline
+                = f.date_select :fecha_otorgacion, {start_year: (Date.current.year - 20), end_year: Date.current.year }, {class: 'form-control'}
+            .form-group
+              = f.label :fecha_vence, class: 'col-sm-2 control-label' do
+                Fecha Vence:
+              .col-sm-6.form-inline
+                = f.date_select :fecha_vence, {start_year: (Date.current.year - 10), end_year: (Date.current.year + 10) }, {class: 'form-control'}
+            .form-group
+              = f.label :area, class: 'col-sm-2 control-label' do
+                Área (ha):
+              .col-sm-10
+                = f.text_field :area, class: 'form-control'
+            .form-group
+              = f.label :bloque_ordenacion_id, class: 'col-sm-2 control-label' do
+                Cuenca:
+              .col-sm-10
+                = f.select :bloque_ordenacion_id, options_from_collection_for_select(BloqueOrdenacion.valid_cuencas, :id, :nombre), {include_blank: 'Seleccione una cuenca'}, {class: 'form-control'}
+            .form-group
+              = f.label :ubicacion, class: 'col-sm-2 control-label' do
+                Ubicación:
+              .col-sm-10
+                = f.text_area :ubicacion, class: 'form-control', rows: 3
+            .form-group
+              = f.label :descripcion, class: 'col-sm-2 control-label' do
+                Características Generales:
+              .col-sm-10
+                = f.text_area :descripcion, class: 'form-control', rows: 3
+            .form-group.doc-feedback
+              .group
+                = f.label :doc_providencia, class: 'col-sm-2 control-label' do
+                  Documento Dígital de la Providencia:
+                .col-sm-10
+                  .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+                    .form-control{"data-trigger" => "fileinput"}
+                      %i.fa.fa-upload.fileinput-exists.pull-left
+                      -if f.object.doc_providencia.present?
+                        %i.fa.fa-upload.fileinput-new.pull-left
+                      %span.fileinput-filename
+                        = f.object.doc_providencia.present? ? f.object.doc_providencia.to_s.split('/').last : ""
+                    %span.input-group-addon.btn.btn-success.btn-file
+                      - if f.object.doc_providencia.present?
+                        %span.fileinput-exists Cambiar
+                        %span.fileinput-new Cambiar
+                      - else
+                        %span.fileinput-new Subir Documento
+                        %span.fileinput-exists Cambiar
+                      = f.file_field :doc_providencia
+                    %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-exists{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
+                    -if f.object.doc_providencia.present?
+                      %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-new{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
+            .form-group
+              .col-sm-3
+                = link_to unidad_ordenacion_unidad_manejos_all_path, class: 'btn btn-success' do
+                  %i.fa.fa-arrow-left
+                  Regresar
+              .col-sm-3.col-sm-offset-6
+                = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Guardar'} do
+                  Guardar
+                  %i.fa.fa-floppy-o

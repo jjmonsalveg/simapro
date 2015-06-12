@@ -7,7 +7,8 @@
       \-
       = @bloque_ordenacion.nombre
       \-
-      Subcuencas
+      = @unidad_manejo.nombre
+      \- Edición
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
@@ -17,7 +18,8 @@
         = link_to "Subcuencas #{@bloque_ordenacion.nombre}", unidad_ordenacion_unidad_manejos_path(bo: @bloque_ordenacion)
       %li.active
         %strong
-          Nueva
+          Edición -
+          = @unidad_manejo.nombre
 
 .wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
   = render partial: 'form'

@@ -5,18 +5,14 @@
       %i.fa.fa-leaf
       = current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
       \-
-      = @bloque_ordenacion.nombre
-      \-
       Subcuencas
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
-      %li
-        = link_to 'Cuencas', unidad_ordenacion_cuencas_path
       %li.active
         %strong
           Subcuencas
-          = @bloque_ordenacion.nombre
+          = current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
 .wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
   .row
     .col-lg-12.col-md-12.col-sm-12
@@ -24,7 +20,7 @@
         .ibox-content
           .row
             .col-sm-3
-              = link_to unidad_ordenacion_unidad_manejo_new_path, class: 'btn btn-primary btn-responsive ' do
+              = link_to unidad_ordenacion_unidad_manejo_new_all_path, class: 'btn btn-primary btn-responsive ' do
                 Nueva Subcuenca
                 %i.fa.fa-plus
           %br
@@ -55,25 +51,14 @@
                         %td= unidad_manejo.fecha_vence_fix
                         %td= unidad_manejo.area_fix
                         %td
-                          = link_to unidad_ordenacion_unidad_manejo_show_path(bo: @bloque_ordenacion, id: unidad_manejo),  rel: 'tooltip',  title: 'Ver' do
+                          = link_to unidad_ordenacion_unidad_manejo_show_path(bo: unidad_manejo.bloque_ordenacion, id: unidad_manejo),  rel: 'tooltip',  title: 'Ver' do
                             %i.fa.fa-search
                             &nbsp;
                             &nbsp;
-                          = link_to unidad_ordenacion_unidad_manejo_edit_path(bo: @bloque_ordenacion, id: unidad_manejo), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                          = link_to unidad_ordenacion_unidad_manejo_edit_path(bo: unidad_manejo.bloque_ordenacion, id: unidad_manejo), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
                             %i.fa.fa-edit
                             &nbsp;
                             &nbsp;
-                          = link_to unidad_ordenacion_unidad_manejo_destroy_path(bo: @bloque_ordenacion, id: unidad_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar la subcuenca #{unidad_manejo.nombre}?"} do
+                          = link_to unidad_ordenacion_unidad_manejo_destroy_path(bo: unidad_manejo.bloque_ordenacion, id: unidad_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar la subcuenca #{unidad_manejo.nombre}?"} do
                             %i.fa.fa-trash
                         %td
-                          -#= link_to unidad_ordenacion_unidad_manejos_path(bo: unidad_manejo), rel: 'tooltip', title: 'Subcuencas' do
-                          -#  Subcuencas
-                          -#  %i.fa.fa-leaf
-  .row
-    .col-md-12.col-sm-12
-      .ibox-content.border-bottom
-        .row
-          .col-sm-3
-            = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success' do
-              A Cuencas
-              %i.fa.fa-pagelines

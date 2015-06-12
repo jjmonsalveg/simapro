@@ -1,4 +1,4 @@
-= form_for [:unidad_ordenacion , @unidad_manejo] , html: {id: 'form_unidad_manejo'} do |f|
+= form_for [:unidad_ordenacion , @unidad_manejo], url: { bo: @bloque_ordenacion } , html: {id: 'form_unidad_manejo'} do |f|
   = render 'shared/error_messages', object: f.object, model: 'Subcuenca'
 
   .row
@@ -45,14 +45,35 @@
               Características Generales:
             .col-sm-10
               = f.text_area :descripcion, class: 'form-control', rows: 3
-  = render 'shared/documentos/modelo_documentos', model: f
-
-          -#.form-group
-          -#  .col-sm-3
-          -#    = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success' do
-          -#      %i.fa.fa-arrow-left
-          -#      Regresar
-          -#  .col-sm-3.col-sm-offset-6
-          -#    = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Guardar'} do
-          -#      Guardar
-          -#      %i.fa.fa-floppy-o
+          .form-group.doc-feedback
+            .group
+              = f.label :doc_providencia, class: 'col-sm-2 control-label' do
+                Documento Dígital de la Providencia:
+              .col-sm-10
+                .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+                  .form-control{"data-trigger" => "fileinput"}
+                    %i.fa.fa-upload.fileinput-exists.pull-left
+                    -if f.object.doc_providencia.present?
+                      %i.fa.fa-upload.fileinput-new.pull-left
+                    %span.fileinput-filename
+                      = f.object.doc_providencia.present? ? f.object.doc_providencia.to_s.split('/').last : ""
+                  %span.input-group-addon.btn.btn-success.btn-file
+                    - if f.object.doc_providencia.present?
+                      %span.fileinput-exists Cambiar
+                      %span.fileinput-new Cambiar
+                    - else
+                      %span.fileinput-new Subir Documento
+                      %span.fileinput-exists Cambiar
+                    = f.file_field :doc_providencia
+                  %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-exists{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
+                  -if f.object.doc_providencia.present?
+                    %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-new{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
+          .form-group
+            .col-sm-3
+              = link_to unidad_ordenacion_unidad_manejos_path(bo: @bloque_ordenacion), class: 'btn btn-success' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3.col-sm-offset-6
+              = f.button class: 'btn btn-primary btn-responsive btn-block', data: {disable_with: 'Guardar'} do
+                Guardar
+                %i.fa.fa-floppy-o

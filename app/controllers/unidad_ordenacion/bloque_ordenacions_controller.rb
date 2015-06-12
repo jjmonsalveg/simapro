@@ -1,6 +1,6 @@
 class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
   before_action :authenticate_user!
-  # load_and_authorize_resource
+  load_and_authorize_resource
   before_action :set_bloque_ordenacion, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,7 +20,7 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
     respond_to do |format|
       if @bloque_ordenacion.save
 
-        format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice: 'Bloque de Ordenación creado satisfactoriamente.' }
+        format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice: 'Cuenca creada satisfactoriamente.' }
       else
         format.html { render action: 'new' }
         format.json { render json: @bloque_ordenacion.errors, status: :unprocessable_entity }
@@ -35,7 +35,7 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
   def update
     respond_to do |format|
       if @bloque_ordenacion.update(bloque_ordenacion_params)
-        format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice: 'Bloque de Ordenación actualizado satisfactoriamente.' }
+        format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice: 'Cuenca actualizada satisfactoriamente.' }
       else
         format.html { render action: 'edit' }
         format.json { render json: @bloque_ordenacion.errors, status: :unprocessable_entity }
@@ -46,7 +46,7 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
   def destroy
     @bloque_ordenacion.destroy
     respond_to do |format|
-      format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice:  'Bloque de Ordenación eliminado satisfactoriamente.' }
+      format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice:  'Cuenca eliminada satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

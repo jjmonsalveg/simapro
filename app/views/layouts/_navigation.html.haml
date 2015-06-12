@@ -91,7 +91,21 @@
             %li{class: is_active_action('index')}= link_to 'Visualizar Unidades de Ordenación',unidad_ordenaciones_path
             - if can? :create, ReservaForestal
               %li{class: is_active_action('new')}= link_to 'Nueva Unidad de Ordenación', new_unidad_ordenacion_path
-
+      - if can? :read, BloqueOrdenacion
+        %li{class: is_active_controller('unidad_ordenacion/bloque_ordenacions')}
+          %a{:href => ""}
+            %i.fa.fa-pagelines
+            %span.nav-label Cuencas
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('unidad_ordenacion/bloque_ordenacions')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Cuencas',unidad_ordenacion_bloque_ordenacions_path
+            - if can? :create, BloqueOrdenacion
+              %li{class: is_active_action('new')}= link_to 'Nueva Cuenca', unidad_ordenacion_bloque_ordenacion_new_path
+      - if can? :read, UnidadManejo
+        %li{class: is_active_controller('unidad_ordenacion/unidad_manejos')}
+          = link_to unidad_ordenacion_unidad_manejos_all_path do
+            %i.fa.fa-leaf
+            %span.nav-label Subcuencas
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
       -#    %i.fa.fa-th-large

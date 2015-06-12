@@ -31,4 +31,27 @@ class UnidadManejo < ActiveRecord::Base
   accepts_nested_attributes_for :documentos, allow_destroy: true
   include ModeloGeneral::ManageDocument
 
+  mount_uploader :doc_providencia, DocProvidenciaUploader
+
+  validates :bloque_ordenacion_id, presence: true
+  validates :unidad_manejo_id, uniqueness: true #presence: true
+  validates :nombre, presence: true, uniqueness: true
+  validates :abreviado, presence: true, uniqueness: true
+  validates :nro_providencia, presence: true
+  validates :fecha_otorgacion, presence: true
+  validates :area, presence: true
+  validates :ubicacion, presence: true
+
+  def fecha_otorgacion_fix
+    self.fecha_otorgacion.strftime("%d/%m/%Y")
+  end
+
+  def fecha_vence_fix
+    self.fecha_vence.strftime("%d/%m/%Y")
+  end
+
+  def area_fix
+    self.area.to_s + ' ha'
+  end
+
 end
