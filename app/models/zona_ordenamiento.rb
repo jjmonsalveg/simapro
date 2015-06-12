@@ -22,10 +22,14 @@
 
 class ZonaOrdenamiento < ActiveRecord::Base
   #configuracion/includes
+  include ModeloGeneral::ManageDocument
+
   #asociaciones
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
   belongs_to :unidad_ordenacion
+  has_many :documentos,  dependent: :destroy, as: :modelo
+  accepts_nested_attributes_for :documentos, allow_destroy: true
   #callback declaration
 
   #validates field

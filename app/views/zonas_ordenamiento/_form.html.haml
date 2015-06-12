@@ -36,8 +36,10 @@
           -#= f.collection_select(:unidad_ordenamiento_id , Pais.all.order(:nombre), :id,:nombre,
           -#          {selected:  f.object.pais_id.nil? ? Pais.find_by(nombre: :Venezuela).id : @empresa_forestal.pais_id },
           -#           class:'form-control col-sm-1')
+      =render 'shared/documentos/show_modelo_documentos_no_paginados', model: f, list_documents: load_documentos(:registro_zona_ordenamiento, @zona_ordenamiento)
       .form-group
         =render 'shared/ubicacion_territorial/modal', modelo: f
+
       .form-group
         .col-sm-3
           = link_to zonas_ordenamiento_path, class: 'btn btn-success' do
