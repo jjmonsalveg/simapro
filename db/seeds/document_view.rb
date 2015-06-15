@@ -8,6 +8,12 @@ vista_registro_zona_ordenamiento = Vista.create!(nombre: 'registro_zona_ordenami
                                                  descripcion:'Documentos requeridos para el registro de una zona de ordenamiento')
 puts 'vista registro Zona de Ordenamiento  Creada'
 
+puts 'vista registro subcuenca  Creada'
+
+subcuenca = Vista.create!(nombre: 'subcuenca_docs', descripcion: 'Documentos requeridos para las subcuencas')
+
+
+
 ####### DOCUMENTOS DE INFORMACION GENERAL ################
 
 puts '### CREANDO DOCUMENTOS POR VISTAS ###'
@@ -23,3 +29,8 @@ vista_registro_zona_ordenamiento.documento_requisitos<<
                                  descripcion: 'Documento Digital de la zona',
                                  cardinalidad_maxima: 1}])
 puts 'Documentos de vista de registro(ALBUM) Empresa Forestal Creada'
+
+
+puts 'Documentos de vista de registro subcuenca Creada'
+
+subcuenca.documento_requisitos<< DocumentoRequisito.create!(nombre: 'providencia_doc', descripcion: 'Documento Digital de la Providencia', cardinalidad_maxima: 1, paginado: false, obligatorio: true)

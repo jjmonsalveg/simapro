@@ -46,11 +46,11 @@
         %li{class: is_active_controller('users/registrations')}
           %a{:href => ""}
             %i.fa.fa-database
-            %span.nav-label Administradores
+            %span.nav-label Usuarios
             %span.fa.arrow
           %ul{:class => "nav nav-second-level #{is_active_controller('users/registrations')}"}
-            %li{class: is_active_action('index')}= link_to 'Visualizar Administradores', users_index_path
-            %li{class: is_active_action('new_user')}= link_to 'Nuevo Administrador', users_new_path
+            %li{class: is_active_action('index')}= link_to 'Visualizar Usuario', users_index_path
+            %li{class: is_active_action('new_user')}= link_to 'Nuevo Usuario', users_new_path
       - if can? :read, EmpresaForestal
         %li{class: is_active_controller('empresas_forestales')}
           %a{:href => ""}
@@ -99,7 +99,7 @@
               %span.fa.arrow
             %ul{:class => "nav nav-second-level #{is_active_controller('zonas_ordenamiento')}"}
               %li{class: is_active_action('index')}= link_to 'Visualizar Zonas Ordenamiento',zonas_ordenamiento_path
-              - if can? :create, EmpresaForestal
+              - if can? :create, ZonaOrdenamiento
                 %li{class: is_active_action('new')}= link_to 'Nueva Zona de Ordenamiento', new_zona_ordenamiento_path
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
