@@ -1,3 +1,5 @@
+#= require jquery-fileupload
+
 jQuery(document).ready ($) ->
   $("#table-body-municipio > [class!='estado_1']").hide()
   $('#check_all_ubicacion').prop('checked', $('.check_box_1:not(:checked)').length == 0)
