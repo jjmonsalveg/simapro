@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   validate :admin
 
   def admin
-    if Role.find_by(id: role_id) != Role.find(1)
+    if Role.find_by(id: role_id) != Role.where(name: 'Administrador del Sistema Simapro').first
       if empresa_forestal_id.nil?
         errors.add(:empresa_forestal_id, "Debe asignar una empresa forestal al usuario")
       end
