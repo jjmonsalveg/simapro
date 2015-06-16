@@ -1,3 +1,4 @@
+puts '#---- Roles  SEEDED ----#'
 admin_sistema = Role.create!(name: 'Administrador del Sistema Simapro',
                           permissions: Permission.where(name: 'manage', subject_class: [:Static,
                                                                                         :User,
@@ -29,3 +30,5 @@ analista = Role.create!(name: 'Analista Forestal',
 gerente = Role.create!(name: 'Gerente de Operaciones',
                        permissions: Permission.where(name: 'manage'),
                        role_type: Role.role_types[:cliente])
+
+puts '#---- Roles  SEEDED  FINALIZADA----#'
