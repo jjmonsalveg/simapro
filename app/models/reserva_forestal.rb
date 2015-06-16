@@ -30,21 +30,21 @@ class ReservaForestal < ActiveRecord::Base
             presence: { message: 'El campo Abreviado es obligatorio'},
             length: {maximum: 12, message: 'El campo Abreviado debe contener máximo 12 caracteres'}
 
-  validate :fecha_creacion_actual?
-  validate :fecha_reglamento_actual?
+  # validate :fecha_creacion_actual?
+  # validate :fecha_reglamento_actual?
+  #
 
 
-
-
-  def fecha_creacion_actual?
-    if self.fecha_creacion >= Date.today
-      errors.add(:fecha_creacion, 'La Fecha de creación debe ser anterior a la fecha actual')
-    end
-  end
-
-  def fecha_reglamento_actual?
-    if self.fecha_reglamento >= Date.today
-      errors.add(:fecha_reglamento, 'La Fecha Reglamento de Uso debe ser anterior a la fecha actual')
-    end
-  end
+  #
+  # def fecha_creacion_actual?
+  #   if fecha_creacion <= Date.today
+  #     errors.add(:fecha_creacion, 'La Fecha de creación debe ser anterior a la fecha actual')
+  #   end
+  # end
+  #
+  # def fecha_reglamento_actual?
+  #   if fecha_reglamento <= Date.today
+  #     errors.add(:fecha_reglamento, 'La Fecha Reglamento de Uso debe ser anterior a la fecha actual')
+  #   end
+  # end
 end
