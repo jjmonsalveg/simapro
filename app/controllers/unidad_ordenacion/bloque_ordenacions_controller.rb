@@ -54,7 +54,7 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
 
   private
     def bloque_ordenacion_params
-      params.require(:bloque_ordenacion).permit(:nombre, :abreviado, :unidad_ordenacion_id, :area, :descripcion)
+      params.require(:bloque_ordenacion).permit(:nombre, :abreviado, :unidad_ordenacion_id, :area, :descripcion , municipio_ids:[])
     end
 
     def set_bloque_ordenacion

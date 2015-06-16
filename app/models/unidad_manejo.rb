@@ -25,6 +25,9 @@
 class UnidadManejo < ActiveRecord::Base
   belongs_to :bloque_ordenacion
   has_many :users
+  has_many :division_politico_territorial, as: :modelo
+  has_many :municipios, through:  :division_politico_territorial
+
 
   #DOCUMENTOS - NESTED ES OBLIGATORIO
   has_many :documentos,  dependent: :destroy, as: :modelo
@@ -41,6 +44,7 @@ class UnidadManejo < ActiveRecord::Base
   validates :fecha_otorgacion, presence: true
   validates :area, presence: true
   validates :ubicacion, presence: true
+  validates :fecha_vence, presence: true
 
   def fecha_otorgacion_fix
     self.fecha_otorgacion.strftime("%d/%m/%Y")

@@ -81,6 +81,6 @@ class UnidadOrdenacion::UnidadManejosController < ApplicationController
     end
 
     def unidad_manejo_params
-      params.require(:unidad_manejo).permit(:nombre, :abreviado, :nro_providencia, :fecha_otorgacion, :fecha_vence, :area, :ubicacion, :descripcion, :doc_providencia)
+      params.require(:unidad_manejo).permit(:nombre, :abreviado, :nro_providencia, :fecha_otorgacion, :fecha_vence, :area, :ubicacion, :descripcion, :doc_providencia, municipio_ids:[])
     end
 end

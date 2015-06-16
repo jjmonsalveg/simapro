@@ -1,4 +1,4 @@
-= form_for [:unidad_ordenacion , @unidad_manejo], url: { bo: @bloque_ordenacion } , html: {id: 'form_unidad_manejo'} do |f|
+= form_for [:unidad_ordenacion , @unidad_manejo], url: { bo: @bloque_ordenacion } , html: {id: 'form_unidad_manejo form_include_ubicacion_territorial'} do |f|
   = render 'shared/error_messages', object: f.object, model: 'Subcuenca'
 
   .row
@@ -45,6 +45,8 @@
               Características Generales:
             .col-sm-10
               = f.text_area :descripcion, class: 'form-control', rows: 3
+          .form-group
+            =render 'shared/ubicacion_territorial/modal', modelo: f
           .form-group.doc-feedback
             .group
               = f.label :doc_providencia, class: 'col-sm-2 control-label' do

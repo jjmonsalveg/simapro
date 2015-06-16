@@ -22,6 +22,9 @@ class BloqueOrdenacion < ActiveRecord::Base
   belongs_to :unidad_ordenacion
   has_many :unidad_manejos
 
+  has_many :division_politico_territorial, as: :modelo
+  has_many :municipios, through:  :division_politico_territorial
+
   validates :bloque_ordenacion_id, uniqueness: true
   validates :nombre, presence: true, uniqueness: true
   validates :abreviado, presence: true, uniqueness: true
