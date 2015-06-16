@@ -1,0 +1,16 @@
+-#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-cubes
+      Zonas de Ordenamiento
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Cuencas', unidad_ordenaciones_path
+      %li.active
+        %strong
+          Editar Zona Ordenamiento
+.wrapper.wrapper-content.animated.fadeInRight
+  = render 'form'

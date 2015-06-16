@@ -1,4 +1,23 @@
+//= require jasny/jasny-bootstrap.min
 //= require jquery.fileupload
 //= require jquery.fileupload-ui
 //= require lightbox/css/lightbox
 //= require lightbox/css/screen
+
+.fileinput-filename {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  /* new lines */
+  width: 80%;
+  position: absolute;
+  left: 0;
+  padding-left: 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.doc-feedback.has-feedback .form-control-feedback {
+  top: 0;
+  left: 200px;
+}

@@ -24,6 +24,10 @@ class Role < ActiveRecord::Base
   end
 
   def self.administrador_sistemas
+    Role.where(role_type: Role.role_types[:administrador_sistema])
+  end
+
+  def self.administrador_clientes
     Role.where(role_type: Role.role_types[:administrador_cliente])
   end
 

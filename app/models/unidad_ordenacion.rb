@@ -21,6 +21,14 @@
 
 class UnidadOrdenacion < ActiveRecord::Base
   belongs_to :reserva_forestal
+  has_many :zona_ordenamientos, dependent: :destroy
 
+  def self.unidades_empresa(empresa_id)
+    UnidadOrdenacion.joins(:reserva_forestal).where(reserva_forestales: {empresa_forestal_id: empresa_id})
+  end
+
+  def text_for_select
+    codigo + ', '#+ reserva_forestal.nombre
+  end
 
 end

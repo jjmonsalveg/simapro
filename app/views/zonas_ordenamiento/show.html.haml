@@ -1,23 +1,25 @@
-= provide(:title, "Simapro - Reserva Forestal")
+= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-sm-10
     %h2
       %i.fa.fa-pagelines
-      = current_user.unidad_ordenacion.reserva_forestal.nombre rescue ''
-      Reserva Forestal
+      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
+      -#\- Cuencas
     %ol.breadcrumb
       %li
-        = link_to 'Inicio', root_url
+        -#= link_to 'Inicio', root_url
+      %li
+        -#= link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
       %li.active
         %strong
-          Información Reserva Forestal
+          -#Datos de la Cuenca
 .wrapper.wrapper-content.animated.fadeInRight
   .row
     .col-lg-12.col-md-12.col-sm-12.col-xs-12
       .ibox.float-e-margins
         .ibox-title
           %h3
-            Reserva Forestal
+            zona_ordenamiento
         .ibox-content
           .row
             .col-sm-5
@@ -25,45 +27,40 @@
                 %tbody
                   %tr
                     %td.text-right
-                      %strong Empresa forestal:
-                    %td
-                      @reserva_forestal.empresa_forestal
-                  %tr
-                    %td.text-right
                       %strong Nombre:
                     %td
-                      @reserva_forestal.nombre
+                      = @zona_ordenamiento.nombre
                   %tr
                     %td.text-right
                       %strong Abreviado:
                     %td
-                      @reserva_forestal.abreviado
+                      = @zona_ordenamiento.abreviado
                   %tr
                     %td.text-right
-                      %strong Fecha creacion:
+                      %strong Ubicacion:
                     %td
-                      @reserva_forestal.fecha_creacion
-                  %tr
-                    %td.text-right
-                      %strong Fecha reglamento:
-                    %td
-                      @reserva_forestal.fecha_reglamento
+                      = @zona_ordenamiento.ubicacion
                   %tr
                     %td.text-right
                       %strong Area:
                     %td
-                      @reserva_forestal.area
+                      = @zona_ordenamiento.area
+                  %tr
+                    %td.text-right
+                      %strong Usos:
+                    %td
+                      = @zona_ordenamiento.usos
                   %tr
                     %td.text-right
                       %strong Descripcion:
                     %td
-                      @reserva_forestal.descripcion
+                      = @zona_ordenamiento.descripcion
           .row
             .col-sm-3
-              = link_to reserva_forestales_path, class: 'btn btn-success' do
+              = link_to zonas_ordenamiento_path, class: 'btn btn-default' do
                 %i.fa.fa-arrow-left
                 Regresar
             .col-sm-3
-              = link_to edit_empresa_forestal_path(@reserva_forestal), class: 'btn btn-primary' do
+              = link_to edit_zona_ordenamiento_path(@zona_ordenamiento), class: 'btn btn-primary' do
                 Editar
                 %i.fa.fa-edit

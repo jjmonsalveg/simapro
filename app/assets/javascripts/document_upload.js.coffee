@@ -1,8 +1,10 @@
 jQuery(document).ready ($) ->
 
+
+
   $('.file').each ->
-    animationHover this, 'pulse'
-    return
+      animationHover this, 'pulse'
+      return
 
   $('.popUp').popover
     trigger: "hover"
@@ -39,6 +41,7 @@ jQuery(document).ready ($) ->
 
   $('.fileupload-generic').fileupload()
 
+  $('.modal').appendTo("body")
 
   cargar_archivos = (id) ->
     $.getJSON $('#'+id).prop('action'), (files) ->

@@ -10,5 +10,9 @@
           = f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'form-control'
 <% end -%>
       .form-group
-        .col-sm-offset-2.col-sm-10
+        .col-sm-3
+          = link_to <%= index_helper %>_path, class: 'btn btn-success' do
+            %i.fa.fa-arrow-left
+            Regresar
+        .col-sm-3.col-sm-offset-6
           = f.submit class: 'btn btn-primary'

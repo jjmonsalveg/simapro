@@ -18,8 +18,8 @@
         .ibox-content
           .row
             .col-sm-3
-              = link_to new_<%= singular_table_name %>_path, class: 'btn btn-primary btn-responsive' do
-                Nueva <%= human_name %>
+              = link_to new_zona_ordenamiento_path, class: 'btn btn-primary btn-responsive' do
+                Nueva Zona ordenamiento
                 %i.fa.fa-plus
           %br
           %br
@@ -29,26 +29,32 @@
                 %table.table.table-striped.table-bordered.table-hover.datatable-table
                   %thead
                     %tr
-<% for attribute in attributes -%>
-                      %th <%= attribute.human_name %>
-<% end -%>
+                      %th Nombre
+                      %th Abreviado
+                      %th Ubicacion
+                      %th Area
+                      %th Usos
+                      %th Descripcion
                       %th
                       %th
                   %tbody
-                    - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+                    - @zonas_ordenamiento.each do |zona_ordenamiento|
                       %tr
-<% for attribute in attributes -%>
-                        %td= <%= singular_table_name %>.<%= attribute.name %>
-<% end -%>
+                        %td= zona_ordenamiento.nombre
+                        %td= zona_ordenamiento.abreviado
+                        %td= zona_ordenamiento.ubicacion
+                        %td= zona_ordenamiento.area
+                        %td= zona_ordenamiento.usos
+                        %td= zona_ordenamiento.descripcion
                         %td
-                          = link_to <%= singular_table_name %>,  rel: 'tooltip',  title: 'Ver' do
+                          = link_to zona_ordenamiento,  rel: 'tooltip',  title: 'Ver' do
                             %i.fa.fa-search
                             &nbsp;
                             &nbsp;
-                          = link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                          = link_to edit_zona_ordenamiento_path(zona_ordenamiento), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
                             %i.fa.fa-edit
                             &nbsp;
                             &nbsp;
-                          = link_to <%= singular_table_name %>, data: { confirm: 'Are you sure?' }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                          = link_to zona_ordenamiento, data: { confirm: 'Are you sure?' }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
                             %i.fa.fa-trash
                         %td

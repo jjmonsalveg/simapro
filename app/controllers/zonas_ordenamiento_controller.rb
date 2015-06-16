@@ -1,5 +1,7 @@
 class ZonasOrdenamientoController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_zona_ordenamiento, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   respond_to :html
 
@@ -13,6 +15,11 @@ class ZonasOrdenamientoController < ApplicationController
   end
 
   def new
+    if UnidadOrdenacion.all.empty?
+      flash[:warning] = 'Debe crear Alguna unidad de ordenacion antes de Crear Zonas de Ordenamiento'
+      redirect_to unidad_ordenaciones_path
+      return
+    end
     @zona_ordenamiento = ZonaOrdenamiento.new
     respond_with(@zona_ordenamiento)
   end
@@ -38,10 +45,11 @@ class ZonasOrdenamientoController < ApplicationController
 
   private
     def set_zona_ordenamiento
-      @zona_ordenamiento = ZonaOrdenamiento.find(params[:id])
+      @zona_ordenamiento = current_user.zonas_rZonaOrdenamiento.find(params[:id])
     end
 
     def zona_ordenamiento_params
-      params.require(:zona_ordenamiento).permit(:nombre, :abreviado, :ubicacion, :area, :usos, :descripcion)
+      params.require(:zona_ordenamiento).permit(:nombre, :abreviado, :ubicacion, :area, :usos,
+                                                :descripcion,municipio_ids:[])
     end
 end

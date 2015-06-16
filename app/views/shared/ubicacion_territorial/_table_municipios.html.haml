@@ -1,0 +1,15 @@
+%table.table.table-striped.table-bordered.table-condensed
+  %thead
+    %tr
+      %th
+        Municipios
+      %th
+        = check_box_tag 'check_all_ubicacion'
+  %tbody{id: 'table-body-municipio'}
+    - Municipio.includes(:estado).all.each do |m|
+      %tr{class: "estado_#{m.estado.id}"}
+        %td
+          = m.nombre
+        %td
+          = check_box_tag "#{modelo.object.class.to_s.tableize.singularize.downcase}[municipio_ids][]", m.id, modelo.object.municipios.include?(m),
+            class: "check_box_#{m.estado.id}"
