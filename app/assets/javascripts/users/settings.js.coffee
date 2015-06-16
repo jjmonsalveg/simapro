@@ -10,4 +10,15 @@ jQuery(document).ready ($) ->
       data:
         id: $('#settings_subcuenca').val()
       success: (data) ->
-        console.log(data)
+        setTimeout ->
+          toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            showMethod: 'slideDown',
+            timeOut: 2000
+          };
+          if data == true
+            toastr.success('Subcuenca asignada con éxito');
+          else
+            toastr.warning('Error asignando subcuenca');
+          300
