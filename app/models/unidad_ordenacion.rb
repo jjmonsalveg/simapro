@@ -28,7 +28,7 @@ class UnidadOrdenacion < ActiveRecord::Base
   end
 
   def text_for_select
-    codigo + ', '#+ reserva_forestal.nombre
+    codigo + ', '+ reserva_forestal.nombre
   end
 
 end
