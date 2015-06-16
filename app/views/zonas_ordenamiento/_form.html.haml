@@ -32,10 +32,9 @@
           Unidad Ordenación:
           %span.fa.fa-asterisk.red
         .col-sm-10
-          -#          {selected:  f.object.pais_id.nil? ? Pais.find_by(nombre: :Venezuela).id : @empresa_forestal.pais_id },
           = f.collection_select(:unidad_ordenacion_id,current_user.unidades_ordenacion,:id,:text_for_select,
-          {},class:'form-control col-sm-1')
-      =render 'shared/documentos/show_modelo_documentos_no_paginados', model: f, list_documents: load_documentos(:registro_zona_ordenamiento, @zona_ordenamiento)
+           {:prompt => 'Seleccione una unidad de ordenación'},class:'form-control col-sm-1')
+      =render 'shared/documentos/show_modelo_documentos_no_paginados', model: f, list_documents: load_documentos(:registro_zona_ordenamiento, @zona_ordenamiento,true)
       .form-group
         =render 'shared/ubicacion_territorial/modal', modelo: f
 

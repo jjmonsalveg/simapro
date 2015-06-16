@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #= require ubicacion_territorial
 #= require jasny/jasny-bootstrap.min
-#= require document_upload
 
 
 
