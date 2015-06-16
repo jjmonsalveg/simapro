@@ -18,7 +18,7 @@ r = ReservaForestal.create!(empresa_forestal_id: empresa_1.id,
                             fecha_reglamento: '9/22/2004',
                             area: '3749941.20')
 
-p '##  CREACION DE LAS RESERVAS FORESTALES ##'
+p '##  CREACION DE LAS UNIDADES DE ORDENACION ##'
 uo = UnidadOrdenacion.create!(reserva_forestal_id: r.id,
                               codigo: 'I',
                               nro_contrato: 'BI-0896',
