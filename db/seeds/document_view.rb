@@ -27,7 +27,8 @@ vista_registro_empresa_forestal.documento_requisitos<<
 vista_registro_zona_ordenamiento.documento_requisitos<<
     DocumentoRequisito.create!([{nombre: 'documento_digital',
                                  descripcion: 'Documento Digital de la zona',
-                                 cardinalidad_maxima: 1}])
+                                 cardinalidad_maxima: 1,
+                                 obligatorio:false}])
 puts 'Documentos de vista de registro(ALBUM) Empresa Forestal Creada'
 
 

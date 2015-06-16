@@ -25,10 +25,27 @@ uo = UnidadOrdenacion.create!(reserva_forestal_id: r.id,
                               fecha_otorgacion: '3/2/2010',
                               fecha_vence: '3/2/2018',
                               area: '15000000')
-                              #unidad_ordenacion_id: 'I', )
-zo = ZonaOrdenamiento.create!(unidad_ordenacion: uo, nombre: 'Zona de Manejo Forestal', abreviado: 'ZMF', ubicacion: 'Bolivar - Delta Amacuro', area: '100.00', usos: 'Forestal', descripcion: 'Creada bajo el decreto 3110-04 del 22 de septiembre de 2004', municipios: Municipio.where(id: 1))
-bo = BloqueOrdenacion.create!(unidad_ordenacion: uo, nombre: 'Santa Maria I', abreviado: 'SMI', area: '20.00', descripcion: 'Creada bajo el plan de manejo y ordenamientopara el aprovechamiento de la reserva de IMATACA 2006. Posee especies protegidas')
-um = UnidadManejo.create!(bloque_ordenacion: bo, nombre: 'Santa Maria IA', abreviado: 'SMIA', area: '5000.00', ubicacion: 'Ubicada en la zona central de la cuenca Santa Maria I', descripcion: 'Entre las especies arbó- reas más abundantes están: Pentaclethra macrocloba (Leguminosae), Alexa imperatricis (Leguminosae), Chaetocarpus schomburgkianus (Euphorbiaceae)', nro_providencia: '1231HH', fecha_otorgacion: '01/01/2015')
+
+zo = ZonaOrdenamiento.create!(unidad_ordenacion: uo,
+                              nombre: 'Zona de Manejo Forestal',
+                              abreviado: 'ZMF',
+                              ubicacion: 'Bolivar - Delta Amacuro',
+                              area: '100.00', usos: 'Forestal',
+                              descripcion: 'Creada bajo el decreto 3110-04 del 22 de septiembre de 2004',
+                              municipios: Municipio.where(id: 1))
+bo = BloqueOrdenacion.create!(unidad_ordenacion: uo,
+                              nombre: 'Santa Maria I',
+                              abreviado: 'SMI',
+                              area: '20.00',
+                              descripcion: 'Creada bajo el plan de manejo y ordenamientopara el aprovechamiento de la reserva de IMATACA 2006. Posee especies protegidas')
+um = UnidadManejo.create!(bloque_ordenacion: bo,
+                          nombre: 'Santa Maria IA',
+                          abreviado: 'SMIA',
+                          area: '5000.00',
+                          ubicacion: 'Ubicada en la zona central de la cuenca Santa Maria I',
+                          descripcion: 'Entre las especies arbó- reas más abundantes están: Pentaclethra macrocloba (Leguminosae), Alexa imperatricis (Leguminosae), Chaetocarpus schomburgkianus (Euphorbiaceae)',
+                          nro_providencia: '1231HH',
+                          fecha_otorgacion: '01/01/2015')
 
 p '##  CREACION DE USUARIOS ##'
 
