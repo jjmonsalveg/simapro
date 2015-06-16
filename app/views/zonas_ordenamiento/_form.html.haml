@@ -1,4 +1,4 @@
-= form_for @zona_ordenamiento, html: { class: "form-horizontal", role: "form" } do |f|
+= form_for @zona_ordenamiento, html: { id: 'form_zona_ordenamiento',class: "form-horizontal form_include_ubicacion_territorial", role: "form" } do |f|
   = render 'shared/error_messages', object: f.object, model: 'Zona de Ordenamiento'
 
   .ibox.float-e-margins
@@ -28,22 +28,26 @@
         .col-sm-10
           = f.text_area :descripcion, class: 'form-control'
       .form-group
-        = f.label :unidad_ordenamiento_id , class: 'col-sm-2 control-label' do
+        = f.label :unidad_ordenacion_id , class: 'col-sm-2 control-label' do
           Unidad Ordenación:
           %span.fa.fa-asterisk.red
         .col-sm-10
-          -#- listUnidadesOrdenacion= UnidadOrdenacion.unidades_empresa(current_user.empresa_forestal.id)
-          -#= f.collection_select(:unidad_ordenamiento_id , Pais.all.order(:nombre), :id,:nombre,
           -#          {selected:  f.object.pais_id.nil? ? Pais.find_by(nombre: :Venezuela).id : @empresa_forestal.pais_id },
-          -#           class:'form-control col-sm-1')
+          = f.collection_select(:unidad_ordenacion_id,current_user.unidades_ordenacion,:id,:text_for_select,
+          {},class:'form-control col-sm-1')
       =render 'shared/documentos/show_modelo_documentos_no_paginados', model: f, list_documents: load_documentos(:registro_zona_ordenamiento, @zona_ordenamiento)
       .form-group
         =render 'shared/ubicacion_territorial/modal', modelo: f
 
+  .ibox.float-e-margins
+    .ibox-content.border-bottom.form-horizontal
       .form-group
         .col-sm-3
           = link_to zonas_ordenamiento_path, class: 'btn btn-success' do
             %i.fa.fa-arrow-left
-            Regresar
+            Listar Zonas de ordenamiento
         .col-sm-3.col-sm-offset-6
-          = f.submit class: 'btn btn-primary'
+          = f.button(type: 'submit', class: 'btn btn-primary',
+                   data: { disable_with: 'Espere un momento...' }) do
+            Crear Zona ordenamiento
+            %i.fa.fa-floppy-o

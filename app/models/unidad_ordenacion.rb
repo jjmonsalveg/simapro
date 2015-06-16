@@ -27,4 +27,8 @@ class UnidadOrdenacion < ActiveRecord::Base
     UnidadOrdenacion.joins(:reserva_forestal).where(reserva_forestales: {empresa_forestal_id: empresa_id})
   end
 
+  def text_for_select
+    codigo + ', '#+ reserva_forestal.nombre
+  end
+
 end

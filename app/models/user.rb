@@ -67,4 +67,53 @@ class User < ActiveRecord::Base
   def self.forestal_admins
     User.joins(:role).where(roles: {role_type: Role.role_types[:administrador_cliente]})
   end
+
+  def reservas_forestales
+    ReservaForestal.find_by_sql ['
+    SELECT
+      reserva_forestales.*
+    FROM
+      public.users,
+      public.reserva_forestales,
+      public.empresas_forestales
+    WHERE
+      users.empresa_forestal_id = empresas_forestales.id AND
+      reserva_forestales.empresa_forestal_id = empresas_forestales.id AND
+       users.id = ?;',   self.id]
+  end
+
+  def unidades_ordenacion
+    UnidadOrdenacion.includes(:reserva_forestal).find_by_sql ['
+      SELECT
+        unidad_ordenaciones.*
+      FROM
+        public.users,
+        public.reserva_forestales,
+        public.unidad_ordenaciones,
+        public.empresas_forestales
+      WHERE
+        users.empresa_forestal_id = empresas_forestales.id AND
+        reserva_forestales.empresa_forestal_id = empresas_forestales.id AND
+        unidad_ordenaciones.reserva_forestal_id = reserva_forestales.id AND
+        users.id = ?;',self.id]
+
+  end
+
+  def zonas_ordenamiento
+    ZonaOrdenamiento.find_by_sql ['
+     SELECT
+        zonas_ordenamiento.*
+     FROM
+        public.users,
+        public.reserva_forestales,
+        public.unidad_ordenaciones,
+        public.zonas_ordenamiento,
+        public.empresas_forestales
+     WHERE
+        users.empresa_forestal_id = empresas_forestales.id AND
+        reserva_forestales.empresa_forestal_id = empresas_forestales.id AND
+        unidad_ordenaciones.reserva_forestal_id = reserva_forestales.id AND
+        zonas_ordenamiento.unidad_ordenacion_id = unidad_ordenaciones.id AND users.id = ?',
+                                  self.id]
+  end
 end

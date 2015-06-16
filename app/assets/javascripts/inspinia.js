@@ -52,7 +52,7 @@ $(document).ready(function () {
 
     // Move modal to body
     // Fix Bootstrap backdrop issu with animation.css
-    //$('.modal').appendTo("body")
+    $('.modal').appendTo("body")
 
     // Full height of sidebar
     function fix_height() {

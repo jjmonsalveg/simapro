@@ -1,5 +1,3 @@
-#= require jquery-fileupload
-
 jQuery(document).ready ($) ->
   $("#table-body-municipio > [class!='estado_1']").hide()
   $('#check_all_ubicacion').prop('checked', $('.check_box_1:not(:checked)').length == 0)
@@ -20,4 +18,8 @@ jQuery(document).ready ($) ->
   $(':checkbox[class^="check_box_"]').click ->
     est = $('#estado').val()
     $('#check_all_ubicacion').prop('checked', $('.check_box_'+est+':not(:checked)').length == 0)
+
+  $(".form_include_ubicacion_territorial").bind "submit", ->
+    $(this).append($('#myModalUbicacionTerritorial'))
+
 
