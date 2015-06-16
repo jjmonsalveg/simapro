@@ -15,6 +15,7 @@
 #  bloque_ordenacion_id :integer
 #  created_at           :datetime
 #  updated_at           :datetime
+#  doc_providencia      :string(255)
 #
 # Indexes
 #
