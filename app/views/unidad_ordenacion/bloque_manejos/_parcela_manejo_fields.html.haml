@@ -1,0 +1,9 @@
+.nested-fields
+  .form-inline
+    .form-group
+      = f.text_field :codigo, class: 'form-control', placeholder: 'Numero'
+    .form-group
+      = f.text_field :area, class: 'form-control', placeholder: 'Área', value: 20
+    .form-group
+      = link_to_remove_association  f do
+        %i.fa.fa-minus-square

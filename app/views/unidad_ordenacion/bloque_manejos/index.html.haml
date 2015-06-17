@@ -1,0 +1,54 @@
+= render partial: 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-trello
+      = current_user.unidad_manejo.nombre rescue 'Subcuenca'
+      \- Bloques de Manejo
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          Bloques de Manejo
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-sm-3
+              = link_to new_unidad_ordenacion_bloque_manejo_path, class: 'btn btn-primary btn-responsive ' do
+                Nuevo Bloque de Manejo
+                %i.fa.fa-plus
+          %br
+          %br
+          .row
+            .col-md-12
+              .table-responsive
+                %table.table.table-striped.table-bordered.table-hover.datatable-table
+                  %thead
+                    %tr
+                      %th Bloque Nro
+                      %th Subcuenca
+                      %th Cuenca
+                      %th Área
+                      %th
+                  %tbody
+                    - @bloque_manejos.each do |bloque_manejo|
+                      %tr
+                        %td= bloque_manejo.codigo
+                        %td= bloque_manejo.unidad_manejo.nombre
+                        %td= bloque_manejo.unidad_manejo.bloque_ordenacion.nombre
+                        %td= bloque_manejo.area
+                        %td
+                          -#= link_to unidad_ordenacion_bloque_ordenacion_show_path(id: bloque_manejo),  rel: 'tooltip',  title: 'Ver' do
+                          -#  %i.fa.fa-search
+                          -#  &nbsp;
+                          -#  &nbsp;
+                          -#= link_to unidad_ordenacion_bloque_ordenacion_edit_path(id: bloque_manejo), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                          -#  %i.fa.fa-edit
+                          -#  &nbsp;
+                          -#  &nbsp;
+                          -#= link_to unidad_ordenacion_bloque_ordenacion_destroy_path(id: bloque_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar la cuenca #{bloque_manejo.nombre}?"} do
+                          -#  %i.fa.fa-trash

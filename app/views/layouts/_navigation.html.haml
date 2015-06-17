@@ -116,6 +116,16 @@
           = link_to unidad_ordenacion_unidad_manejos_all_path do
             %i.fa.fa-leaf
             %span.nav-label Subcuencas
+      - if can? :read, BloqueManejo
+        %li{class: is_active_controller('unidad_ordenacion/bloque_manejos')}
+          %a{:href => ""}
+            %i.fa.fa-trello
+            %span.nav-label Bloques de Manejo
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('unidad_ordenacion/bloque_manejos')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Bloques de Manejo',unidad_ordenacion_bloque_manejos_path
+            - if can? :create, BloqueManejo
+              %li{class: is_active_action('new')}= link_to 'Nuevo Bloque de Manejo', new_unidad_ordenacion_bloque_manejo_path
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
       -#    %i.fa.fa-th-large

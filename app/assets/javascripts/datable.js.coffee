@@ -7,7 +7,6 @@
 #= require jquery-ui/jquery-ui.min.js
 
 jQuery(document).ready ($) ->
-  console.log 'MORTALLLLLLLLLLL'
   $('.datatable-table').dataTable
 
     'dom': 'T<"clear">lfrtip'

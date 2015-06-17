@@ -27,7 +27,7 @@ class UnidadManejo < ActiveRecord::Base
   has_many :users
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
-
+  has_many :bloque_manejos
 
   #DOCUMENTOS - NESTED ES OBLIGATORIO
   has_many :documentos,  dependent: :destroy, as: :modelo

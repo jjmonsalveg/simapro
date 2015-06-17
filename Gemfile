@@ -77,4 +77,4 @@ gem 'rmagick', '~> 2.13.4'
 
 gem 'cancancan', '~> 1.10'
 
-
+gem "cocoon"
