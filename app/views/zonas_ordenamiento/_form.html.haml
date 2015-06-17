@@ -4,17 +4,17 @@
   .ibox.float-e-margins
     .ibox-content.border-bottom.form-horizontal
       .form-group
-        = f.label :nombre, class: 'col-sm-2 control-label' do
+        = f.label :nombre, class: 'col-sm-2 control-label'do
           Nombre:
           %span.fa.fa-asterisk.red
         .col-sm-10
-          = f.text_field :nombre, class: 'form-control'
+          = f.text_field :nombre, class: 'form-control',maxlength:64
       .form-group
         = f.label :abreviado, class: 'col-sm-2 control-label' do
           Nombre Abreviado:
           %span.fa.fa-asterisk.red
         .col-sm-10
-          = f.text_field :abreviado, class: 'form-control'
+          = f.text_field :abreviado, class: 'form-control', maxlength:12
       .form-group
         = f.label :unidad_ordenacion_id , class: 'col-sm-2 control-label' do
           Unidad Ordenación:
@@ -39,7 +39,7 @@
           Usos o Actividades Permitidas:
           %span.fa.fa-asterisk.red
         .col-sm-10
-          = f.text_field :usos, class: 'form-control'
+          = f.text_field :usos, class: 'form-control', maxlength:64
       .form-group
         = f.label :descripcion, class: 'col-sm-2 control-label' do
           Características Generales:
