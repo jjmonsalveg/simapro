@@ -4,29 +4,17 @@
   .ibox.float-e-margins
     .ibox-content.border-bottom.form-horizontal
       .form-group
-        = f.label :nombre, class: 'col-sm-2 control-label'
+        = f.label :nombre, class: 'col-sm-2 control-label' do
+          Nombre:
+          %span.fa.fa-asterisk.red
         .col-sm-10
           = f.text_field :nombre, class: 'form-control'
       .form-group
-        = f.label :abreviado, class: 'col-sm-2 control-label'
+        = f.label :abreviado, class: 'col-sm-2 control-label' do
+          Nombre Abreviado:
+          %span.fa.fa-asterisk.red
         .col-sm-10
           = f.text_field :abreviado, class: 'form-control'
-      .form-group
-        = f.label :ubicacion, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_area :ubicacion, class: 'form-control'
-      .form-group
-        = f.label :area, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :area, class: 'form-control'
-      .form-group
-        = f.label :usos, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :usos, class: 'form-control'
-      .form-group
-        = f.label :descripcion, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_area :descripcion, class: 'form-control'
       .form-group
         = f.label :unidad_ordenacion_id , class: 'col-sm-2 control-label' do
           Unidad Ordenación:
@@ -34,6 +22,29 @@
         .col-sm-10
           = f.collection_select(:unidad_ordenacion_id,current_user.unidades_ordenacion,:id,:text_for_select,
            {:prompt => 'Seleccione una unidad de ordenación'},class:'form-control col-sm-1')
+      .form-group
+        = f.label :ubicacion, class: 'col-sm-2 control-label' do
+          Ubicación:
+          %span.fa.fa-asterisk.red
+        .col-sm-10
+          = f.text_area :ubicacion, class: 'form-control'
+      .form-group
+        = f.label :area, class: 'col-sm-2 control-label' do
+          Area (ha):
+          %span.fa.fa-asterisk.red
+        .col-sm-10
+          = f.text_field :area, class: 'form-control'
+      .form-group
+        = f.label :usos, class: 'col-sm-2 control-label' do
+          Usos o Actividades Permitidas:
+          %span.fa.fa-asterisk.red
+        .col-sm-10
+          = f.text_field :usos, class: 'form-control'
+      .form-group
+        = f.label :descripcion, class: 'col-sm-2 control-label' do
+          Características Generales:
+        .col-sm-10
+          = f.text_area :descripcion, class: 'form-control'
       =render 'shared/documentos/show_modelo_documentos_no_paginados', model: f, list_documents: load_documentos(:registro_zona_ordenamiento, @zona_ordenamiento,true)
       .form-group
         =render 'shared/ubicacion_territorial/modal', modelo: f
