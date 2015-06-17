@@ -1,60 +1,83 @@
 -#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
 .row.wrapper.border-bottom.white-bg.page-heading
-  .col-lg-10
+  .col-sm-10
     %h2
-      %i.fa.fa-pagelines
-      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
-      -#\- Cuencas
+      %i.fa.fa-cubes
+      Zonas de Ordenamiento
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
+      %li
+        = link_to 'Reservas Forestales', reserva_forestales_path
+      %li
+        = link_to 'Unidades de Ordenacion', unidad_ordenaciones_path
       %li.active
         %strong
-          -#Cuencas
+          Zonas de Ordenamiento
 .wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
-  .row
-    .col-lg-12
-      .ibox.float-e-margins
-        .ibox-content
-          .row
-            .col-sm-3
-              = link_to new_zona_ordenamiento_path, class: 'btn btn-primary btn-responsive' do
-                Nueva Zona ordenamiento
-                %i.fa.fa-plus
-          %br
-          %br
-          .row
-            .col-md-12
-              .table-responsive
-                %table.table.table-striped.table-bordered.table-hover.datatable-table
-                  %thead
-                    %tr
-                      %th Nombre
-                      %th Abreviado
-                      %th Ubicacion
-                      %th Area
-                      %th Usos
-                      %th Descripcion
-                      %th
-                      %th
-                  %tbody
-                    - @zonas_ordenamiento.each do |zona_ordenamiento|
+  - if @zonas_ordenamiento.empty?
+    - if can? :create, ZonaOrdenamiento
+      .row
+        .col-md-12.col-md-offset-0
+          %ul.text-muted.leyenda
+            %li.text-justify
+              Puede registrar una Zona de Ordenamiento haciendo click en
+              Nueva Zona Ordenamiento
+    .ibox-content.text-center
+      %h3.font-bold No hay Zonas de Ordenamiento Registradas
+      - if can? :create, ZonaOrdenamiento
+        = link_to new_zona_ordenamiento_path, class: 'btn btn-primary btn-responsive' do
+          Nueva Zona Ordenamiento
+          %i.fa.fa-plus
+
+  -else
+    .row
+      .col-lg-12
+        .ibox.float-e-margins
+          .ibox-content
+            .row
+              .col-sm-3
+                - if can? :create, ZonaOrdenamiento
+                  = link_to new_zona_ordenamiento_path, class: 'btn btn-primary btn-responsive' do
+                    Nueva Zona Ordenamiento
+                    %i.fa.fa-plus
+            %br
+            %br
+            .row
+              .col-md-12
+                .table-responsive
+                  %table.table.table-striped.table-bordered.table-hover.datatable-table
+                    %thead
                       %tr
-                        %td= zona_ordenamiento.nombre
-                        %td= zona_ordenamiento.abreviado
-                        %td= zona_ordenamiento.ubicacion
-                        %td= zona_ordenamiento.area
-                        %td= zona_ordenamiento.usos
-                        %td= zona_ordenamiento.descripcion
-                        %td
-                          = link_to zona_ordenamiento,  rel: 'tooltip',  title: 'Ver' do
-                            %i.fa.fa-search
-                            &nbsp;
-                            &nbsp;
-                          = link_to edit_zona_ordenamiento_path(zona_ordenamiento), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
-                            %i.fa.fa-edit
-                            &nbsp;
-                            &nbsp;
-                          = link_to zona_ordenamiento, data: { confirm: 'Are you sure?' }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
-                            %i.fa.fa-trash
-                        %td
+                        %th Nombre
+                        %th Abreviado
+                        %th Ubicacion
+                        %th Area
+                        %th Usos
+                        %th Descripcion
+                        %th
+                        %th
+                    %tbody
+                      - @zonas_ordenamiento.each do |zona_ordenamiento|
+                        %tr
+                          %td= zona_ordenamiento.nombre
+                          %td= zona_ordenamiento.abreviado
+                          %td= zona_ordenamiento.ubicacion
+                          %td= zona_ordenamiento.area
+                          %td= zona_ordenamiento.usos
+                          %td= zona_ordenamiento.descripcion
+                          %td
+                            - if can? :view, ZonaOrdenamiento
+                              = link_to zona_ordenamiento,  rel: 'tooltip',  title: 'Ver' do
+                                %i.fa.fa-search
+                                &nbsp;
+                                &nbsp;
+                            - if can? :update, ZonaOrdenamiento
+                              = link_to edit_zona_ordenamiento_path(zona_ordenamiento), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                                %i.fa.fa-edit
+                                &nbsp;
+                                &nbsp;
+                            - if can? :destroy, ZonaOrdenamiento
+                              = link_to zona_ordenamiento, data: { confirm: '¿Esta seguro de eliminar esta Zona de Ordenamiento?' }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                                %i.fa.fa-trash
+                          %td

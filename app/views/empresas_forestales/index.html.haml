@@ -19,7 +19,7 @@
     .ibox-content.text-center
       %h3.font-bold No hay Empresas Forestales Registradas
       - if can? :create, EmpresaForestal
-        =link_to  'Nueva Empresa',new_empresa_forestal_path ,  class: 'btn btn-warning pull-center'
+        =link_to  'Nueva Empresa',new_empresa_forestal_path ,  class: 'btn btn-primary pull-center'
   -else
     .row
       .col-md-12.col-md-offset-0

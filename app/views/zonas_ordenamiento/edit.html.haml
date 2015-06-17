@@ -1,4 +1,4 @@
--#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+= provide(:title, 'Editar Zona de Ordenamiento')
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-sm-10
     %h2
@@ -8,9 +8,11 @@
       %li
         = link_to 'Inicio', root_url
       %li
-        = link_to 'Cuencas', unidad_ordenaciones_path
+        = link_to 'Reservas Forestales', reserva_forestales_path
+      %li
+        = link_to 'Unidades de Ordenacion', unidad_ordenaciones_path
       %li.active
         %strong
-          Editar Zona Ordenamiento
+          Nueva Zona Ordenamiento
 .wrapper.wrapper-content.animated.fadeInRight
   = render 'form'

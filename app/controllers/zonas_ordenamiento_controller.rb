@@ -6,7 +6,7 @@ class ZonasOrdenamientoController < ApplicationController
   respond_to :html
 
   def index
-    @zonas_ordenamiento = ZonaOrdenamiento.all
+    @zonas_ordenamiento = current_user.zonas_ordenamiento
     respond_with(@zonas_ordenamiento)
   end
 
@@ -45,7 +45,12 @@ class ZonasOrdenamientoController < ApplicationController
 
   private
     def set_zona_ordenamiento
-      @zona_ordenamiento = current_user.zonas_rZonaOrdenamiento.find(params[:id])
+      @zona_ordenamiento = current_user.zonas_ordenamiento.select{|z| z.id == params[:id].to_i }[0]
+
+      if @zona_ordenamiento.nil?
+        flash[:warning]= 'Zona de ordenamiento no existente para sus Empresas Forestales'
+        redirect_to zonas_ordenamiento_path
+      end
     end
 
     def zona_ordenamiento_params
