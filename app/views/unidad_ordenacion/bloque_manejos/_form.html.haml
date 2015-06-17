@@ -24,9 +24,9 @@
           -#      Insertar Parcelas
           -#      %i.fa.fa-delicious
           .form-group
-            = label_tag :parcelas, :parcelas, class: 'col-sm-2 control-label' do
-              Parcelas:
-            .col-sm-8
+            .col-sm-4
+            .col-sm-6
+              %h3 Parcelas:
               = f.fields_for :parcela_manejos do |parcela_manejo|
                 = render 'parcela_manejo_fields', f: parcela_manejo
               .links
@@ -34,7 +34,7 @@
                   Añadir Parcela
                   %i.fa.fa-plus-circle
           .form-group
-            .col-sm-3.col-sm-offset-6
+            .col-sm-3.col-sm-offset-9
               = f.button class: 'btn btn-primary btn-block', data: {disable_with: 'Guardar'} do
                 Guardar
                 %i.fa.fa-floppy-o

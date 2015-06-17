@@ -1,0 +1,1 @@
+TipoBosque.create!([{nombre: 'humedo_tropical'}, {nombre: 'seco_tropical'}])

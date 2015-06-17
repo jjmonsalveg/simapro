@@ -35,6 +35,7 @@ class UnidadManejo < ActiveRecord::Base
   include ModeloGeneral::ManageDocument
 
   mount_uploader :doc_providencia, DocProvidenciaUploader
+  mount_uploader :doc_plan_forestal, DocProvidenciaUploader
 
   validates :bloque_ordenacion_id, presence: true
   validates :unidad_manejo_id, uniqueness: true #presence: true
