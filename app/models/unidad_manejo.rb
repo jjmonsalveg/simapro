@@ -28,6 +28,7 @@ class UnidadManejo < ActiveRecord::Base
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
   has_many :bloque_manejos
+  belongs_to :tipo_bosque
 
   #DOCUMENTOS - NESTED ES OBLIGATORIO
   has_many :documentos,  dependent: :destroy, as: :modelo
@@ -46,6 +47,7 @@ class UnidadManejo < ActiveRecord::Base
   validates :area, presence: true
   validates :ubicacion, presence: true
   validates :fecha_vence, presence: true
+  validates :tipo_bosque_id, presence: true
 
   def fecha_otorgacion_fix
     self.fecha_otorgacion.strftime("%d/%m/%Y")
@@ -57,6 +59,16 @@ class UnidadManejo < ActiveRecord::Base
 
   def area_fix
     self.area.to_s + ' ha'
+  end
+
+  def doc_providencia_pdf?
+    return true if (self.doc_providencia.url.split('.').last rescue nil) == 'pdf'
+    return false
+  end
+
+  def doc_plan_forestal_pdf?
+    return true if (self.doc_plan_forestal.url.split('.').last rescue nil) == 'pdf'
+    return false
   end
 
 end
