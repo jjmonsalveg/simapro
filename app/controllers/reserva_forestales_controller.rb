@@ -1,6 +1,7 @@
 class ReservaForestalesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_reserva_forestal, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   respond_to :html
 
@@ -16,6 +17,11 @@ class ReservaForestalesController < ApplicationController
   end
 
   def new
+    if UnidadOrdenacion.all.empty?
+      flash[:warning] = 'Debe crear Alguna unidad de ordenacion antes de Crear Zonas de Ordenamiento'
+      redirect_to unidad_ordenaciones_path
+      return
+    end
     @reserva_forestal = ReservaForestal.new
     respond_with(@reserva_forestal)
   end
@@ -25,7 +31,7 @@ class ReservaForestalesController < ApplicationController
 
   def create
     @reserva_forestal = ReservaForestal.new(reserva_forestal_params)
-    @reserva_forestal.empresa_forestal = current_user.empresa_forestal.first
+    # @reserva_forestal.empresa_forestal = current_user.empresa_forestal.first
     respond_to do |format|
       if @reserva_forestal.save
         format.html { redirect_to reserva_forestales_path, notice: 'Reserva Forestal creado satisfactoriamente.' }
@@ -61,6 +67,17 @@ class ReservaForestalesController < ApplicationController
     end
 
     def reserva_forestal_params
-      params.require(:reserva_forestal).permit(:empresa_forestal_id, :nombre, :abreviado, :fecha_creacion, :fecha_reglamento, :area, :descripcion)
+      params.require(:reserva_forestal).permit(:empresa_forestal_id,
+                                               :nombre,
+                                               :abreviado,
+                                               :fecha_creacion,
+                                               :fecha_reglamento,
+                                               :area,
+                                               :descripcion,
+                                               :unidad_ordenacion_id,
+                                               municipio_ids:[],
+                                               documentos_attributes:[:id,
+                                                                      :documentos_requisitos_por_vista_id,
+                                                                      :doc])
     end
 end
