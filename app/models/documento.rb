@@ -138,7 +138,7 @@ class Documento < ActiveRecord::Base
   end
 
   def doc_size
-    if self.doc.file.present? && self.doc.file.size.to_f/(1000*1000) > 2.to_f
+    if self.doc.file.present? && self.doc.file.size.to_f/1.megabyte > 2.megabyte
       errors.add(:doc, "Los documentos no pueden tener un tamaño mayor a 2 MB")
     end
   end
