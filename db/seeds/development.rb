@@ -51,7 +51,8 @@ um = UnidadManejo.create!(bloque_ordenacion: bo,
                           descripcion: 'Entre las especies arbó- reas más abundantes están: Pentaclethra macrocloba (Leguminosae), Alexa imperatricis (Leguminosae), Chaetocarpus schomburgkianus (Euphorbiaceae)',
                           nro_providencia: '1231HH',
                           fecha_otorgacion: '01/01/2015',
-                          fecha_vence:'01/01/2015')
+                          fecha_vence:'01/01/2015',
+                          tipo_bosque_id: 1)
 
 p '##  CREACION DE USUARIOS ##'
 
