@@ -6,6 +6,8 @@
 #= require ubicacion_territorial
 
 jQuery(document).ready ($) ->
+  $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
+
   $('#form_zona_ordenamiento').bootstrapValidator
     feedbackIcons:
       valid: 'fa fa-check ',
@@ -40,7 +42,7 @@ jQuery(document).ready ($) ->
           notEmpty:
             message: 'Area es Obligatorio'
           regexp:
-            regexp: /^([0-9]*[1-9]([\.][0-9]{1,2}){0,1}|[0-9]*\.([1-9]|\d[1-9]))$/
+            regexp: /^([0-9]*[1-9][0-9]*([\.][0-9]{1,2}){0,1}|[0-9]+\.([1-9]|\d[1-9]))$/
             message: "No cumple con formato 999999999,99"
       "zona_ordenamiento[usos]":
         validators:
