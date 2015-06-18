@@ -55,8 +55,7 @@
                         %th Area
                         %th Usos
                         %th Descripcion
-                        %th
-                        %th
+                        %th Acciones
                     %tbody
                       - @zonas_ordenamiento.each do |zona_ordenamiento|
                         %tr
@@ -80,4 +79,3 @@
                             - if can? :destroy, ZonaOrdenamiento
                               = link_to zona_ordenamiento, data: { confirm: '¿Esta seguro de eliminar esta Zona de Ordenamiento?' }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
                                 %i.fa.fa-trash
-                          %td

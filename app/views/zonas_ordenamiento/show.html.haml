@@ -1,25 +1,26 @@
-= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+= provide(:title, 'Ver Zona de Ordenamiento')
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-sm-10
     %h2
-      %i.fa.fa-pagelines
-      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
-      -#\- Cuencas
+      %i.fa.fa-cubes
+      Zonas de Ordenamiento
     %ol.breadcrumb
       %li
-        -#= link_to 'Inicio', root_url
+        = link_to 'Inicio', root_url
       %li
-        -#= link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
+        = link_to 'Reservas Forestales', reserva_forestales_path
+      %li
+        = link_to 'Unidades de Ordenacion', unidad_ordenaciones_path
       %li.active
         %strong
-          -#Datos de la Cuenca
+          Zona Ordenamiento
 .wrapper.wrapper-content.animated.fadeInRight
   .row
     .col-lg-12.col-md-12.col-sm-12.col-xs-12
       .ibox.float-e-margins
         .ibox-title
           %h3
-            zona_ordenamiento
+            Zona Ordenamiento
         .ibox-content
           .row
             .col-sm-5
@@ -55,12 +56,19 @@
                       %strong Descripcion:
                     %td
                       = @zona_ordenamiento.descripcion
-          .row
-            .col-sm-3
-              = link_to zonas_ordenamiento_path, class: 'btn btn-default' do
-                %i.fa.fa-arrow-left
-                Regresar
-            .col-sm-3
-              = link_to edit_zona_ordenamiento_path(@zona_ordenamiento), class: 'btn btn-primary' do
-                Editar
-                %i.fa.fa-edit
+-#-if @zona_ordenamiento.documentos.present?
+-#= render 'shared/documentos/modelo_documentos', model: @zonas_ordenamiento,nombre_vista_param: :registro_zona_ordenamiento
+
+.row
+  .col-md-12
+    .ibox.float-e-margins
+      .ibox-content
+        .row
+          .col-sm-3
+            = link_to zonas_ordenamiento_path, class: 'btn btn-success' do
+              %i.fa.fa-arrow-left
+              Listar Zonas de Ordenamiento
+          .col-sm-3.pull-right
+            = link_to edit_zona_ordenamiento_path(@zona_ordenamiento), class: 'btn btn-primary' do
+              Editar
+              %i.fa.fa-edit
