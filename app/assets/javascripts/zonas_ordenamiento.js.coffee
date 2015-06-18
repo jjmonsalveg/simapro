@@ -6,7 +6,6 @@
 #= require ubicacion_territorial
 
 jQuery(document).ready ($) ->
-  $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
 
   $('#form_zona_ordenamiento').bootstrapValidator
     feedbackIcons:
@@ -57,3 +56,4 @@ jQuery(document).ready ($) ->
     $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
     $('#form_zona_ordenamiento').bootstrapValidator('revalidateField', $(this))
 
+  $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))

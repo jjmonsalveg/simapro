@@ -56,7 +56,7 @@
                       %strong Descripcion:
                     %td
                       = @zona_ordenamiento.descripcion
--#-if @zona_ordenamiento.documentos.present?
+
 = render 'shared/documentos/modelo_documentos', model: @zona_ordenamiento,nombre_vista_param: :registro_zona_ordenamiento
 
 .row
