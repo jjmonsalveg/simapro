@@ -11,6 +11,14 @@ puts 'vista registro Zona de Ordenamiento  Creada'
 vista_subcuenca = Vista.create!(nombre: 'subcuenca_docs', descripcion: 'Documentos requeridos para las subcuencas')
 puts 'vista registro subcuenca  Creada'
 
+vista_reserva_forestal = Vista.create!(nombre: 'reserva_forestal_docs',
+                                       descripcion: 'Documento requerido para la reserva forestal')
+puts 'vista registro reserva  forestal'
+
+vista_unidad_ordenacion = Vista.create!(nombre: 'unidad_ordenacion_docs',
+                                       descripcion: 'Documentos requeridos para la unidad de ordenacion')
+puts 'vista unidad ordenacion'
+
 
 
 
@@ -35,3 +43,23 @@ puts 'Documentos de vista de registro(ALBUM) Empresa Forestal Creada'
 puts 'Documentos de vista de registro subcuenca Creada'
 
 vista_subcuenca.documento_requisitos<< DocumentoRequisito.create!(nombre: 'providencia_doc', descripcion: 'Documento Digital de la Providencia', cardinalidad_maxima: 1, paginado: false, obligatorio: true)
+
+puts 'Documentos de vista de providencia Creada'
+
+vista_reserva_forestal.documento_requisitos<<
+    DocumentoRequisito.create!([{nombre: 'documento_digital_decreto',
+                                 descripcion: 'Documento Digital del decreto',
+                                 cardinalidad_maxima: 1,
+                                 obligatorio:false}])
+puts 'Documentos de vista de registro Reserva Forestal Creada'
+
+vista_unidad_ordenacion.documento_requisitos<<
+    DocumentoRequisito.create!([{nombre: 'documento_digital_contrato',
+                                 descripcion: 'Documento Digital del Contrato',
+                                 cardinalidad_maxima: 1,
+                                 obligatorio:false},
+                                {nombre: 'documento_digital_plan_manejo',
+                                 descripcion: 'Documento Digital del Plan de Ordenación y Manejo',
+                                 cardinalidad_maxima: 1,
+                                 obligatorio:false}])
+puts 'Documentos de vista de Unidades de Ordenación'

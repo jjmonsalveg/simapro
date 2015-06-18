@@ -23,6 +23,17 @@
 class ReservaForestal < ActiveRecord::Base
   belongs_to :empresa_forestal
 
+  #asociaciones
+  has_many :division_politico_territorial, as: :modelo
+  has_many :municipios, through:  :division_politico_territorial
+
+  belongs_to :pais
+  accepts_nested_attributes_for :pais
+
+  has_many :documentos,  dependent: :destroy, as: :modelo
+  accepts_nested_attributes_for :documentos, allow_destroy: true
+  include ModeloGeneral::ManageDocument
+
   validates :nombre,uniqueness:{message:'Otra Reserva Forestal a sido registrada con este nombre.'},
             presence: { message: 'El campo Nombre es obligatorio'},
             length: {maximum: 64, message: 'El campo Nombre debe contener máximo 64 caracteres'}
