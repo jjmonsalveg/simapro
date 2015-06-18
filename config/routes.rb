@@ -72,6 +72,9 @@ Myapp::Application.routes.draw do
     get 'subcuenca/nueva', to: 'unidad_manejos#new_all', as: :unidad_manejo_new_all
     post 'subcuenca/nueva', to: 'unidad_manejos#create_all'
 
+    #BLOQUES DE MANEJO
+    resources :bloque_manejos
+
   end
   
   

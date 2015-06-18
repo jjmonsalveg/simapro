@@ -15,8 +15,9 @@ admin_cliente = Role.create!(name: 'Administrador de Usuario Simapro',
                                                                                         :UnidadOrdenacion,
                                                                                         :ReservaForestal,
                                                                                         :jquery_file_uploads,
+                                                                                        :BloqueOrdenacion,
                                                                                         :UnidadManejo,
-                                                                                        :BloqueOrdenacion]),
+                                                                                        :BloqueManejo]),
                           role_type: Role.role_types[:administrador_cliente])
 
 administrador = Role.create!(name: 'Administrador de Datos',

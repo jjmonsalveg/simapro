@@ -1,0 +1,18 @@
+= render partial: 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-trello
+      = current_user.unidad_manejo.nombre rescue 'Subcuenca'
+      \- Bloques de Manejo
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Bloques de Manejo', unidad_ordenacion_bloque_manejos_path
+      %li.active
+        %strong
+          Nuevo Bloque
+
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  = render partial: 'form'

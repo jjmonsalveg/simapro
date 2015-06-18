@@ -3,7 +3,7 @@ class CreateParcelaManejos < ActiveRecord::Migration
     create_table :parcela_manejos do |t|
       t.integer :parcela_manejo_id
       t.string :codigo, limit: 2
-      t.decimal :area, scale: 2, precision: 5
+      t.decimal :area, scale: 2, precision: 5, default: 20
       t.references :bloque_manejo, index: true
 
       t.timestamps

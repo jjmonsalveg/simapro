@@ -1,0 +1,40 @@
+= form_for [:unidad_ordenacion , @bloque_manejo] , html: {id: 'form_bloque_manejo'} do |f|
+  = render 'shared/error_messages', object: f.object, model: 'Bloque de Manejo'
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-content.border-bottom.form-horizontal
+          .form-group
+            = f.label :codigo, class: 'col-sm-2 control-label' do
+              Bloque Nro:
+            .col-sm-10
+              = f.text_field :codigo, class: 'form-control', maxlength: 3
+          .form-group
+            = f.label :area, class: 'col-sm-2 control-label' do
+              Área
+            .col-sm-10
+              = f.text_field :area, class: 'form-control'
+          -#.form-group
+          -#  = label_tag :parcelas, :parcelas, class: 'col-sm-2 control-label' do
+          -#    Número de Parcelas:
+          -#  .col-sm-1
+          -#    = text_field_tag :parcelas, nil, class: 'form-control', maxlength: 2
+          -#  .col-sm-2
+          -#    %a.btn.btn-success
+          -#      Insertar Parcelas
+          -#      %i.fa.fa-delicious
+          .form-group
+            .col-sm-4
+            .col-sm-6
+              %h3 Parcelas:
+              = f.fields_for :parcela_manejos do |parcela_manejo|
+                = render 'parcela_manejo_fields', f: parcela_manejo
+              .links
+                = link_to_add_association f, :parcela_manejos do
+                  Añadir Parcela
+                  %i.fa.fa-plus-circle
+          .form-group
+            .col-sm-3.col-sm-offset-9
+              = f.button class: 'btn btn-primary btn-block', data: {disable_with: 'Guardar'} do
+                Guardar
+                %i.fa.fa-floppy-o

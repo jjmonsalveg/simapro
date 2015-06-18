@@ -1,0 +1,21 @@
+.nested-fields
+  .form-inline
+    .form-group
+      = f.text_field :codigo, class: 'form-control codigo_input', placeholder: 'Nro Parcela'
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    .form-group
+      = f.text_field :area, class: 'form-control area_input', placeholder: 'Área', value: 20
+    .form-group
+      = link_to_remove_association  f do
+        %i.fa.fa-minus-square
+:javascript
+  jQuery(document).ready(function($) {
+    $('.codigo_input').inputmask("Regex", {
+      regex: "[0-9a-zA-Z]{1,3}%"
+    });
+    $('.area_input').inputmask("Regex", {
+      regex: "[0-9.]{1,10}%"
+    });
+  });
