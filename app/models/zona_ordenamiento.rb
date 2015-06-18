@@ -61,8 +61,6 @@ class ZonaOrdenamiento < ActiveRecord::Base
   #helps methods
   private
   def validar_area
-    p 'lleeego'
-    p area
     self.errors.add(:area, 'Area debe ser mayor a 0') if self.area.nil? or  self.area <= 0
   end
 
