@@ -40,20 +40,18 @@ jQuery(document).ready ($) ->
           notEmpty:
             message: 'Area es Obligatorio'
           regexp:
-            regexp: /^[0-9]+([\.][0-9]{1,2}){0,1}$/
+            regexp: /^([0-9]*[1-9]([\.][0-9]{1,2}){0,1}|[0-9]*\.([1-9]|\d[1-9]))$/
             message: "No cumple con formato 999999999,99"
       "zona_ordenamiento[usos]":
         validators:
           notEmpty:
             message: 'Uso o Actividades Permitidas es Obligatorio'
           regexp:
-            regexp: /^.{0,12}$/
+            regexp: /^.{0,64}$/
             message: 'Usos debe contener máximo 64 caracteres'
 
-  $('#zona_ordenamiento_area').inputmask("Regex", { regex: "^[1-9]{1}[0-9]{2,9}(\\.[0-9]{1,2})?$" })
+  $('#zona_ordenamiento_area').inputmask({'mask':"9{0,9}.9{0,2}", greedy: false})
   $('#zona_ordenamiento_area').blur ->
     $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
     $('#form_zona_ordenamiento').bootstrapValidator('revalidateField', $(this))
-
-#    $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/[0-9]{8}\.$/,$('#zona_ordenamiento_area').val().match(/[0-9]{8}/)))
 
