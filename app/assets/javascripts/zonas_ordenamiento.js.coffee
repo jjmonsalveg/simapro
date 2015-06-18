@@ -4,6 +4,10 @@
 #= require datable
 #= require bootstrapValidator/bootstrapValidator
 #= require ubicacion_territorial
+#= require jquery-fileupload
+#= require document_upload
+#= require lightbox/js/lightbox.min.js
+
 
 jQuery(document).ready ($) ->
 
@@ -52,7 +56,7 @@ jQuery(document).ready ($) ->
             message: 'Usos debe contener máximo 64 caracteres'
 
   $('#zona_ordenamiento_area').inputmask({'mask':"9{0,9}.9{0,2}", greedy: false})
-  
+
   $('#zona_ordenamiento_area').blur ->
     $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
     $('#form_zona_ordenamiento').bootstrapValidator('revalidateField', $(this))

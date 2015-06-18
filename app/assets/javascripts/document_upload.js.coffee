@@ -1,7 +1,4 @@
 jQuery(document).ready ($) ->
-
-
-
   $('.file').each ->
       animationHover this, 'pulse'
       return
