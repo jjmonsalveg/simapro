@@ -33,7 +33,7 @@
                       %th Subcuenca
                       %th Cuenca
                       %th Área
-                      %th
+                      %th Acciones
                   %tbody
                     - @bloque_manejos.each do |bloque_manejo|
                       %tr
@@ -42,13 +42,13 @@
                         %td= bloque_manejo.unidad_manejo.bloque_ordenacion.nombre
                         %td= bloque_manejo.area
                         %td
-                          -#= link_to unidad_ordenacion_bloque_ordenacion_show_path(id: bloque_manejo),  rel: 'tooltip',  title: 'Ver' do
-                          -#  %i.fa.fa-search
-                          -#  &nbsp;
-                          -#  &nbsp;
-                          -#= link_to unidad_ordenacion_bloque_ordenacion_edit_path(id: bloque_manejo), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
-                          -#  %i.fa.fa-edit
-                          -#  &nbsp;
-                          -#  &nbsp;
-                          -#= link_to unidad_ordenacion_bloque_ordenacion_destroy_path(id: bloque_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar la cuenca #{bloque_manejo.nombre}?"} do
-                          -#  %i.fa.fa-trash
+                          = link_to unidad_ordenacion_bloque_manejo_path(id: bloque_manejo),  rel: 'tooltip',  title: 'Ver' do
+                            %i.fa.fa-search
+                            &nbsp;
+                            &nbsp;
+                          = link_to edit_unidad_ordenacion_bloque_manejo_path(id: bloque_manejo), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                            %i.fa.fa-edit
+                            &nbsp;
+                            &nbsp;
+                          = link_to unidad_ordenacion_bloque_manejo_path(id: bloque_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar el bloque de manejo #{bloque_manejo.codigo}?"} do
+                            %i.fa.fa-trash

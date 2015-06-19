@@ -1,0 +1,64 @@
+= render partial: 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-trello
+      = current_user.unidad_manejo.nombre rescue 'Subcuenca'
+      \- Bloques de Manejo
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Bloques de Manejo', unidad_ordenacion_bloque_manejos_path
+      %li.active
+        %strong
+          Bloque de Manejo
+          = @bloque_manejo.codigo
+
+
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Bloque de Manejo
+        .ibox-content
+          .row
+            .col-sm-3
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+                  %tr
+                    %td
+                      %strong Bloque Número:
+                    %td= @bloque_manejo.codigo
+                  %tr
+                    %td
+                      %strong Subcuenca
+                    %td= @bloque_manejo.unidad_manejo.nombre
+                  %tr
+                    %td
+                      %strong Área:
+                    %td= @bloque_manejo.area
+          .row
+            .col-sm-3
+              %h3 Parcelas
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+                  - @bloque_manejo.parcela_manejos.each do |parcela_manejo|
+                    %tr
+                      %td
+                        %strong Parcela Número:
+                      %td= parcela_manejo.codigo
+                      %td
+                        %strong Área:
+                      %td= parcela_manejo.area
+          .row
+            .col-sm-3
+              = link_to unidad_ordenacion_bloque_manejos_path, class: 'btn btn-success' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to edit_unidad_ordenacion_bloque_manejo_path(id: @bloque_manejo), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit

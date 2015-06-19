@@ -44,10 +44,19 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
   end
 
   def destroy
-    @bloque_ordenacion.destroy
-    respond_to do |format|
-      format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path, notice:  'Cuenca eliminada satisfactoriamente.' }
-      format.json { head :no_content }
+    if User.joins(:unidad_manejos).where(unidad_manejos: { bloque_ordenacion_id: @bloque_ordenacion.id} ).nil?
+      @bloque_ordenacion.destroy
+      respond_to do |format|
+        flash[:warning] =  'Cuenca eliminada satisfactoriamente.'
+        format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        flash[:alert] =  'No se puede eliminar la Cuenca dado que hay usuarios asociados Subcuencas de esta Cuenca.'
+        format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path }
+        format.json { head :no_content }
+      end
     end
   end
 

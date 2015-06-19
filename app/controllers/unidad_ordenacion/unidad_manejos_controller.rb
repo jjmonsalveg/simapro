@@ -42,10 +42,19 @@ class UnidadOrdenacion::UnidadManejosController < ApplicationController
   end
 
   def destroy
-    @unidad_manejo.destroy
-    respond_to do |format|
-      format.html { redirect_to unidad_ordenacion_unidad_manejos_path, notice:  'Subcuenca eliminada satisfactoriamente.' }
-      format.json { head :no_content }
+    if User.where(unidad_manejo_id: @unidad_manejo.id).nil?
+      @unidad_manejo.destroy
+      respond_to do |format|
+        flash[:warning] =  'Subcuenca eliminada satisfactoriamente.'
+        format.html { redirect_to unidad_ordenacion_unidad_manejos_path }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        flash[:alert] =  'No se puede eliminar la Subcuenca dado que hay usuarios asociados a esta.'
+        format.html { redirect_to unidad_ordenacion_unidad_manejos_path }
+        format.json { head :no_content }
+      end
     end
   end
 
