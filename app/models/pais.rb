@@ -18,4 +18,11 @@ class Pais < ActiveRecord::Base
   has_many :empresas_forestales
   validates :nombre, presence: {message: 'Debe ingresar nombre de Pais'},
              uniqueness:{message: 'País ya ha sido creado'}
+
+  validates :nombre,uniqueness:{message:'Otra Pais a sido registrado con este nombre.'},
+            presence: { message: 'El campo Nombre es obligatorio'},
+            :length => {  maximum: 64,
+                          message:
+                              'Nombre debe contener máximo 64 caracteres'
+            }
 end

@@ -47,7 +47,11 @@ class EmpresaForestal < ActiveRecord::Base
 
   #validates field
   validates :nombre,uniqueness:{message:'Otra Empresa a sido registrada con este nombre.'},
-            presence: { message: 'El campo Nombre es obligatorio'}
+            presence: { message: 'El campo Nombre es obligatorio'},
+            :length => {  maximum: 64,
+                          message:
+                              'Nombre debe contener máximo 64 caracteres'
+            }
   validates :abreviado, uniqueness:{message:'Otra Empresa a sido registrada con este Abreviado.'},
             presence: { message: 'El campo Abreviado es obligatorio'}
   validates :rif, uniqueness:{message:'Otra Empresa a sido registrada con este RIF.'},
@@ -60,12 +64,12 @@ class EmpresaForestal < ActiveRecord::Base
             }
   validates :direccion_fiscal, presence: { message: 'El campo Dirección es obligatorio'}
   validates :telefono ,uniqueness:{message:'Otra Empresa a sido registrada con este Teléfono.'},
-            presence: {message: 'El campo Teléfono es obligatorio'},
+            presence: {message: 'El campo Teléfono es obligatorio'}#,
             # format: {with: TELEFONO_LOCAL_REGEX, message:  'El formato del campo Teléfono es inválido'},
-            :length => {  maximum: 11,
-                          message:
-                              'Teléfono debe contener máximo 11 caracteres'
-            }
+            # :length => {  maximum: 11,
+            #               message:
+            #                   'Teléfono debe contener máximo 11 caracteres'
+            # }
 
   validates :parcela_manejo_long ,
             presence:{message: ' El campo Longitud de la Parcela de Manejo es Obligatorio'},
