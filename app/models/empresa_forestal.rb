@@ -43,7 +43,7 @@ class EmpresaForestal < ActiveRecord::Base
   include ModeloGeneral::ManageDocument
 
   #callback declaration
-  before_validation :convert_format
+  # before_validation :convert_format
 
   #validates field
   validates :nombre,uniqueness:{message:'Otra Empresa a sido registrada con este nombre.'},
@@ -52,9 +52,9 @@ class EmpresaForestal < ActiveRecord::Base
             presence: { message: 'El campo Abreviado es obligatorio'}
   validates :rif, uniqueness:{message:'Otra Empresa a sido registrada con este RIF.'},
             presence: { message: 'El campo Rif es obligatorio'},
-            # format: {with:RIF_REGEX_COMPLETE,
-            #          message: 'El formato del campo Rif es inválido' },
-            :length => {  maximum: 10,
+            format: {with:RIF_REGEX_COMPLETE,
+                     message: 'El formato del campo Rif es inválido' },
+            :length => {  maximum: 11,
                           message:
                               'Rif debe contener máximo 10 caracteres'
             }
