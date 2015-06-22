@@ -53,7 +53,7 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
       end
     else
       respond_to do |format|
-        flash[:alert] =  'No se puede eliminar la Cuenca dado que hay usuarios asociados Subcuencas de esta Cuenca.'
+        flash[:alert] =  'No se puede eliminar la Cuenca dado que hay usuarios asociados a Subcuencas de esta Cuenca.'
         format.html { redirect_to unidad_ordenacion_bloque_ordenacions_path }
         format.json { head :no_content }
       end
