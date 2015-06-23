@@ -1,12 +1,15 @@
 Myapp::Application.routes.draw do
 
 
+  # You can have the root of your site routed with "root"
+  root to: 'static#index'
+
+  resources :especies
+
   resources :unidad_ordenaciones
 
   resources :reserva_forestales
 
-  # You can have the root of your site routed with "root"
-  root to: 'static#index'
 
   devise_for :users, controllers: {
     passwords: 'users/passwords',

@@ -126,6 +126,17 @@
             %li{class: is_active_action('index')}= link_to 'Visualizar Bloques de Manejo',unidad_ordenacion_bloque_manejos_path
             - if can? :create, BloqueManejo
               %li{class: is_active_action('new')}= link_to 'Nuevo Bloque de Manejo', new_unidad_ordenacion_bloque_manejo_path
+      - if can? :read, Especie
+        %li{class: is_active_controller('especies')}
+          %a{:href => ""}
+            %i.fa.fa-connectdevelop
+            %span.nav-label Especies
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('especies')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Especies', especies_path
+            - if can? :create, Especie
+              %li{class: is_active_action('new')}= link_to 'Nueva Especie', new_especie_path
+
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
       -#    %i.fa.fa-th-large

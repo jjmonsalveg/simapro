@@ -1,0 +1,53 @@
+= form_for @especie, html: { class: "form-horizontal", role: "form" } do |f|
+  -#= render 'shared/error_messages', object: f.object, model: 'Cuenca'
+
+  .ibox.float-e-margins
+    .ibox-content.border-bottom.form-horizontal
+
+      .form-group
+        = f.label :nombre_comun, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :nombre_comun, class: 'form-control'
+
+      .form-group
+        = f.label :nombre_cientifico, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :nombre_cientifico, class: 'form-control'
+
+      .form-group
+        = f.label :sinonimia, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :sinonimia, class: 'form-control'
+
+      .form-group
+        = f.label :familia, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :familia, class: 'form-control'
+
+      .form-group
+        = f.label :dmc, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.number_field :dmc, class: 'form-control'
+
+      .form-group
+        = f.label :densidad, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :densidad, class: 'form-control'
+
+      .form-group
+        = f.label :grupo_especie, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :grupo_especie, class: 'form-control'
+
+      .form-group
+        = f.label :empresa_forestal, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :empresa_forestal, class: 'form-control'
+
+      .form-group
+        .col-sm-3
+          = link_to especies_path, class: 'btn btn-success' do
+            %i.fa.fa-arrow-left
+            Regresar
+        .col-sm-3.col-sm-offset-6
+          = f.submit class: 'btn btn-primary'
