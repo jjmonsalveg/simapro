@@ -8,10 +8,6 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-# Indexes
-#
-#  index_paises_on_idioma_id  (idioma_id)
-#
 
 class Pais < ActiveRecord::Base
   belongs_to :idioma

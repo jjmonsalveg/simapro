@@ -1,48 +1,56 @@
-= form_for @especie, html: { class: "form-horizontal", role: "form" } do |f|
-  -#= render 'shared/error_messages', object: f.object, model: 'Cuenca'
+= form_for @especie, html: { class: "form-horizontal", role: "form", id: 'form_especie' } do |f|
+  = render 'shared/error_messages', object: f.object, model: 'Especie'
 
   .ibox.float-e-margins
+    .ibox-title
+      %h3
+        Nueva Especie
     .ibox-content.border-bottom.form-horizontal
 
       .form-group
-        = f.label :nombre_comun, class: 'col-sm-2 control-label'
+        = f.label :nombre_comun, class: 'col-sm-2 control-label' do
+          Nombre Común:
         .col-sm-10
           = f.text_field :nombre_comun, class: 'form-control'
 
       .form-group
-        = f.label :nombre_cientifico, class: 'col-sm-2 control-label'
+        = f.label :nombre_cientifico, class: 'col-sm-2 control-label' do
+          Nombre Científico:
         .col-sm-10
           = f.text_field :nombre_cientifico, class: 'form-control'
 
       .form-group
-        = f.label :sinonimia, class: 'col-sm-2 control-label'
+        = f.label :sinonimia, class: 'col-sm-2 control-label' do
+          Sinonimia:
         .col-sm-10
           = f.text_field :sinonimia, class: 'form-control'
 
       .form-group
-        = f.label :familia, class: 'col-sm-2 control-label'
+        = f.label :familia, class: 'col-sm-2 control-label' do
+          Familia:
         .col-sm-10
           = f.text_field :familia, class: 'form-control'
 
       .form-group
-        = f.label :dmc, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.number_field :dmc, class: 'form-control'
-
+        = f.label :dmc, class: 'col-sm-2 control-label' do
+          DMC - Diámetro mínimo de cortabilidad (cms):
+        .col-sm-2
+          = f.text_field :dmc, class: 'form-control'
       .form-group
-        = f.label :densidad, class: 'col-sm-2 control-label'
+        = f.label :grupo_especie, class: 'col-sm-2 control-label' do
+          Grupo de la Especie:
         .col-sm-10
+          -#= f.select :grupo_especie, options_from_collection_for_select(Gr) class: 'form-control'
+      .form-group
+        = f.label :densidad, class: 'col-sm-2 control-label' do
+          Densidad de la Madera:
+        .col-sm-2
           = f.text_field :densidad, class: 'form-control'
-
-      .form-group
-        = f.label :grupo_especie, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :grupo_especie, class: 'form-control'
 
       .form-group
         = f.label :empresa_forestal, class: 'col-sm-2 control-label'
         .col-sm-10
-          = f.text_field :empresa_forestal, class: 'form-control'
+          = text_field_tag :empresa_forestal, current_user.empresa_forestal.nombre, readonly: true,  class: 'form-control'
 
       .form-group
         .col-sm-3
@@ -50,4 +58,6 @@
             %i.fa.fa-arrow-left
             Regresar
         .col-sm-3.col-sm-offset-6
-          = f.submit class: 'btn btn-primary'
+          = f.button class: 'btn btn-primary btn-block' do
+            Guardar
+            %i.fa.fa-floppy-o

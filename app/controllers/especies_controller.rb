@@ -21,7 +21,7 @@ class EspeciesController < ApplicationController
   end
 
   def create
-    @especie = Especie.new(especie_params)
+    @especie = Especie.new(especie_params.merge(empresa_forestal_id: current_user.empresa_forestal.id))
     @especie.save
     respond_with(@especie)
   end

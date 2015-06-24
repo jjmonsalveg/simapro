@@ -6,22 +6,22 @@
 
 jQuery(document).ready ($) ->
 
-  $('#form_bloque_manejo').bootstrapValidator
+  $('#form_especie').bootstrapValidator
     feedbackIcons:
       valid: 'fa fa-check ',
       invalid: 'fa fa-times',
       validating: 'fa fa-refresh'
     live: 'submitted'
     fields:
-      "bloque_manejo[codigo]":
+      "especie[nombre_comun]":
         validators:
           notEmpty:
-            message: 'El campo Número de Bloque es obligatorio.'
-      "bloque_manejo[area]":
-        validators:
-          notEmpty:
-            message: 'El campo Área es obligatorio.'
+            message: 'El campo Nombre Común es obligatorio.'
 
-  $('#bloque_manejo_area').inputmask("Regex", {
+  $('#especie_dmc').inputmask("Regex", {
+    regex: "[0-9.]{1,9}%"
+  });
+
+  $('#especie_densidad').inputmask("Regex", {
     regex: "[0-9.]{1,9}%"
   });

@@ -13,10 +13,6 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #
-# Indexes
-#
-#  index_documento_requisitos_on_nombre  (nombre) UNIQUE
-#
 
 class DocumentoRequisito < ActiveRecord::Base
 

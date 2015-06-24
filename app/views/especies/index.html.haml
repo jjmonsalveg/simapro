@@ -1,16 +1,16 @@
--#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+= render 'title'
 .row.wrapper.border-bottom.white-bg.page-heading
-  .col-lg-10
+  .col-sm-10
     %h2
-      %i.fa.fa-pagelines
-      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
-      -#\- Cuencas
+      %i.fa.fa-connectdevelop
+      = current_user.empresa_forestal.nombre rescue 'Empresa Forestal'
+      \- Especies
     %ol.breadcrumb
       %li
         = link_to 'Inicio', root_url
       %li.active
         %strong
-          -#Cuencas
+          Especies
 .wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
   .row
     .col-lg-12
@@ -44,10 +44,7 @@
 
                       %th Grupo especie
 
-                      %th Empresa forestal
-
-                      %th
-                      %th
+                      %th Acciones
                   %tbody
                     - @especies.each do |especie|
                       %tr
@@ -66,7 +63,6 @@
 
                         %td= especie.grupo_especie
 
-                        %td= especie.empresa_forestal
 
                         %td
                           = link_to especie,  rel: 'tooltip',  title: 'Ver' do
@@ -77,6 +73,5 @@
                             %i.fa.fa-edit
                             &nbsp;
                             &nbsp;
-                          = link_to especie, data: { confirm: '¿Está seguro de realizar esta acción?' }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                          = link_to especie, data: { confirm: "¿Seguro que desea eliminar la especie #{especie.nombre_comun}?" }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
                             %i.fa.fa-trash
-                        %td

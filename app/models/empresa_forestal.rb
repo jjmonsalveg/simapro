@@ -12,12 +12,6 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #
-# Indexes
-#
-#  index_empresas_forestales_on_nombre    (nombre) UNIQUE
-#  index_empresas_forestales_on_rif       (rif) UNIQUE
-#  index_empresas_forestales_on_telefono  (telefono) UNIQUE
-#
 
 class EmpresaForestal < ActiveRecord::Base
   #configuracion/includes
