@@ -35,6 +35,10 @@ Myapp::Application.routes.draw do
     post 'save_subcuenca', to: 'users/settings#save_subcuenca'
   end
 
+  scope module: 'users' do
+    resources :client_users
+  end
+
   resources :roles
 
   #TODO clean this

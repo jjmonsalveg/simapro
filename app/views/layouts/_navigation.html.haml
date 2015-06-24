@@ -51,6 +51,15 @@
           %ul{:class => "nav nav-second-level #{is_active_controller('users/registrations')}"}
             %li{class: is_active_action('index')}= link_to 'Visualizar Usuario', users_index_path
             %li{class: is_active_action('new_user')}= link_to 'Nuevo Usuario', users_new_path
+      - if can? :manage, :client_users
+        %li{class: is_active_controller('users/client_users')}
+          %a{:href => ""}
+            %i.fa.fa-users
+            %span.nav-label Usuarios
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('users/registrations')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Usuario', client_users_path
+            %li{class: is_active_action('new_user')}= link_to 'Nuevo Usuario', new_client_user_path
       - if can? :read, EmpresaForestal
         %li{class: is_active_controller('empresas_forestales')}
           %a{:href => ""}
