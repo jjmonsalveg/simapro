@@ -9,7 +9,7 @@
         = link_to 'Inicio', root_url
       %li.active
         %strong
-          Unidad Ordenación
+          Unidad Ordenaciones
 .wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
   .row
     .col-lg-12
@@ -34,28 +34,28 @@
                       %th Fecha de Otorgacion
                       %th Fecha Vence
                       %th Area(ha)
-                      %th
+                      %th Acciones
                       %th Zonas
                       %th Cuencas
-                %tbody
-                  - @unidad_ordenaciones.each do |unidad_ordenacion|
-                    %tr
-                      %td= unidad_ordenacion.codigo
-                      %td= unidad_ordenacion.reserva_forestal
-                      %td= unidad_ordenacion.nro_contrato
-                      %td= unidad_ordenacion.fecha_otorgacion
-                      %td= unidad_ordenacion.fecha_vence
-                      %td= unidad_ordenacion.area
-                      %td
-                        = link_to unidad_ordenacion_path(unidad_ordenacion),  rel: 'tooltip',  title: 'Ver' do
-                          %i.fa.fa-search
-                        = link_to edit_unidad_ordenacion_path(unidad_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
-                          %i.fa.fa-edit
-                        = link_to reserva_forestal_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
-                          %i.fa.fa-trash
-                      %td
-                        = link_to zonas_ordenamiento_path() do
-                          Zonas
-                      %td
-                        = link_to unidad_ordenacion_bloque_ordenacions_path() do
-                          Cuencas
+                  %tbody
+                    - @unidad_ordenaciones.each do |unidad_ordenacion|
+                      %tr
+                        %td= unidad_ordenacion.codigo
+                        %td= unidad_ordenacion.reserva_forestal.nombre
+                        %td= unidad_ordenacion.nro_contrato
+                        %td= unidad_ordenacion.fecha_otorgacion
+                        %td= unidad_ordenacion.fecha_vence
+                        %td= unidad_ordenacion.area
+                        %td
+                          = link_to unidad_ordenacion_path(unidad_ordenacion),  rel: 'tooltip',  title: 'Ver' do
+                            %i.fa.fa-search
+                          = link_to edit_unidad_ordenacion_path(unidad_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                            %i.fa.fa-edit
+                          = link_to reserva_forestal_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                            %i.fa.fa-trash
+                        %td
+                          = link_to zonas_ordenamiento_path() do
+                            Zonas
+                        %td
+                          = link_to unidad_ordenacion_bloque_ordenacions_path() do
+                            Cuencas

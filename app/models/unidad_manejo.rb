@@ -16,11 +16,8 @@
 #  created_at           :datetime
 #  updated_at           :datetime
 #  doc_providencia      :string(255)
-#
-# Indexes
-#
-#  index_unidad_manejos_on_bloque_ordenacion_id  (bloque_ordenacion_id)
-#  index_unidad_manejos_on_unidad_manejo_id      (unidad_manejo_id) UNIQUE
+#  doc_plan_forestal    :string(255)
+#  tipo_bosque_id       :integer
 #
 
 class UnidadManejo < ActiveRecord::Base

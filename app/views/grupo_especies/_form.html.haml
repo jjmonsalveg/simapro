@@ -1,0 +1,23 @@
+= form_for @grupo_especie, html: { class: "form-horizontal", role: "form" } do |f|
+  -#= render 'shared/error_messages', object: f.object, model: 'Cuenca'
+
+  .ibox.float-e-margins
+    .ibox-content.border-bottom.form-horizontal
+
+      .form-group
+        = f.label :codigo, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :codigo, class: 'form-control'
+
+      .form-group
+        = f.label :nombre, class: 'col-sm-2 control-label'
+        .col-sm-10
+          = f.text_field :nombre, class: 'form-control'
+
+      .form-group
+        .col-sm-3
+          = link_to grupo_especies_path, class: 'btn btn-success' do
+            %i.fa.fa-arrow-left
+            Regresar
+        .col-sm-3.col-sm-offset-6
+          = f.submit class: 'btn btn-primary'

@@ -26,44 +26,37 @@
                   %tr
                     %td.text-right
                       %strong Empresa forestal:
-                    %td
-                      @reserva_forestal.empresa_forestal
+                    %td= @reserva_forestal.empresa_forestal.nombre
                   %tr
                     %td.text-right
                       %strong Nombre:
-                    %td
-                      @reserva_forestal.nombre
+                    %td= @reserva_forestal.nombre
                   %tr
                     %td.text-right
                       %strong Abreviado:
-                    %td
-                      @reserva_forestal.abreviado
+                    %td= @reserva_forestal.abreviado
                   %tr
                     %td.text-right
                       %strong Fecha creacion:
-                    %td
-                      @reserva_forestal.fecha_creacion
+                    %td= @reserva_forestal.fecha_creacion
                   %tr
                     %td.text-right
                       %strong Fecha reglamento:
-                    %td
-                      @reserva_forestal.fecha_reglamento
+                    %td= @reserva_forestal.fecha_reglamento
                   %tr
                     %td.text-right
                       %strong Area:
-                    %td
-                      @reserva_forestal.area
+                    %td= @reserva_forestal.area
                   %tr
                     %td.text-right
                       %strong Descripcion:
-                    %td
-                      @reserva_forestal.descripcion
+                    %td= @reserva_forestal.descripcion
           .row
             .col-sm-3
               = link_to reserva_forestales_path, class: 'btn btn-success' do
                 %i.fa.fa-arrow-left
                 Regresar
             .col-sm-3
-              = link_to edit_empresa_forestal_path(@reserva_forestal), class: 'btn btn-primary' do
+              = link_to edit_reserva_forestal_path(@reserva_forestal), class: 'btn btn-primary' do
                 Editar
                 %i.fa.fa-edit

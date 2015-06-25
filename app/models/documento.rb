@@ -11,12 +11,6 @@
 #  updated_at                         :datetime
 #  documentos_requisitos_por_vista_id :integer
 #
-# Indexes
-#
-#  index_control_documentos                                (doc,modelo_id,modelo_type,documentos_requisitos_por_vista_id) UNIQUE
-#  index_documentos_on_documentos_requisitos_por_vista_id  (documentos_requisitos_por_vista_id)
-#  index_documentos_on_modelo_id                           (modelo_id)
-#
 
 class Documento < ActiveRecord::Base
 

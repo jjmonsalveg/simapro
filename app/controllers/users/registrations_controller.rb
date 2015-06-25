@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_to do |format|
         if @user.save
           PasswordMailer.send_password(@user, @@password).deliver
-          format.html { redirect_to  user_show_path(@user), notice: 'El usuario de MallRental se ha creado exitosamente.' }
+          format.html { redirect_to  user_show_path(@user), notice: 'El administrador de la Empresa Forestal se ha creado exitosamente.' }
           format.json { render :show, status: :created, location: @user }
         else
           set_roles
@@ -82,7 +82,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def set_roles
       @roles = Role.where(role_type: Role.role_types[:administrador_cliente])
       if @roles.blank?
-        redirect_to new_role_path, alert: 'No existen roles para Administradores Mall.' and return
+        redirect_to new_role_path, alert: 'No existen roles para Administradores de Empresa Forestal.' and return
       end
     end
 end

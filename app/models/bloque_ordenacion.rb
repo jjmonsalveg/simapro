@@ -12,11 +12,6 @@
 #  created_at           :datetime
 #  updated_at           :datetime
 #
-# Indexes
-#
-#  index_bloque_ordenacions_on_bloque_ordenacion_id  (bloque_ordenacion_id) UNIQUE
-#  index_bloque_ordenacions_on_unidad_ordenacion_id  (unidad_ordenacion_id)
-#
 
 class BloqueOrdenacion < ActiveRecord::Base
   belongs_to :unidad_ordenacion

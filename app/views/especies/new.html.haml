@@ -1,0 +1,17 @@
+= render 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-connectdevelop
+      = current_user.empresa_forestal.nombre rescue 'Empresa Forestal'
+      \- Especies
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Cuencas', especies_path
+      %li.active
+        %strong
+          Nueva Especie
+.wrapper.wrapper-content.animated.fadeInRight
+  = render 'form'

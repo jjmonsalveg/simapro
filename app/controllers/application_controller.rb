@@ -35,4 +35,10 @@ class ApplicationController < ActionController::Base
     def params_id
       ActionController::Parameters.new(id: params[:id]).permit(:id)[:id]
     end
+
+    def check_user_empresa
+      if current_user.empresa_forestal_id.nil?
+        redirect_to root_path, alert: 'Usted como administrador debe poseer una empresa forestal asociada para ingresar a esta página.'
+      end
+    end
 end

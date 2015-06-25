@@ -303,3 +303,6 @@ es:
     previous_label: "&#8592; Página anterior"
     next_label: "Página siguiente &#8594;"
     page_gap: "&VER;"
+  grupo_especie:
+    codigo: "Código"
+    nombre: "Nombre"

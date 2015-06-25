@@ -9,7 +9,7 @@ admin_sistema = Role.create!(name: 'Administrador del Sistema Simapro',
                           role_type: Role.role_types[:administrador_sistema])
 
 admin_cliente = Role.create!(name: 'Administrador de Usuario Simapro',
-                          permissions: Permission.where(name: 'manage', subject_class: [:User,
+                          permissions: Permission.where(name: 'manage', subject_class: [:client_users,
                                                                                         :Static,
                                                                                         :ZonaOrdenamiento,
                                                                                         :UnidadOrdenacion,
@@ -17,7 +17,8 @@ admin_cliente = Role.create!(name: 'Administrador de Usuario Simapro',
                                                                                         :jquery_file_uploads,
                                                                                         :BloqueOrdenacion,
                                                                                         :UnidadManejo,
-                                                                                        :BloqueManejo]),
+                                                                                        :BloqueManejo,
+                                                                                        :Especie]),
                           role_type: Role.role_types[:administrador_cliente])
 
 administrador = Role.create!(name: 'Administrador de Datos',

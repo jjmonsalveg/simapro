@@ -6,7 +6,7 @@ class ReservaForestalesController < ApplicationController
   respond_to :html
 
   def index
-    @reserva_forestales = ReservaForestal.all
+    @reserva_forestales = ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id)
     # respond_with(@reserva_forestales)
     p 'cantidad de registros'
     p @reserva_forestales.length
@@ -31,7 +31,7 @@ class ReservaForestalesController < ApplicationController
 
   def create
     @reserva_forestal = ReservaForestal.new(reserva_forestal_params)
-    # @reserva_forestal.empresa_forestal = current_user.empresa_forestal.first
+    @reserva_forestal.empresa_forestal_id = current_user.empresa_forestal_id
     respond_to do |format|
       if @reserva_forestal.save
         format.html { redirect_to reserva_forestales_path, notice: 'Reserva Forestal creado satisfactoriamente.' }

@@ -1,12 +1,16 @@
 Myapp::Application.routes.draw do
 
 
+  # You can have the root of your site routed with "root"
+  root to: 'static#index'
+
+  resources :especies
+  resources :grupo_especies
+
   resources :unidad_ordenaciones
 
   resources :reserva_forestales
 
-  # You can have the root of your site routed with "root"
-  root to: 'static#index'
 
   devise_for :users, controllers: {
     passwords: 'users/passwords',
@@ -30,6 +34,10 @@ Myapp::Application.routes.draw do
 
     get 'ajustes', to: 'users/settings#index', as: :settings
     post 'save_subcuenca', to: 'users/settings#save_subcuenca'
+  end
+
+  scope module: 'users' do
+    resources :client_users
   end
 
   resources :roles

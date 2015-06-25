@@ -1,0 +1,86 @@
+= render 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-connectdevelop
+      = current_user.empresa_forestal.nombre rescue 'Empresa Forestal'
+      \- Especies
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li
+        = link_to 'Cuencas', especies_path
+      %li.active
+        %strong
+          Especie -
+          = @especie.nombre_comun
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            = @especie.nombre_comun
+        .ibox-content
+          .row
+            .col-sm-5
+              %table.table.table-striped.table-bordered.table-condensed
+                %tbody
+
+                  %tr
+                    %td.text-right
+                      %strong Nombre comun:
+                    %td
+                      = @especie.nombre_comun
+
+                  %tr
+                    %td.text-right
+                      %strong Nombre cientifico:
+                    %td
+                      = @especie.nombre_cientifico
+
+                  %tr
+                    %td.text-right
+                      %strong Sinonimia:
+                    %td
+                      = @especie.sinonimia
+
+                  %tr
+                    %td.text-right
+                      %strong Familia:
+                    %td
+                      = @especie.familia
+
+                  %tr
+                    %td.text-right
+                      %strong Dmc:
+                    %td
+                      = @especie.dmc
+
+                  %tr
+                    %td.text-right
+                      %strong Densidad:
+                    %td
+                      = @especie.densidad
+
+                  %tr
+                    %td.text-right
+                      %strong Grupo especie:
+                    %td
+                      = @especie.grupo_especie
+
+                  %tr
+                    %td.text-right
+                      %strong Empresa forestal:
+                    %td
+                      = @especie.empresa_forestal.nombre
+
+          .row
+            .col-sm-3
+              = link_to especies_path, class: 'btn btn-success' do
+                %i.fa.fa-arrow-left
+                Regresar
+            .col-sm-3
+              = link_to edit_especie_path(@especie), class: 'btn btn-primary' do
+                Editar
+                %i.fa.fa-edit

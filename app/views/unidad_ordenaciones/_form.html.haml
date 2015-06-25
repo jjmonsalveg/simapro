@@ -6,7 +6,7 @@
       .form-group
         = f.label :reserva_forestal, class: 'col-sm-2 control-label'
         .col-sm-10
-          = f.text_field :reserva_forestal, class: 'form-control'
+          = f.select(:reserva_forestal_id, [['Seleccione Opcion']] + @reserva_forestales.collect {|p| [p.nombre, p.id]}, {}, { id: :reserva_forestal_id, class: 'form-control'})
       .form-group
         = f.label :codigo, class: 'col-sm-2 control-label'
         .col-sm-10

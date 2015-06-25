@@ -57,4 +57,9 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'role', 'roles'
   inflect.plural  'roles', 'role'
 
+  inflect.irregular 'especie', 'especies'
+  inflect.plural  'especies', 'especie'
+  inflect.irregular 'Especie', 'Especies'
+  inflect.plural  'Especies', 'Especie'
+
 end

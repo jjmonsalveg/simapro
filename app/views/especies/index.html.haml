@@ -1,0 +1,77 @@
+= render 'title'
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-connectdevelop
+      = current_user.empresa_forestal.nombre rescue 'Empresa Forestal'
+      \- Especies
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          Especies
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-content
+          .row
+            .col-sm-3
+              = link_to new_especie_path, class: 'btn btn-primary btn-responsive' do
+                Nueva Especie
+                %i.fa.fa-plus
+          %br
+          %br
+          .row
+            .col-md-12
+              .table-responsive
+                %table.table.table-striped.table-bordered.table-hover.datatable-table
+                  %thead
+                    %tr
+
+                      %th Nombre comun
+
+                      %th Nombre cientifico
+
+                      %th Sinonimia
+
+                      %th Familia
+
+                      %th Dmc
+
+                      %th Densidad
+
+                      %th Grupo especie
+
+                      %th Acciones
+                  %tbody
+                    - @especies.each do |especie|
+                      %tr
+
+                        %td= especie.nombre_comun
+
+                        %td= especie.nombre_cientifico
+
+                        %td= especie.sinonimia
+
+                        %td= especie.familia
+
+                        %td= especie.dmc
+
+                        %td= especie.densidad
+
+                        %td= especie.grupo_especie
+
+
+                        %td
+                          = link_to especie,  rel: 'tooltip',  title: 'Ver' do
+                            %i.fa.fa-search
+                            &nbsp;
+                            &nbsp;
+                          = link_to edit_especie_path(especie), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                            %i.fa.fa-edit
+                            &nbsp;
+                            &nbsp;
+                          = link_to especie, data: { confirm: "¿Seguro que desea eliminar la especie #{especie.nombre_comun}?" }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                            %i.fa.fa-trash
