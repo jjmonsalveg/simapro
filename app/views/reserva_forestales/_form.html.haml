@@ -3,10 +3,10 @@
 
   .ibox.float-e-margins
     .ibox-content.border-bottom.form-horizontal
-      .form-group
-        = f.label :empresa_forestal, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :empresa_forestal, class: 'form-control'
+      -#.form-group
+      -#  = f.label :empresa_forestal, class: 'col-sm-2 control-label'
+      -#  .col-sm-10
+      -#    = f.text_field :empresa_forestal, class: 'form-control'
       .form-group
         = f.label :nombre, class: 'col-sm-2 control-label'
         .col-sm-10
@@ -30,10 +30,20 @@
       .form-group
         = f.label :descripcion, class: 'col-sm-2 control-label'
         .col-sm-10
-          = f.text_field :descripcion, class: 'form-control'
+          = f.text_area :descripcion, class: 'form-control', rows: 5
       =render 'shared/documentos/show_modelo_documentos_no_paginados', model: f, list_documents: load_documentos(:reserva_forestal_docs, @reserva_forestal,true)
       .form-group
         =render 'shared/ubicacion_territorial/modal', modelo: f
       .form-group
-        .col-sm-offset-2.col-sm-10
-          = f.submit class: 'btn btn-primary'
+        .col-sm-3
+          = link_to reserva_forestales_path, class: 'btn btn-success btn-block' do
+            %i.fa.fa-arrow-left
+            Regresar
+        .col-sm-3.col-sm-offset-6
+          = f.button class: "btn btn-primary btn-block", data: {disable_with: 'Guardar'} do
+            Guardar
+            %i.fa.fa-floppy-o
+      -#
+      -#.form-group
+      -#  .col-sm-offset-2.col-sm-10
+      -#    = f.submit class: 'btn btn-primary'

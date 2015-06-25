@@ -5,6 +5,7 @@ Myapp::Application.routes.draw do
   root to: 'static#index'
 
   resources :especies
+  resources :grupo_especies
 
   resources :unidad_ordenaciones
 

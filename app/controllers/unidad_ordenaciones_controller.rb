@@ -5,6 +5,7 @@ class UnidadOrdenacionesController < ApplicationController
 
   def index
     @unidad_ordenaciones = UnidadOrdenacion.all
+
     respond_with(@unidad_ordenaciones)
   end
 
@@ -14,10 +15,12 @@ class UnidadOrdenacionesController < ApplicationController
 
   def new
     @unidad_ordenacion = UnidadOrdenacion.new
+    @reserva_forestales = ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id)
     respond_with(@unidad_ordenacion)
   end
 
   def edit
+    @reserva_forestales = ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id)
   end
 
   def create
