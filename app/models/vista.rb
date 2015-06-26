@@ -10,6 +10,10 @@
 #  created_at               :datetime
 #  updated_at               :datetime
 #
+# Indexes
+#
+#  index_vistas_on_nombre  (nombre) UNIQUE
+#
 
 class Vista < ActiveRecord::Base
   self.table_name = :vistas

@@ -13,6 +13,12 @@
 #  updated_at           :datetime
 #  unidad_ordenacion_id :integer
 #
+# Indexes
+#
+#  index_zonas_ordenamiento_on_abreviado             (abreviado) UNIQUE
+#  index_zonas_ordenamiento_on_nombre                (nombre) UNIQUE
+#  index_zonas_ordenamiento_on_unidad_ordenacion_id  (unidad_ordenacion_id)
+#
 
 class ZonaOrdenamiento < ActiveRecord::Base
   #configuracion/includes

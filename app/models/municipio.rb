@@ -8,6 +8,10 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_municipios_on_estado_id  (estado_id)
+#
 
 class Municipio < ActiveRecord::Base
   #asociaciones

@@ -3,10 +3,15 @@
 # Table name: paises
 #
 #  id         :integer          not null, primary key
-#  nombre     :string(255)
+#  nombre     :string(64)       not null
 #  idioma_id  :integer
 #  created_at :datetime
 #  updated_at :datetime
+#
+# Indexes
+#
+#  index_paises_on_idioma_id  (idioma_id)
+#  index_paises_on_nombre     (nombre) UNIQUE
 #
 
 class Pais < ActiveRecord::Base

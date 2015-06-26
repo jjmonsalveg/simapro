@@ -15,10 +15,16 @@
 #  area_parcela_inv     :integer          default(10000), not null
 #  cuadricula_inv_long  :integer          default(10), not null
 #  cuadricula_inv_ancho :integer          default(10), not null
-#  area_cuadricula_inv  :integer          default(10), not null
+#  area_cuadricula_inv  :integer          default(100), not null
 #  pais_id              :integer          not null
 #  created_at           :datetime
 #  updated_at           :datetime
+#
+# Indexes
+#
+#  index_empresas_forestales_on_nombre    (nombre) UNIQUE
+#  index_empresas_forestales_on_rif       (rif) UNIQUE
+#  index_empresas_forestales_on_telefono  (telefono) UNIQUE
 #
 
 class EmpresaForestal < ActiveRecord::Base
@@ -27,6 +33,7 @@ class EmpresaForestal < ActiveRecord::Base
   include RegexHelper
 
   #asociaciones
+  has_many :especies
   belongs_to :pais
   accepts_nested_attributes_for :pais
   has_many :users

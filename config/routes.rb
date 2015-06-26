@@ -4,7 +4,13 @@ Myapp::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: 'static#index'
 
-  resources :especies
+  resources :especies do
+    get 'asignar_usos', to: :wf_asignar_usos, as: :asignar_usos, on: :collection
+    member do
+      get 'ajax_uso', to: :ajax_especie_usos, as: :ajax_usos
+      post 'crear_usos', to: :wf_crear_usos, as: :crear_usos
+    end
+  end
   resources :grupo_especies
 
   resources :unidad_ordenaciones
@@ -13,11 +19,11 @@ Myapp::Application.routes.draw do
 
 
   devise_for :users, controllers: {
-    passwords: 'users/passwords',
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
-  }
-  
+                       passwords: 'users/passwords',
+                       sessions: 'users/sessions',
+                       registrations: 'users/registrations'
+                   }
+
 
   devise_scope :user do
     get 'users/new', to: 'users/registrations#new_user'
@@ -53,7 +59,7 @@ Myapp::Application.routes.draw do
       delete 'wf_destroy_no_paginado'
     end
   end
- #-----------------------------------------------------------------------
+  #-----------------------------------------------------------------------
   namespace :unidad_ordenacion do
 
     #BLOQUES DE ORDENACION
@@ -84,8 +90,8 @@ Myapp::Application.routes.draw do
     resources :bloque_manejos
 
   end
-  
-  
+
+
   namespace :dynamic_select do
     get ':bo/subcuencas', to: 'dynamic_subcuencas#index', as: :dynamic_subcuencas
   end

@@ -10,6 +10,11 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #
+# Indexes
+#
+#  index_parcela_manejos_on_bloque_manejo_id   (bloque_manejo_id)
+#  index_parcela_manejos_on_parcela_manejo_id  (parcela_manejo_id) UNIQUE
+#
 
 class ParcelaManejo < ActiveRecord::Base
   belongs_to :bloque_manejo
