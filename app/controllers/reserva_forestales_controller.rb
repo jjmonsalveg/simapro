@@ -17,11 +17,6 @@ class ReservaForestalesController < ApplicationController
   end
 
   def new
-    if UnidadOrdenacion.all.empty?
-      flash[:warning] = 'Debe crear Alguna unidad de ordenacion antes de Crear Zonas de Ordenamiento'
-      redirect_to unidad_ordenaciones_path
-      return
-    end
     @reserva_forestal = ReservaForestal.new
     respond_with(@reserva_forestal)
   end
