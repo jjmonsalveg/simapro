@@ -1,4 +1,4 @@
--#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+= provide(:title, "Listar Unidades de Ordenación")
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     %h2
@@ -9,17 +9,31 @@
         = link_to 'Inicio', root_url
       %li.active
         %strong
-          Unidad Ordenaciones
-.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
-  .row
-    .col-lg-12
-      .ibox.float-e-margins
-        .ibox-content
-          .row
-            .col-sm-3
-              = link_to new_unidad_ordenacion_path, class: 'btn btn-primary btn-responsive' do
-                Nueva Unidad ordenacion
-                %i.fa.fa-plus
+          Unidades de Ordenación
+.wrapper.wrapper-content.animated.fadeInRight
+  - if @unidad_ordenaciones.empty?
+    - if can? :create, UnidadOrdenacion
+      .row
+        .col-md-12.col-md-offset-0
+          %ul.text-muted.leyenda
+            %li.text-justify
+              Puede registrar una Unidad de Ordenación haciendo click en
+              %span.amarillo
+                Nueva Unidad
+    .ibox-content.text-center
+      %h3.font-bold No hay Unidades de Ordenación Registradas
+      - if can? :create, UnidadOrdenacion
+        =link_to  'Nueva Empresa',new_unidad_ordenacion_path ,  class: 'btn btn-primary pull-center'
+  -else
+    .row
+      .col-md-12.col-md-offset-0
+        .ibox.float-e-margins
+          .ibox-content
+            .col-sm-2
+              - if can? :create, UnidadOrdenacion
+                = link_to new_unidad_ordenacion_path, class: 'btn btn-primary btn-block' do
+                  Nueva Unidad
+                  %i.fa.fa-plus
           %br
           %br
           .row
@@ -47,12 +61,15 @@
                         %td= unidad_ordenacion.fecha_vence
                         %td= unidad_ordenacion.area
                         %td
-                          = link_to unidad_ordenacion_path(unidad_ordenacion),  rel: 'tooltip',  title: 'Ver' do
-                            %i.fa.fa-search
-                          = link_to edit_unidad_ordenacion_path(unidad_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
-                            %i.fa.fa-edit
-                          = link_to reserva_forestal_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
-                            %i.fa.fa-trash
+                          - if can? :view, UnidadOrdenacion
+                            = link_to unidad_ordenacion_path(unidad_ordenacion),  rel: 'tooltip',  title: 'Ver' do
+                              %i.fa.fa-search
+                          - if can? :update, UnidadOrdenacion
+                            = link_to edit_unidad_ordenacion_path(unidad_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                              %i.fa.fa-edit
+                          - if can? :destroy, UnidadOrdenacion
+                            = link_to reserva_forestal_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                              %i.fa.fa-trash
                         %td
                           = link_to zonas_ordenamiento_path() do
                             Zonas

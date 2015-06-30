@@ -2,6 +2,7 @@ class EspeciesController < ApplicationController
   before_action :set_especie, only: [:show, :edit, :update, :destroy,:wf_crear_usos,:ajax_especie_usos]
   before_action :authenticate_user!
 
+  load_and_authorize_resource
   respond_to :html
 
   def index

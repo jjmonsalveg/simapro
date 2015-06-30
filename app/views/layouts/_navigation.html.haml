@@ -145,6 +145,16 @@
             %li{class: is_active_action('index')}= link_to 'Visualizar Especies', especies_path
             - if can? :create, Especie
               %li{class: is_active_action('new')}= link_to 'Nueva Especie', new_especie_path
+      - if can? :read, GrupoEspecie
+        %li{class: is_active_controller('grupo_especies')}
+          %a{:href => ""}
+            %i.fa.fa-connectdevelop
+            %span.nav-label Grupo Especies
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('grupo_especies')}"}
+            %li{class: is_active_action('index')}= link_to 'Visualizar Grupo de Especies', grupo_especies_path
+            - if can? :create, GrupoEspecie
+              %li{class: is_active_action('new')}= link_to 'Nuevo Grupo de Especie', new_grupo_especie_path
           %ul{:class => "nav nav-second-level #{is_active_controller('especies')}"}
             - if can? :wf_asignar_usos, Especie
               %li{class: is_active_action('wf_asignar_usos')}= link_to 'Asignar Usos', asignar_usos_especies_path

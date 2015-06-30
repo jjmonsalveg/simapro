@@ -10,6 +10,7 @@ admin_sistema = Role.create!(name: 'Administrador del Sistema Simapro',
 
 admin_cliente = Role.create!(name: 'Administrador de Usuario Simapro',
                           permissions: Permission.where(name: 'manage', subject_class: [:client_users,
+                                                                                        :GrupoEspecie,
                                                                                         :Static,
                                                                                         :ZonaOrdenamiento,
                                                                                         :UnidadOrdenacion,

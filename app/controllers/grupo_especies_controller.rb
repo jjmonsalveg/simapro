@@ -1,6 +1,7 @@
 class GrupoEspeciesController < ApplicationController
   before_action :set_grupo_especie, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  load_and_authorize_resource
   respond_to :html
 
   def index
