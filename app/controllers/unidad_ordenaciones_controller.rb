@@ -4,8 +4,7 @@ class UnidadOrdenacionesController < ApplicationController
   respond_to :html
 
   def index
-    @unidad_ordenaciones = UnidadOrdenacion.all
-
+    @unidad_ordenaciones = UnidadOrdenacion.unidades_empresa(current_user.empresa_forestal_id)
     respond_with(@unidad_ordenaciones)
   end
 
@@ -45,6 +44,16 @@ class UnidadOrdenacionesController < ApplicationController
     end
 
     def unidad_ordenacion_params
-      params.require(:unidad_ordenacion).permit(:reserva_forestal_id, :codigo, :nro_contrato, :fecha_otorgacion, :fecha_vence, :area, :descripcion)
+      params.require(:unidad_ordenacion).permit(:reserva_forestal_id,
+                                                :codigo,
+                                                :nro_contrato,
+                                                :fecha_otorgacion,
+                                                :fecha_vence,
+                                                :area,
+                                                :descripcion,
+                                                municipio_ids:[],
+                                                documentos_attributes:[:id,
+                                                                       :documentos_requisitos_por_vista_id,
+                                                                       :doc])
     end
 end
