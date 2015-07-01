@@ -19,6 +19,12 @@
 #  doc_plan_forestal    :string(255)
 #  tipo_bosque_id       :integer
 #
+# Indexes
+#
+#  index_unidad_manejos_on_bloque_ordenacion_id  (bloque_ordenacion_id)
+#  index_unidad_manejos_on_tipo_bosque_id        (tipo_bosque_id)
+#  index_unidad_manejos_on_unidad_manejo_id      (unidad_manejo_id) UNIQUE
+#
 
 class UnidadManejo < ActiveRecord::Base
   belongs_to :bloque_ordenacion

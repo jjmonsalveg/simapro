@@ -1,0 +1,30 @@
+= provide(:title, 'Asignar Usos')
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-sm-10
+    %h2
+      %i.fa.fa-tag
+      Asignar Uso a las Especies
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+.wrapper.wrapper-content.animated.fadeInRight
+  .ibox.float-e-margins
+    .ibox-title
+      %h3
+        Seleccione la Especie
+    .ibox-content.border-bottom.form-horizontal
+      .form-group
+        = label_tag :nombre_comun, class: 'col-sm-2 control-label' do
+          Nombre Común:
+        .col-sm-10
+          = select_tag :nombre_comun, options_from_collection_for_select(@especies,:id,:nombre_comun),
+           prompt:'Seleccione una especie',class: 'form-control', id:'select_especie_forestal'
+#form-check-usos-especie
+
+.ibox.float-e-margins
+  .ibox-content
+    .row
+      .col-sm-3
+        = link_to especies_path, class: 'btn btn-success' do
+          %i.fa.fa-arrow-left
+          Listar Especies

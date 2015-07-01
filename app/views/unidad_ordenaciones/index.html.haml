@@ -34,45 +34,45 @@
                 = link_to new_unidad_ordenacion_path, class: 'btn btn-primary btn-block' do
                   Nueva Unidad
                   %i.fa.fa-plus
-          %br
-          %br
-          .row
-            .col-md-12
-              .table-responsive
-                %table.table.table-striped.table-bordered.table-hover.datatable-table
-                  %thead
-                    %tr
-                      %th Codigo
-                      %th Reserva Forestal
-                      %th Nro Contrato
-                      %th Fecha de Otorgacion
-                      %th Fecha Vence
-                      %th Area(ha)
-                      %th Acciones
-                      %th Zonas
-                      %th Cuencas
-                  %tbody
-                    - @unidad_ordenaciones.each do |unidad_ordenacion|
+            %br
+            %br
+            .row
+              .col-md-12
+                .table-responsive
+                  %table.table.table-striped.table-bordered.table-hover.datatable-table
+                    %thead
                       %tr
-                        %td= unidad_ordenacion.codigo
-                        %td= unidad_ordenacion.reserva_forestal.nombre
-                        %td= unidad_ordenacion.nro_contrato
-                        %td= unidad_ordenacion.fecha_otorgacion
-                        %td= unidad_ordenacion.fecha_vence
-                        %td= unidad_ordenacion.area
-                        %td
-                          - if can? :view, UnidadOrdenacion
-                            = link_to unidad_ordenacion_path(unidad_ordenacion),  rel: 'tooltip',  title: 'Ver' do
-                              %i.fa.fa-search
-                          - if can? :update, UnidadOrdenacion
-                            = link_to edit_unidad_ordenacion_path(unidad_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
-                              %i.fa.fa-edit
-                          - if can? :destroy, UnidadOrdenacion
-                            = link_to reserva_forestal_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
-                              %i.fa.fa-trash
-                        %td
-                          = link_to zonas_ordenamiento_path() do
-                            Zonas
-                        %td
-                          = link_to unidad_ordenacion_bloque_ordenacions_path() do
-                            Cuencas
+                        %th Codigo
+                        %th Reserva Forestal
+                        %th Nro Contrato
+                        %th Fecha de Otorgacion
+                        %th Fecha Vence
+                        %th Area(ha)
+                        %th Acciones
+                        %th Zonas
+                        %th Cuencas
+                    %tbody
+                      - @unidad_ordenaciones.each do |unidad_ordenacion|
+                        %tr
+                          %td= unidad_ordenacion.codigo
+                          %td= unidad_ordenacion.reserva_forestal.nombre
+                          %td= unidad_ordenacion.nro_contrato
+                          %td= unidad_ordenacion.fecha_otorgacion
+                          %td= unidad_ordenacion.fecha_vence
+                          %td= unidad_ordenacion.area
+                          %td
+                            - if can? :view, UnidadOrdenacion
+                              = link_to unidad_ordenacion_path(unidad_ordenacion),  rel: 'tooltip',  title: 'Ver' do
+                                %i.fa.fa-search
+                            - if can? :update, UnidadOrdenacion
+                              = link_to edit_unidad_ordenacion_path(unidad_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
+                                %i.fa.fa-edit
+                            - if can? :destroy, UnidadOrdenacion
+                              = link_to reserva_forestal_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                                %i.fa.fa-trash
+                          %td
+                            = link_to zonas_ordenamiento_path() do
+                              Zonas
+                          %td
+                            = link_to unidad_ordenacion_bloque_ordenacions_path() do
+                              Cuencas

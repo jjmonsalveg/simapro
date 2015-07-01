@@ -13,6 +13,11 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #
+# Indexes
+#
+#  index_unidad_ordenaciones_on_codigo               (codigo) UNIQUE
+#  index_unidad_ordenaciones_on_reserva_forestal_id  (reserva_forestal_id)
+#
 
 require 'test_helper'
 

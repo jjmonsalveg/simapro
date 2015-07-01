@@ -1,5 +1,9 @@
 #= require input-mask/jquery.inputmask.js
 #= require input-mask/jquery.inputmask.regex.extensions.js
+#= require input-mask/jquery.inputmask.extensions.js
+#= require input-mask/jquery.inputmask.numeric.extensions.js
+
+
 #= require jasny/jasny-bootstrap
 #= require datable
 #= require bootstrapValidator/bootstrapValidator
@@ -44,9 +48,9 @@ jQuery(document).ready ($) ->
         validators:
           notEmpty:
             message: 'Area es Obligatorio'
-          regexp:
-            regexp: /^([0-9]*[1-9][0-9]*([\.][0-9]{1,2}){0,1}|[0-9]+\.([1-9]|\d[1-9]))$/
-            message: "No cumple con formato 999999999,99"
+#          regexp:
+#            regexp: /^([0-9]*[1-9][0-9]*([\.][0-9]{1,2}){0,1}|[0-9]+\.([1-9]|\d[1-9]))$/
+#            message: "No cumple con formato 999999999,99"
       "zona_ordenamiento[usos]":
         validators:
           notEmpty:
@@ -55,10 +59,29 @@ jQuery(document).ready ($) ->
             regexp: /^.{0,64}$/
             message: 'Usos debe contener máximo 64 caracteres'
 
-  $('#zona_ordenamiento_area').inputmask({'mask':"9{0,9}.9{0,2}", greedy: false})
-
+  add_mask($('#zona_ordenamiento_area'))
+#  $('#zona_ordenamiento_area').inputmask({'mask':"9{0,9}.9{0,2}", greedy: false})
+#
   $('#zona_ordenamiento_area').blur ->
-    $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
-    $('#form_zona_ordenamiento').bootstrapValidator('revalidateField', $(this))
+    $(this).val(parseFloat($(this).inputmask('unmaskedvalue')).toFixed(2))
+#
+#  $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
 
-  $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
+window.add_mask = (field) ->
+  $('#' + field.attr('id')).inputmask 'decimal',
+    radixPoint: ","
+    groupSeparator: "."
+    digits: 2
+    autoGroup: true
+    allowMinus: false
+    allowPlus: false
+    onKeyUp: () ->
+#      if ((!field.is($('#montoDesembolsado'))) && (!field.is($('#montoEjecutado'))))
+#        #Revalida los campos que tienen mascaras ya que inputmask desactiva la validación de Bootstrap
+
+      $("form").bootstrapValidator('revalidateField', $(this))
+
+    onUnMask: (maskedValue, unmaskedValue) ->
+      unmaskedValue = maskedValue.replace(/\./g, "")
+      unmaskedValue = unmaskedValue.replace(/,/g, ".")
+      return unmaskedValue

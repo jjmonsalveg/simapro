@@ -155,6 +155,9 @@
             %li{class: is_active_action('index')}= link_to 'Visualizar Grupo de Especies', grupo_especies_path
             - if can? :create, GrupoEspecie
               %li{class: is_active_action('new')}= link_to 'Nuevo Grupo de Especie', new_grupo_especie_path
+          %ul{:class => "nav nav-second-level #{is_active_controller('especies')}"}
+            - if can? :wf_asignar_usos, Especie
+              %li{class: is_active_action('wf_asignar_usos')}= link_to 'Asignar Usos', asignar_usos_especies_path
       - if can? :wf_estatico, :mediciones_inventario
         %li{class: is_active_controller('mediciones_inventario')}
           = link_to mediciones_inventario_estatico_path do

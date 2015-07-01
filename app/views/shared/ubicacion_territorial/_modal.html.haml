@@ -3,7 +3,7 @@
     %i.fa.fa-map-marker
     Agregar Municipios
   #myModalUbicacionTerritorial.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-dialog
+    .modal-dialog.modal-lg
       .modal-content
         .modal-header
           %h4#myModalLabel.modal-title
@@ -17,8 +17,9 @@
                     %span{"aria-hidden" => "true"} ×
         .modal-body
           .row
-            .col-sm-8.col-sm-offset-2
+            .col-sm-6
               = render  'shared/ubicacion_territorial/table_municipios', modelo: modelo
+            .col-sm-6
 
         .modal-footer
           .row

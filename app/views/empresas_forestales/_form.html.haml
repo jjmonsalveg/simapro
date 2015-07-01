@@ -1,7 +1,7 @@
 .wrapper.wrapper-content.animated.fadeInRight
   .row
     .col-lg-12
-      = form_for(@empresa_forestal) do |f|
+      = form_for(@empresa_forestal,html:{ id: 'form_empresa_forestal'}) do |f|
         .row
           .col-md-12
             .ibox.float-e-margins
@@ -55,6 +55,73 @@
                         = f.collection_select(:pais_id, Pais.all.order(:nombre), :id,:nombre,
                         {selected:  f.object.pais_id.nil? ? Pais.find_by(nombre: :Venezuela).id : @empresa_forestal.pais_id },
                          class:'form-control col-sm-1')
+        .row
+          .col-md-12
+            .ibox.float-e-margins
+              .ibox-title
+                %h3
+                  Configuración del inventario
+              .ibox-content
+                .row
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :parcela_manejo_long , class: 'col-sm-4 control-label' do
+                        Longitud de la Parcela de Manejo (mts):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :parcela_manejo_long,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :parcela_manejo_ancho , class: 'col-sm-4 control-label' do
+                        Ancho de la Parcela de Manejo (mts):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :parcela_manejo_ancho,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :parcela_inv_long , class: 'col-sm-4 control-label' do
+                        Longitud de la Parcela de Inventario (mts):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :parcela_inv_long,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :parcela_inv_ancho , class: 'col-sm-4 control-label' do
+                        Ancho de la parcela de inventario(mts):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :parcela_inv_ancho,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :area_parcela_inv , class: 'col-sm-4 control-label' do
+                        Area de la parcela de inventario (m2):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :area_parcela_inv,class: 'form-control',
+                        disabled: true
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :cuadricula_inv_long , class: 'col-sm-4 control-label' do
+                        Largo de la Cuadrícula de Inventario (mts):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :cuadricula_inv_long,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :cuadricula_inv_ancho , class: 'col-sm-4 control-label' do
+                        Ancho de la Cuadrícula de Inventario (mts):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :cuadricula_inv_ancho,class: 'form-control'
+                  .row.col-sm-12.col-sm-offset-2
+                    .form-group.col-sm-6
+                      = f.label :area_cuadricula_inv , class: 'col-sm-4 control-label' do
+                        Area de la Cuadrícula de inventario (m2):
+                        %span.fa.fa-asterisk.red
+                      .col-sm-8
+                        = f.text_field :area_cuadricula_inv,class: 'form-control',
+                         disabled: true
+
           .row
             .col-sm-12
               .ibox.float-e-margins

@@ -9,6 +9,10 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #
+# Indexes
+#
+#  index_bloque_manejos_on_unidad_manejo_id  (unidad_manejo_id)
+#
 
 class BloqueManejo < ActiveRecord::Base
   belongs_to :unidad_manejo

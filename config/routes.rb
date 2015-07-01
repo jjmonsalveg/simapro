@@ -4,7 +4,13 @@ Myapp::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: 'static#index'
 
-  resources :especies
+  resources :especies do
+    get 'asignar_usos', to: :wf_asignar_usos, as: :asignar_usos, on: :collection
+    member do
+      get 'ajax_uso', to: :ajax_especie_usos, as: :ajax_usos
+      post 'crear_usos', to: :wf_crear_usos, as: :crear_usos
+    end
+  end
   resources :grupo_especies
 
   resources :unidad_ordenaciones

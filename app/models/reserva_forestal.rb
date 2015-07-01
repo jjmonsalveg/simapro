@@ -13,6 +13,12 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #
+# Indexes
+#
+#  index_reserva_forestales_on_abreviado            (abreviado) UNIQUE
+#  index_reserva_forestales_on_empresa_forestal_id  (empresa_forestal_id)
+#  index_reserva_forestales_on_nombre               (nombre) UNIQUE
+#
 
 class ReservaForestal < ActiveRecord::Base
   belongs_to :empresa_forestal

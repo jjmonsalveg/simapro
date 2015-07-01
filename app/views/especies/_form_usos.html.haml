@@ -1,0 +1,28 @@
+.row
+  .col-sm-8.col-sm-offset-2
+    = form_for @especie, url: :crear_usos_especie ,method: :post,html: { class: "form-horizontal", role: "form" }, remote:true do |f|
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Seleccione Usos
+        .ibox-content.border-bottom.form-horizontal
+          %table.table.table-striped.table-bordered.table-condensed
+            %thead
+              %tr
+                %th
+                  Uso
+                %th
+                  Seleccionar
+            %tbody
+              - TipoUsoEspecie.all.each do |e|
+                %tr
+                  %td
+                    = e.nombre
+                  %td
+                    = check_box_tag "especie[tipo_uso_especie_ids][]", e.id, @especie.tipo_uso_especies.include?(e)
+
+          .row
+            .col-sm-3.col-sm-offset-9
+              = f.submit 'Guardar Usos',
+                       class: 'btn btn-info btn-block',
+                       data: { disable_with: 'Por favor espere...' }

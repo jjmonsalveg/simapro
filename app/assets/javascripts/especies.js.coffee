@@ -25,3 +25,16 @@ jQuery(document).ready ($) ->
   $('#especie_densidad').inputmask("Regex", {
     regex: "[0-9.]{1,9}%"
   });
+
+  $('#select_especie_forestal').on 'change', ->
+    optionSelect =$('#select_especie_forestal option:selected').val().toString()
+    if optionSelect != ""
+      $.ajax
+        type: "GET"
+        url: "/especies/"+optionSelect+"/ajax_uso"
+        dataType: "html"
+        success: (data) ->
+          $('#form-check-usos-especie').html(data)
+          $("html, body").animate({ scrollTop: 250}, "slow")
+    else
+      $('#form-check-usos-especie').html('')

@@ -5,3 +5,5 @@
 #= require jquery-fileupload
 #= require document_upload
 #= require lightbox/js/lightbox.min.js
+#= require ubicacion_territorial
+#= require jasny/jasny-bootstrap

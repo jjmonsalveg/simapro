@@ -9,6 +9,13 @@
 #  created_at              :datetime
 #  updated_at              :datetime
 #
+# Indexes
+#
+#  index_doc_requisito_intermedia         (documento_requisito_id)
+#  index_documentos_unique_vista          (documento_requisito_id,vista_id) UNIQUE
+#  index_grupo_documentos_uno_intermedia  (grupo_documentos_uno_id)
+#  index_vista_intermedia                 (vista_id)
+#
 
 class DocumentosRequisitosPorVista < ActiveRecord::Base
   #config/includes

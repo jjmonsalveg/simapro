@@ -23,9 +23,11 @@ class EmpresasForestalesController < ApplicationController
 
   def create
     @empresa_forestal = EmpresaForestal.new(empresa_forestal_params)
-    @empresa_forestal.save
-    respond_with(@empresa_forestal) do |format|
+
+    if @empresa_forestal.save
       format.html { redirect_to empresas_forestales_path, notice:  'Empresa Forestal Creada satisfactoriamente.' }
+    else
+      render 'empresas_forestales/new'
     end
   end
 
@@ -39,12 +41,17 @@ class EmpresasForestalesController < ApplicationController
     respond_with(@empresa_forestal)
   end
 
-  private
-    # def set_empresa_forestal
-    #   @empresa_forestal = EmpresaForestal.find(params[:id])
-    # end
+  def default_or_value_view(param, value)
+    param.nil? ? value : param
+  end
 
-    def empresa_forestal_params
-      params.require(:empresa_forestal).permit(:nombre, :abreviado, :rif, :direccion_fiscal, :telefono, :pais_id)
-    end
+  helper_method :default_or_value_view
+
+  private
+  def empresa_forestal_params
+    params.require(:empresa_forestal).permit(:nombre, :abreviado, :rif, :direccion_fiscal, :telefono,
+                                             :pais_id,:parcela_manejo_long,:parcela_manejo_ancho,:parcela_inv_long,
+                                             :parcela_inv_ancho,:area_parcela_inv,:cuadricula_inv_long,
+                                             :cuadricula_inv_ancho,:area_cuadricula_inv)
+  end
 end
