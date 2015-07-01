@@ -19,7 +19,7 @@
             = label_tag :reserva_forestal, :reserva_forestal, class: 'col-sm-2 control-label' do
               Reserva Forestal:
             .col-sm-10
-              = collection_select :reserva_forestal, :reserva_forestal, ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id), :id, :nombre, { }, data: { dynamic_selectable_url: dynamic_select_dynamic_unidad_ordenacion_path(':reserva_forestal_id'),dynamic_selectable_target: '#unidad_ordenacion_cuenca' }, class: 'form-control'
+              = collection_select :reserva_forestal, :reserva_forestal, ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id), :id, :nombre, { include_blank: 'Seleccione una Reserva Forestal', selected: (f.object.unidad_ordenacion.reserva_forestal.id rescue nil) || nil}, data: { dynamic_selectable_url: dynamic_select_dynamic_unidad_ordenacion_path(':reserva_forestal_id'),dynamic_selectable_target: '#unidad_ordenacion_cuenca' }, class: 'form-control'
           .form-group
             = f.label :unidad_ordenacion_id, class: 'col-sm-2 control-label' do
               Unidad de Ordenación:
