@@ -1,0 +1,40 @@
+= provide(:title, "Mediciones de Inventario Estático")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-expand
+      Mediciones de Inventario Estático
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          Mediciones de Inventario Estático
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Ubicación
+        .ibox-content
+          .row.form-horizontal
+            .col-md-6
+              .form-group
+                = label_tag :subcuenca, class: 'col-sm-4 control-label' do
+                  Subcuenca:
+                .col-sm-8
+                  = text_field_tag :subcuenca, current_user.unidad_manejo.nombre ,  class: 'form-control', readonly: true
+            .col-md-6
+              .form-group
+                .form-group
+                = label_tag :bloque_manejo, class: 'col-sm-4 control-label' do
+                  Bloque de Manejo:
+                .col-sm-8
+                  = select_tag :bloque_manejo, options_from_collection_for_select(BloqueManejo.where(unidad_manejo_id: current_user.unidad_manejo_id), :id, :codigo), include_blank: 'Seleccione un bloque de manejo', class: 'form-control'
+
+  %div#parcela_inventario_medicion
+    .text-center#loading_parcela{style: 'display:none;'}
+      %h1
+        %i.fa.fa-spin.fa-spinner
+

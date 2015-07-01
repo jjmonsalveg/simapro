@@ -13,4 +13,5 @@
 
 class ParcelaManejo < ActiveRecord::Base
   belongs_to :bloque_manejo
+  has_one :parcela_inventario
 end

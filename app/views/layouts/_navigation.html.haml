@@ -155,6 +155,11 @@
             %li{class: is_active_action('index')}= link_to 'Visualizar Grupo de Especies', grupo_especies_path
             - if can? :create, GrupoEspecie
               %li{class: is_active_action('new')}= link_to 'Nuevo Grupo de Especie', new_grupo_especie_path
+      - if can? :wf_estatico, :mediciones_inventario
+        %li{class: is_active_controller('mediciones_inventario')}
+          = link_to mediciones_inventario_estatico_path do
+            %i.fa.fa-expand
+            %span.nav-label Mediciones de de Inventario Estático
 
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}

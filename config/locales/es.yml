@@ -143,7 +143,7 @@ es:
         not_an_integer: debe ser un entero
         odd: debe ser impar
         record_invalid: ! 'La validación falló: %{errors}'
-        taken: Email ya esta en uso
+        taken: ya esta en uso
         too_long: es demasiado largo (%{count} caracteres máximo)
         too_short: es demasiado corto (%{count} caracteres mínimo)
         wrong_length: no tiene la longitud correcta (%{count} caracteres exactos)

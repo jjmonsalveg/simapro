@@ -24,7 +24,7 @@
                   = label_tag :cuenca, class: 'col-sm-2 control-label' do
                     Cuenca:
                   .col-sm-10
-                    = collection_select :bo, :bo, BloqueOrdenacion.valid_cuencas, :id, :nombre, { include_blank: 'Seleccione una Cuenca', selected: (current_user.unidad_manejo.bloque_ordenacion.id rescue nil) || nil}, data: { dynamic_selectable_url: dynamic_select_dynamic_subcuencas_path(':bloque_ordenacion_id'),dynamic_selectable_target: '#settings_subcuenca' }, class: 'form-control'
+                    = collection_select :bo, :bo, BloqueOrdenacion.valid_cuencas(current_user.empresa_forestal_id), :id, :nombre, { include_blank: 'Seleccione una Cuenca', selected: (current_user.unidad_manejo.bloque_ordenacion.id rescue nil) || nil}, data: { dynamic_selectable_url: dynamic_select_dynamic_subcuencas_path(':bloque_ordenacion_id'),dynamic_selectable_target: '#settings_subcuenca' }, class: 'form-control'
                 .form-group
                   = label_tag :subcuenca, class: 'col-sm-2 control-label' do
                     Subcuenca:

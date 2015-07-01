@@ -3,6 +3,12 @@
   .col-lg-12.col-md-12.col-sm-12.col-xs-12
     .ibox.float-e-margins
       .ibox-content.border-bottom.form-horizontal
+        - unless @bloque_ordenacion
+          .form-group
+            = label_tag :cuenca, class: 'col-sm-2 control-label' do
+              Cuenca:
+            .col-sm-10
+              = f.select :bloque_ordenacion_id, options_from_collection_for_select(BloqueOrdenacion.valid_cuencas(current_user.empresa_forestal_id), :id, :nombre), {include_blank: 'Seleccione una Cuenca'}, {class: 'form-control'}
         .form-group
           = f.label :nombre, class: 'col-sm-2 control-label' do
             Nombre:

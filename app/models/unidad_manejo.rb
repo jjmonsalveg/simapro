@@ -37,7 +37,7 @@ class UnidadManejo < ActiveRecord::Base
   mount_uploader :doc_plan_forestal, DocProvidenciaUploader
 
   validates :bloque_ordenacion_id, presence: true
-  validates :unidad_manejo_id, uniqueness: true #presence: true
+  # validates :unidad_manejo_id, uniqueness: true #presence: true
   validates :nombre, presence: true, uniqueness: true
   validates :abreviado, presence: true, uniqueness: true
   validates :nro_providencia, presence: true

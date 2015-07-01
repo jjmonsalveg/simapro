@@ -21,6 +21,9 @@ class ReservaForestal < ActiveRecord::Base
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
 
+  has_many :unidad_ordenacions
+  has_many :bloque_ordenacions, through: :unidad_ordenacions
+
   belongs_to :pais
   accepts_nested_attributes_for :pais
 

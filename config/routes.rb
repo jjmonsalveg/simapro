@@ -84,10 +84,14 @@ Myapp::Application.routes.draw do
     resources :bloque_manejos
 
   end
+
+  get 'mediciones_inventario_estatico', to: 'mediciones_inventario#wf_estatico', as: :mediciones_inventario_estatico
+  post 'mediciones_inventario_estatico/select_parcela_inventario', to: 'mediciones_inventario#wf_select_parcela_inventario'
   
   
   namespace :dynamic_select do
     get ':bo/subcuencas', to: 'dynamic_subcuencas#index', as: :dynamic_subcuencas
+    get ':reserva_forestal_id/unidad_ordenacion', to: 'dynamic_unidad_ordenacion#index', as: :dynamic_unidad_ordenacion
   end
 
 

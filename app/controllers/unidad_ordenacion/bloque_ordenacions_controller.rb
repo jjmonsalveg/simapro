@@ -4,7 +4,7 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
   before_action :set_bloque_ordenacion, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bloque_ordenacions = BloqueOrdenacion.all
+    @bloque_ordenacions = BloqueOrdenacion.valid_cuencas(current_user.empresa_forestal_id)
   end
 
   def show

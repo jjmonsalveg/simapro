@@ -15,18 +15,18 @@
 
 class BloqueOrdenacion < ActiveRecord::Base
   belongs_to :unidad_ordenacion
+  has_one :reserva_forestal, through: :unidad_ordenacion
   has_many :unidad_manejos
 
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
 
-  validates :bloque_ordenacion_id, uniqueness: true
   validates :nombre, presence: true, uniqueness: true
   validates :abreviado, presence: true, uniqueness: true
   validates :area, presence: true
   # validates :unidad_ordenacion_id, presence: true
 
-  def self.valid_cuencas
-    BloqueOrdenacion.all
+  def self.valid_cuencas(empresa_id)
+    BloqueOrdenacion.joins(:reserva_forestal).where(reserva_forestales: {empresa_forestal_id: empresa_id})
   end
 end
