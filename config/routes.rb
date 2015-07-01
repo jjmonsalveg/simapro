@@ -74,8 +74,8 @@ Myapp::Application.routes.draw do
 
     #UNIDADES DE MANEJO
     get 'cuenca/:bo/subcuencas', to: 'unidad_manejos#index', as: :unidad_manejos
-    post 'cuenca/:bo/subcuencas', to: 'unidad_manejos#create'
-    get 'cuenca/:bo/subcuenca/nueva', to: 'unidad_manejos#new', as: :unidad_manejo_new
+    post 'cuenca/:bo/subcuenca', to: 'unidad_manejos#create'
+    get 'cuenca/:bo/subcuenca', to: 'unidad_manejos#new', as: :unidad_manejo_new
     get 'cuenca/:bo/subcuenca/:id/ver', to: 'unidad_manejos#show', as: :unidad_manejo_show
     get 'cuenca/:bo/subcuenca/:id', to: 'unidad_manejos#edit', as: :unidad_manejo_edit
     put 'cuenca/:bo/subcuenca/:id', to: 'unidad_manejos#update', as: :unidad_manejo

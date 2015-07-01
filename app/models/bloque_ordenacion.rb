@@ -26,8 +26,8 @@ class BloqueOrdenacion < ActiveRecord::Base
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
 
-  validates :nombre, presence: true, uniqueness: true
-  validates :abreviado, presence: true, uniqueness: true
+  validates :nombre, presence: true, uniqueness:  {message: 'Nombre ya esta en uso'}
+  validates :abreviado, presence: true, uniqueness:  {message: 'Nombre Abreviado ya esta en uso'}
   validates :area, presence: true
   # validates :unidad_ordenacion_id, presence: true
 

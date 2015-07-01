@@ -49,6 +49,12 @@
                     %td
                       %strong Descripción:
                     %td= @bloque_ordenacion.descripcion
+                  %tr
+                    %td
+                      %strong Municipios:
+                    %td
+                      - @bloque_ordenacion.municipios.each do |municipio|
+                        = municipio.nombre + ' - '
           .row
             .col-sm-3
               = link_to unidad_ordenacion_bloque_ordenacions_path, class: 'btn btn-success' do

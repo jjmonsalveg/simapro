@@ -1,2 +1,2 @@
-= form_for [:unidad_ordenacion , @unidad_manejo], url: { action: :create, bo: @bloque_ordenacion } , html: {id: 'form_unidad_manejo', class: 'form_include_ubicacion_territorial'} do |f|
+= form_for [:unidad_ordenacion , @unidad_manejo], url: { bo: @bloque_ordenacion } , html: {id: 'form_unidad_manejo', class: 'form_include_ubicacion_territorial'} do |f|
   = render 'fields', f: f

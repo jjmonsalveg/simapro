@@ -58,7 +58,7 @@
           .group
             = f.label :doc_providencia, class: 'col-sm-2 control-label' do
               Documento Dígital de la Providencia:
-            .col-sm-10
+            .col-sm-8
               .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
                 .form-control{"data-trigger" => "fileinput"}
                   %i.fa.fa-upload.fileinput-exists.pull-left
@@ -78,12 +78,15 @@
                 -if f.object.doc_providencia.present?
                   %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-new{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
                   .form-group.doc-feedback
+            .col-sm-2
+              - if f.object.doc_providencia.present?
+                = link_to 'Ver Documento Dígital de la Providencia Actual', f.object.doc_providencia.url, rel: 'lightbox', "data-title" => "Documento Dígital de la Providencia Actual"
 
         .form-group.doc-feedback
           .group
             = f.label :doc_plan_forestal, class: 'col-sm-2 control-label' do
               Documento Dígital del Plan Forestal Operativo:
-            .col-sm-10
+            .col-sm-8
               .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
                 .form-control{"data-trigger" => "fileinput"}
                   %i.fa.fa-upload.fileinput-exists.pull-left
@@ -102,6 +105,9 @@
                 %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-exists{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
                 -if f.object.doc_plan_forestal.present?
                   %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-new{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
+            .col-sm-2
+              - if f.object.doc_plan_forestal.present?
+                = link_to 'Ver Documento Dígital del Plan Forestal Operativo Actual', f.object.doc_plan_forestal.url, rel: 'lightbox', "data-title" => "Documento Dígital del Plan Forestal Operativo Actual"
         .form-group
           =render 'shared/ubicacion_territorial/modal', modelo: f
         .form-group

@@ -44,8 +44,8 @@ class UnidadManejo < ActiveRecord::Base
 
   validates :bloque_ordenacion_id, presence: true
   # validates :unidad_manejo_id, uniqueness: true #presence: true
-  validates :nombre, presence: true, uniqueness: true
-  validates :abreviado, presence: true, uniqueness: true
+  validates :nombre, presence: true, uniqueness: {message: 'Nombre ya esta en uso'}
+  validates :abreviado, presence: true, uniqueness: {message: 'Nombre Abreviado ya esta en uso'}
   validates :nro_providencia, presence: true
   validates :fecha_otorgacion, presence: true
   validates :area, presence: true
