@@ -1,4 +1,4 @@
-= form_for @reserva_forestal, html: { class: "form-horizontal", role: "form" } do |f|
+= form_for @reserva_forestal, html: { class: "form-horizontal form_include_ubicacion_territorial", role: "form" } do |f|
   = render 'shared/error_messages', object: f.object, model: 'Reserva Forestal'
 
   .ibox.float-e-margins
@@ -38,7 +38,7 @@
         .col-sm-3
           = link_to reserva_forestales_path, class: 'btn btn-success btn-block' do
             %i.fa.fa-arrow-left
-            Regresar
+            Volver
         .col-sm-3.col-sm-offset-6
           = f.button class: "btn btn-primary btn-block", data: {disable_with: 'Guardar'} do
             Guardar

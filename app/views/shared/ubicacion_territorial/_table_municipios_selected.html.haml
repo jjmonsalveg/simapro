@@ -1,15 +1,21 @@
-%table.table.table-striped.table-bordered.table-condensed
+%table.table.table-striped.table-bordered.table-condensed.tree-edt
   %thead
     %tr
       %th
-        Municipios
-      %th
-        = check_box_tag 'check_all_ubicacion'
-  %tbody{id: 'table-body-municipio'}
-    - Municipio.includes(:estado).all.each do |m|
-      %tr{class: "estado_#{m.estado.id}"}
+        Municipios Seleccionados
+  %tbody{id: 'table-body-estado'}
+    -row_edt = 0
+    -prev_estado_id = -1
+    -row_edt_parent = 0
+    - Municipio.where(id: modelo.object.municipios.pluck(:id)).reorder(:estado_id).each do |m|
+      -if (prev_estado_id == -1 or prev_estado_id != m.estado_id)
+        %tr{class: "treegrid-#{row_edt}", id: "estado-#{m.estado_id}"}
+          %td
+            = m.estado.nombre
+        -row_edt_parent = row_edt
+        -row_edt+=1
+        -prev_estado_id = m.estado_id
+      %tr{class: "treegrid-#{row_edt} treegrid-parent-#{row_edt_parent}", id: "municipio-#{m.id}"}
         %td
           = m.nombre
-        %td
-          = check_box_tag "#{modelo.object.class.to_s.tableize.singularize.downcase}[municipio_ids][]", m.id, modelo.object.municipios.include?(m),
-            class: "check_box_#{m.estado.id}"
+      -row_edt+=1

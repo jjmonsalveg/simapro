@@ -23,12 +23,14 @@ class UnidadOrdenacionesController < ApplicationController
   end
 
   def create
+    @reserva_forestales = ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id)
     @unidad_ordenacion = UnidadOrdenacion.new(unidad_ordenacion_params)
     @unidad_ordenacion.save
     respond_with(@unidad_ordenacion)
   end
 
   def update
+    @reserva_forestales = ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id)
     @unidad_ordenacion.update(unidad_ordenacion_params)
     respond_with(@unidad_ordenacion)
   end
