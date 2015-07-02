@@ -78,3 +78,7 @@ gem 'rmagick', '~> 2.13.4'
 gem 'cancancan', '~> 1.10'
 
 gem "cocoon"
+
+#DATETIME PICKER
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'

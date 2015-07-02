@@ -1,0 +1,49 @@
+= form_for @parcela_inventario, url: {action: :wf_save_estatico}, html: {class: 'form-horizontal'} do |f|
+  .row
+    .col-lg-12
+      .ibox.float-e-margins
+        .ibox-title
+          %h3
+            Datos de la Parcela
+        .ibox-content
+          .row
+            .col-md-4
+              .form-group
+                = f.label :coord_norte_utm, class: 'col-sm-5 control-label' do
+                  Coordenada UTM - Norte:
+                .col-sm-7
+                  = f.text_field :coord_norte_utm, class: 'form-control'
+            .col-md-4
+              .form-group
+                = f.label :coord_este_utm, class: 'col-sm-5 control-label' do
+                  Coordenada UTM - Este:
+                .col-sm-7
+                  = f.text_field :coord_este_utm, class: 'form-control'
+            .col-md-4
+              .form-group
+                = f.label :azimut, class: 'col-sm-5 control-label' do
+                  Dirección - Azimut:
+                .col-sm-7
+                  = f.text_field :azimut, class: 'form-control'
+  = f.fields_for :medicion_parcela_inventarios do |g|
+    .row
+      .col-lg-12
+        .ibox.float-e-margins
+          .ibox-title
+            %h3
+              Medición de Inventario:
+          .ibox-content
+            .row
+              .col-md-4
+                .form-group
+                  = f.label :tipo_parcela_inventario_id, class: 'col-sm-5 control-label' do
+                    Inventario de:
+                  .col-sm-7
+                    = g.select :tipo_parcela_inventario_id, options_from_collection_for_select(TipoParcelaInventario.tipos_aprovechamiento, :id, :tipo), {include_blank: 'Tipo de Parcela de Inventario'}, {class: 'form-control'}
+              .col-md-4
+                .form-group
+                  = g.label :fecha_inicio, class: 'col-sm-5 control-label' do
+                    Fecha y Hora de Inicio:
+                  .col-sm-7
+                    = g.text_field :fecha_inicio, class: 'form-control', id: 'fecha_inicio_datetimepicker'
+

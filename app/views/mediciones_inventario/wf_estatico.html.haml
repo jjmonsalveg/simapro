@@ -34,6 +34,7 @@
                   = select_tag :bloque_manejo, options_from_collection_for_select(BloqueManejo.where(unidad_manejo_id: current_user.unidad_manejo_id), :id, :codigo), include_blank: 'Seleccione un bloque de manejo', class: 'form-control'
 
   %div#parcela_inventario_medicion
+    = text_field_tag :hola, nil, class:'form-control', id: 'hola'
     .text-center#loading_parcela{style: 'display:none;'}
       %h1
         %i.fa.fa-spin.fa-spinner

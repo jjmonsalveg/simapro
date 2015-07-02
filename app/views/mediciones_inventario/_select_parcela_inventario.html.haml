@@ -6,8 +6,13 @@
           Parcela de Inventario
       .ibox-content
         .row.form-horizontal
-          .col-md-4
-            = label_tag :parcela, class: 'col-sm-6 control-label' do
-              Parcela de Inventario Nro:
-            .col-sm-6
-              -#= selec
+          .col-md-6
+            .form-group
+              = label_tag :parcela, class: 'col-sm-4 control-label' do
+                Parcela de Inventario Nro:
+              .col-sm-8
+                = select_tag :parcela, options_from_collection_for_select(ParcelaManejo.where(bloque_manejo_id: params[:bloque_manejo_id]), :id, :codigo), {include_blank: 'Parcela de Inventario' , class: 'form-control', id: 'parcela_manejo_select'}
+%div#form_parcela
+  .text-center#loading_formulario{style: 'display:none;'}
+    %h1
+      %i.fa.fa-spin.fa-spinner
