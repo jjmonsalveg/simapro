@@ -1,10 +1,7 @@
 = form_for @parcela_inventario, url: {action: :wf_save_estatico}, html: {class: 'form-horizontal'} do |f|
   .row
-    .col-lg-12
+    .col-md-12
       .ibox.float-e-margins
-        .ibox-title
-          %h3
-            Datos de la Parcela
         .ibox-content
           .row
             .col-md-4
@@ -25,25 +22,56 @@
                   Dirección - Azimut:
                 .col-sm-7
                   = f.text_field :azimut, class: 'form-control'
-  = f.fields_for :medicion_parcela_inventarios do |g|
-    .row
-      .col-lg-12
-        .ibox.float-e-margins
-          .ibox-title
-            %h3
-              Medición de Inventario:
-          .ibox-content
-            .row
-              .col-md-4
-                .form-group
-                  = f.label :tipo_parcela_inventario_id, class: 'col-sm-5 control-label' do
-                    Inventario de:
-                  .col-sm-7
-                    = g.select :tipo_parcela_inventario_id, options_from_collection_for_select(TipoParcelaInventario.tipos_aprovechamiento, :id, :tipo), {include_blank: 'Tipo de Parcela de Inventario'}, {class: 'form-control'}
-              .col-md-4
-                .form-group
-                  = g.label :fecha_inicio, class: 'col-sm-5 control-label' do
-                    Fecha y Hora de Inicio:
-                  .col-sm-7
-                    = g.text_field :fecha_inicio, class: 'form-control', id: 'fecha_inicio_datetimepicker'
+  .row.border-bottom.white-bg
+    .col-lg-12
+      %h2
+        Medición de Inventario:
+      .row.form-horizontal
+        .col-md-8
+          .form-group
+            = label_tag :tipo_parcela_inventario_id, class: 'col-sm-4 control-label' do
+              Inventario de:
+            .col-sm-8
+              = select_tag :tipo_parcela_inventario_id, options_from_collection_for_select(TipoParcelaInventario.all, :id, :tipo_human), {include_blank: 'Tipo de Parcela de Inventario', class: 'form-control', id: 'tipo_parcela_inventario_select'}
+              = hidden_field_tag :parcela_inventario_id, f.object.id
 
+  %div#form_tipo_parcela
+    .text-center#loading_form_tipo_parcela{style: 'display:none;'}
+      %h1
+        %i.fa.fa-spin.fa-spinner
+    -#  .col-md-4
+    -#    .form-group
+    -#      = g.label :fecha_inicio, class: 'col-sm-5 control-label' do
+    -#        Fecha y Hora de Inicio:
+    -#      .col-sm-7.input-group.date#fecha_inicio_datetimepicker
+    -#        = g.text_field :fecha_inicio, class: 'form-control'
+    -#        %span.input-group-addon
+    -#          %span.fa.fa-calendar
+    -#  .col-md-4
+    -#    .form-group
+    -#      = g.label :fecha_fin, class: 'col-sm-5 control-label' do
+    -#        Fecha y Hora Fin:
+    -#      .col-sm-7.input-group.date#fecha_fin_datetimepicker
+    -#        = g.text_field :fecha_fin, class: 'form-control'
+    -#        %span.input-group-addon
+    -#          %span.fa.fa-calendar
+    -#.row
+    -#  .col-md-4
+    -#    .form-group
+    -#      = g.label :tecnico, class: 'col-sm-5 control-label' do
+    -#        Ténico Forestal:
+    -#      .col-sm-7
+    -#        = g.text_field :tecnico, class: 'form-control'
+    -#  .col-md-4
+    -#    .form-group
+    -#      = g.label :baquiano, class: 'col-sm-5 control-label' do
+    -#        Ténico Forestal:
+    -#      .col-sm-7
+    -#        = g.text_field :tecnico, class: 'form-control'
+    -#  .col-md-4
+    -#    .form-group
+    -#      = g.label :medicion_dap, class: 'col-sm-5 control-label' do
+    -#        Medición de:
+    -#      .col-sm-7
+    -#        = g.
+    -#

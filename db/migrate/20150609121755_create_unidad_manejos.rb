@@ -14,6 +14,5 @@ class CreateUnidadManejos < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :unidad_manejos, :unidad_manejo_id, unique: true
   end
 end

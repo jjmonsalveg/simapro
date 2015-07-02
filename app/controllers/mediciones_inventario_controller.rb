@@ -11,9 +11,15 @@ class MedicionesInventarioController < ApplicationController
 
   def wf_load_form
     @parcela_inventario = ParcelaInventario.find_by(parcela_manejo_id: params[:parcela_id]) || ParcelaInventario.new
-    @parcela_inventario.medicion_parcela_inventarios.first || @parcela_inventario.medicion_parcela_inventarios.build
     render partial: 'form'
   end
+
+  def wf_load_form_tipo_parcela
+    @parcela_inventario = ParcelaInventario.find_by(parcela_manejo_id: params[:parcela_id]) || ParcelaInventario.new
+    @parcela_inventario.medicion_parcela_inventarios.first || @parcela_inventario.medicion_parcela_inventarios.build
+    render partial: ''
+  end
+
 
   def wf_save_estatico
 

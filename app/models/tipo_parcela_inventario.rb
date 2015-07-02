@@ -1,7 +1,7 @@
 class TipoParcelaInventario < ActiveRecord::Base
   has_many :medicion_parcela_inventarios
 
-  def self.tipos_aprovechamiento
-    TipoParcelaInventario.where(tipo: ['Pre Aprovechamiento' ,'Post Aprovechamiento'])
+  def tipo_human
+    self.tipo.humanize.capitalize
   end
 end

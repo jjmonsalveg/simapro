@@ -1,17 +1,14 @@
-.row
+.row.border-bottom.white-bg
   .col-lg-12
-    .ibox.float-e-margins
-      .ibox-title
-        %h3
-          Parcela de Inventario
-      .ibox-content
-        .row.form-horizontal
-          .col-md-6
-            .form-group
-              = label_tag :parcela, class: 'col-sm-4 control-label' do
-                Parcela de Inventario Nro:
-              .col-sm-8
-                = select_tag :parcela, options_from_collection_for_select(ParcelaManejo.where(bloque_manejo_id: params[:bloque_manejo_id]), :id, :codigo), {include_blank: 'Parcela de Inventario' , class: 'form-control', id: 'parcela_manejo_select'}
+    %h2
+      Parcela de Inventario
+    .row.form-horizontal
+      .col-md-8
+        .form-group
+          = label_tag :parcela, class: 'col-sm-5 control-label' do
+            Parcela de Inventario Nro:
+          .col-sm-7
+            = select_tag :parcela, options_from_collection_for_select(ParcelaManejo.where(bloque_manejo_id: params[:bloque_manejo_id]), :id, :codigo), {include_blank: 'Parcela de Inventario' , class: 'form-control', id: 'parcela_manejo_select'}
 %div#form_parcela
   .text-center#loading_formulario{style: 'display:none;'}
     %h1

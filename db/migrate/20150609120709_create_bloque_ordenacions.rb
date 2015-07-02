@@ -10,6 +10,5 @@ class CreateBloqueOrdenacions < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :bloque_ordenacions, :bloque_ordenacion_id, unique: true
   end
 end
