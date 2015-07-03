@@ -23,7 +23,7 @@
     .ibox-content.text-center
       %h3.font-bold No hay Unidades de Ordenación Registradas
       - if can? :create, UnidadOrdenacion
-        =link_to  'Nueva Empresa',new_unidad_ordenacion_path ,  class: 'btn btn-primary pull-center'
+        =link_to  'Nueva Unidad de Ordenación',new_unidad_ordenacion_path ,  class: 'btn btn-primary pull-center'
   -else
     .row
       .col-md-12.col-md-offset-0
@@ -68,7 +68,7 @@
                               = link_to edit_unidad_ordenacion_path(unidad_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
                                 %i.fa.fa-edit
                             - if can? :destroy, UnidadOrdenacion
-                              = link_to reserva_forestal_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                              = link_to unidad_ordenacion_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
                                 %i.fa.fa-trash
                           %td
                             = link_to zonas_ordenamiento_path() do

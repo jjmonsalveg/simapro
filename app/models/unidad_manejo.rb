@@ -47,10 +47,10 @@ class UnidadManejo < ActiveRecord::Base
   validates :nombre, presence: true, uniqueness: {message: 'Nombre ya esta en uso'}
   validates :abreviado, presence: true, uniqueness: {message: 'Nombre Abreviado ya esta en uso'}
   validates :nro_providencia, presence: true
-  validates :fecha_otorgacion, presence: true
+  validates :fecha_otorgamiento, presence: true
   validates :area, presence: true
   validates :ubicacion, presence: true
-  validates :fecha_vence, presence: true
+  validates :fecha_vencimiento, presence: true
   validates :tipo_bosque_id, presence: true
 
   def fecha_otorgacion_fix

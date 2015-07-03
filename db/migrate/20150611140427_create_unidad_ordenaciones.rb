@@ -4,8 +4,8 @@ class CreateUnidadOrdenaciones < ActiveRecord::Migration
       t.references :reserva_forestal, index: true
       t.string :codigo, limit: 3
       t.string :nro_contrato, limit: 16
-      t.date :fecha_otorgacion
-      t.date :fecha_vence
+      t.date :fecha_otorgamiento
+      t.date :fecha_vencimiento
       t.decimal :area, precision: 12, scale: 2
       t.string :descripcion
 

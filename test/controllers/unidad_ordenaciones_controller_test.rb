@@ -18,7 +18,7 @@ class UnidadOrdenacionesControllerTest < ActionController::TestCase
 
   test "should create unidad_ordenacion" do
     assert_difference('UnidadOrdenacion.count') do
-      post :create, unidad_ordenacion: { area: @unidad_ordenacion.area, codigo: @unidad_ordenacion.codigo, descripcion: @unidad_ordenacion.descripcion, fecha_otorgacion: @unidad_ordenacion.fecha_otorgacion, fecha_vence: @unidad_ordenacion.fecha_vence, nro_contrato: @unidad_ordenacion.nro_contrato, reserva_forestal_id: @unidad_ordenacion.reserva_forestal_id }
+      post :create, unidad_ordenacion: { area: @unidad_ordenacion.area, codigo: @unidad_ordenacion.codigo, descripcion: @unidad_ordenacion.descripcion, fecha_otorgamiento: @unidad_ordenacion.fecha_otorgacion, fecha_vencimiento: @unidad_ordenacion.fecha_vence, nro_contrato: @unidad_ordenacion.nro_contrato, reserva_forestal_id: @unidad_ordenacion.reserva_forestal_id }
     end
 
     assert_redirected_to unidad_ordenacion_path(assigns(:unidad_ordenacion))
@@ -35,7 +35,7 @@ class UnidadOrdenacionesControllerTest < ActionController::TestCase
   end
 
   test "should update unidad_ordenacion" do
-    patch :update, id: @unidad_ordenacion, unidad_ordenacion: { area: @unidad_ordenacion.area, codigo: @unidad_ordenacion.codigo, descripcion: @unidad_ordenacion.descripcion, fecha_otorgacion: @unidad_ordenacion.fecha_otorgacion, fecha_vence: @unidad_ordenacion.fecha_vence, nro_contrato: @unidad_ordenacion.nro_contrato, reserva_forestal_id: @unidad_ordenacion.reserva_forestal_id }
+    patch :update, id: @unidad_ordenacion, unidad_ordenacion: { area: @unidad_ordenacion.area, codigo: @unidad_ordenacion.codigo, descripcion: @unidad_ordenacion.descripcion, fecha_otorgamiento: @unidad_ordenacion.fecha_otorgacion, fecha_vencimiento: @unidad_ordenacion.fecha_vence, nro_contrato: @unidad_ordenacion.nro_contrato, reserva_forestal_id: @unidad_ordenacion.reserva_forestal_id }
     assert_redirected_to unidad_ordenacion_path(assigns(:unidad_ordenacion))
   end
 

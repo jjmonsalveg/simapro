@@ -22,8 +22,8 @@ p '##  CREACION DE LAS UNIDADES DE ORDENACION ##'
 uo = UnidadOrdenacion.create!(reserva_forestal_id: r.id,
                               codigo: 'I',
                               nro_contrato: 'BI-0896',
-                              fecha_otorgacion: '3/2/2010',
-                              fecha_vence: '3/2/2018',
+                              fecha_otorgamiento: '3/2/2010',
+                              fecha_vencimiento: '3/2/2018',
                               area: '15000000')
 
 p '##  CREACION DE LAS ZONAS DE ORDENAMIENTO ##'
@@ -50,8 +50,8 @@ um = UnidadManejo.create!(bloque_ordenacion: bo,
                           ubicacion: 'Ubicada en la zona central de la cuenca Santa Maria I',
                           descripcion: 'Entre las especies arbó- reas más abundantes están: Pentaclethra macrocloba (Leguminosae), Alexa imperatricis (Leguminosae), Chaetocarpus schomburgkianus (Euphorbiaceae)',
                           nro_providencia: '1231HH',
-                          fecha_otorgacion: '01/01/2015',
-                          fecha_vence:'01/01/2015',
+                          fecha_otorgamiento: '01/01/2015',
+                          fecha_vencimiento:'01/01/2015',
                           tipo_bosque_id: 1)
 
 p '##  CREACION DE USUARIOS ##'
