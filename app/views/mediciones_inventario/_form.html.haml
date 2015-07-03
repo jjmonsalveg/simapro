@@ -29,11 +29,11 @@
       .row.form-horizontal
         .col-md-8
           .form-group
-            = label_tag :tipo_parcela_inventario_id, class: 'col-sm-4 control-label' do
+            = label_tag :tipo_parcela_inventario, class: 'col-sm-4 control-label' do
               Inventario de:
             .col-sm-8
-              = select_tag :tipo_parcela_inventario_id, options_from_collection_for_select(TipoParcelaInventario.all, :id, :tipo_human), {include_blank: 'Tipo de Parcela de Inventario', class: 'form-control', id: 'tipo_parcela_inventario_select'}
-              = hidden_field_tag :parcela_inventario_id, f.object.id
+              = select_tag :tipo_parcela_inventario, options_from_collection_for_select(TipoParcelaInventario.all, :id, :tipo_human), {include_blank: 'Tipo de Parcela de Inventario', class: 'form-control', id: 'tipo_parcela_inventario_select'}
+              = hidden_field_tag :parcela_inventario_id, params[:parcela_id]
 
   %div#form_tipo_parcela
     .text-center#loading_form_tipo_parcela{style: 'display:none;'}

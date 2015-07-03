@@ -45,13 +45,15 @@ load_tipo_parcela = ->
       $('#loading_form_tipo_parcela').show()
       $.ajax
         type: "POST"
-        url: "/mediciones_inventario_estatico/load_form"
+        url: "/mediciones_inventario_estatico/load_tipo_parcela"
         dataType: "HTML"
         data:
-          parcela_id: $(this).val()
+          tipo_parcela_inventario: $(this).val()
+          parcela_id: $('#parcela_inventario_id').val()
         success: (data) ->
-          $('#form_parcela').empty()
-          $('#form_parcela').append(data)
+          $('#form_tipo_parcela').empty()
+          $('#form_tipo_parcela').append(data)
+          datetime_pickers()
     else
       $('#form_tipo_parcela').empty()
 
