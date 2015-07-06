@@ -1,7 +1,12 @@
 #= require treeGrid/jquery.treegrid
+#= require treeGrid/jquery.treegrid.bootstrap3
+
 jQuery(document).ready ($) ->
+
   $("#table-body-municipio > [class!='estado_1']").hide()
   $('#check_all_ubicacion').prop('checked', $('.check_box_1:not(:checked)').length == 0)
+
+  iniciar_treegrid()
 
   $('#estado').change ->
     est = $('#estado').val()
@@ -22,5 +27,11 @@ jQuery(document).ready ($) ->
 
   $(".form_include_ubicacion_territorial").bind "submit", ->
     $(this).append($('#myModalUbicacionTerritorial'))
+
+# Inicia el plugin para mostrar la estructura de arbol
+window.iniciar_treegrid = () ->
+  $(".tree-edt").treegrid
+    expanderExpandedClass: "glyphicon glyphicon-minus"
+    expanderCollapsedClass: "glyphicon glyphicon-plus"
 
 

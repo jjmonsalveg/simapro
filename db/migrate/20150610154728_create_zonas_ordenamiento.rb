@@ -4,7 +4,7 @@ class CreateZonasOrdenamiento < ActiveRecord::Migration
       t.string :nombre, null:false , limit:64
       t.string :abreviado, null:false, limit:12
       t.text :ubicacion, null:false
-      t.decimal :area, null:false, precision: 5
+      t.decimal :area, null:false
       t.string :usos , null:false , limit:64
       t.text :descripcion
 

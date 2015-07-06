@@ -1,9 +1,3 @@
-#= require input-mask/jquery.inputmask.js
-#= require input-mask/jquery.inputmask.regex.extensions.js
-#= require input-mask/jquery.inputmask.extensions.js
-#= require input-mask/jquery.inputmask.numeric.extensions.js
-
-
 #= require jasny/jasny-bootstrap
 #= require datable
 #= require bootstrapValidator/bootstrapValidator
@@ -11,9 +5,16 @@
 #= require jquery-fileupload
 #= require document_upload
 #= require lightbox/js/lightbox.min.js
+#= require jquery.inputmask/jquery.inputmask.js
+#= require jquery.inputmask/jquery.inputmask.extensions
+#= require jquery.inputmask/jquery.inputmask.numeric.extensions
+#= require jquery.inputmask/jquery.inputmask.regex.extensions
+
+
 
 
 jQuery(document).ready ($) ->
+  add_mask($('#zona_ordenamiento_area'))
 
   $('#form_zona_ordenamiento').bootstrapValidator
     feedbackIcons:
@@ -59,29 +60,21 @@ jQuery(document).ready ($) ->
             regexp: /^.{0,64}$/
             message: 'Usos debe contener máximo 64 caracteres'
 
-  add_mask($('#zona_ordenamiento_area'))
-#  $('#zona_ordenamiento_area').inputmask({'mask':"9{0,9}.9{0,2}", greedy: false})
-#
   $('#zona_ordenamiento_area').blur ->
-    $(this).val(parseFloat($(this).inputmask('unmaskedvalue')).toFixed(2))
-#
-#  $('#zona_ordenamiento_area').val($('#zona_ordenamiento_area').val().replace(/\.$/,'.00'))
+#    $(this).val(parseFloat($(this).val()).toFixed())
+#    add_mask($('#zona_ordenamiento_area'))
 
 window.add_mask = (field) ->
   $('#' + field.attr('id')).inputmask 'decimal',
-    radixPoint: ","
-    groupSeparator: "."
+    radixPoint: "."
+#    groupSeparator: "."
     digits: 2
     autoGroup: true
+    rightAlign: false
     allowMinus: false
     allowPlus: false
+#    autoUnmask: true
     onKeyUp: () ->
-#      if ((!field.is($('#montoDesembolsado'))) && (!field.is($('#montoEjecutado'))))
-#        #Revalida los campos que tienen mascaras ya que inputmask desactiva la validación de Bootstrap
-
       $("form").bootstrapValidator('revalidateField', $(this))
-
-    onUnMask: (maskedValue, unmaskedValue) ->
-      unmaskedValue = maskedValue.replace(/\./g, "")
-      unmaskedValue = unmaskedValue.replace(/,/g, ".")
-      return unmaskedValue
+#    onUnMask: (maskedValue, unmaskedValue) ->
+#      return maskedValue

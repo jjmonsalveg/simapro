@@ -23,12 +23,14 @@ class UnidadOrdenacionesController < ApplicationController
   end
 
   def create
+    @reserva_forestales = ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id)
     @unidad_ordenacion = UnidadOrdenacion.new(unidad_ordenacion_params)
     @unidad_ordenacion.save
     respond_with(@unidad_ordenacion)
   end
 
   def update
+    @reserva_forestales = ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id)
     @unidad_ordenacion.update(unidad_ordenacion_params)
     respond_with(@unidad_ordenacion)
   end
@@ -47,8 +49,8 @@ class UnidadOrdenacionesController < ApplicationController
       params.require(:unidad_ordenacion).permit(:reserva_forestal_id,
                                                 :codigo,
                                                 :nro_contrato,
-                                                :fecha_otorgacion,
-                                                :fecha_vence,
+                                                :fecha_otorgamiento,
+                                                :fecha_vencimiento,
                                                 :area,
                                                 :descripcion,
                                                 municipio_ids:[],

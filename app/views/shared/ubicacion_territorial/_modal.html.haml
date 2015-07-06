@@ -1,7 +1,7 @@
 .col-sm-offset-5
   %button.btn.btn-warning{"data-target" => "#myModalUbicacionTerritorial", "data-toggle" => "modal", :type => "button"}
     %i.fa.fa-map-marker
-    Agregar Municipios
+    División Político-Territorial
   #myModalUbicacionTerritorial.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-dialog.modal-lg
       .modal-content
@@ -20,7 +20,7 @@
             .col-sm-6
               = render  'shared/ubicacion_territorial/table_municipios', modelo: modelo
             .col-sm-6
-
+              = render  'shared/ubicacion_territorial/table_municipios_selected', modelo: modelo
         .modal-footer
           .row
             .col-sm-3.col-sm-offset-9
