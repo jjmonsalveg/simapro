@@ -25,15 +25,15 @@
           .col-sm-10
             = f.text_field :nro_providencia, class: 'form-control'
         .form-group
-          = f.label :fecha_otorgamiento, class: 'col-sm-2 control-label' do
+          = f.label :fecha_otorgacion, class: 'col-sm-2 control-label' do
             Fecha de Otorgamiento:
           .col-sm-6.form-inline
-            = f.date_select :fecha_otorgamiento, {start_year: (Date.current.year - 20), end_year: Date.current.year }, {class: 'form-control'}
+            = f.date_select :fecha_otorgacion, {start_year: (Date.current.year - 20), end_year: Date.current.year }, {class: 'form-control'}
         .form-group
-          = f.label :fecha_vencimiento, class: 'col-sm-2 control-label' do
+          = f.label :fecha_vence, class: 'col-sm-2 control-label' do
             Fecha Vence:
           .col-sm-6.form-inline
-            = f.date_select :fecha_vencimiento, {start_year: (Date.current.year - 10), end_year: (Date.current.year + 10) }, {class: 'form-control'}
+            = f.date_select :fecha_vence, {start_year: (Date.current.year - 10), end_year: (Date.current.year + 10) }, {class: 'form-control'}
         .form-group
           = f.label :area, class: 'col-sm-2 control-label' do
             Área (ha):

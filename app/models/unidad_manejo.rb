@@ -39,18 +39,15 @@ class UnidadManejo < ActiveRecord::Base
   accepts_nested_attributes_for :documentos, allow_destroy: true
   include ModeloGeneral::ManageDocument
 
-  mount_uploader :doc_providencia, DocProvidenciaUploader
-  mount_uploader :doc_plan_forestal, DocProvidenciaUploader
-
   validates :bloque_ordenacion_id, presence: true
   # validates :unidad_manejo_id, uniqueness: true #presence: true
   validates :nombre, presence: true, uniqueness: {message: 'Nombre ya esta en uso'}
   validates :abreviado, presence: true, uniqueness: {message: 'Nombre Abreviado ya esta en uso'}
   validates :nro_providencia, presence: true
-  validates :fecha_otorgamiento, presence: true
+  validates :fecha_otorgacion, presence: true
   validates :area, presence: true
   validates :ubicacion, presence: true
-  validates :fecha_vencimiento, presence: true
+  validates :fecha_vence, presence: true
   validates :tipo_bosque_id, presence: true
 
   def fecha_otorgacion_fix
@@ -63,16 +60,6 @@ class UnidadManejo < ActiveRecord::Base
 
   def area_fix
     self.area.to_s + ' ha'
-  end
-
-  def doc_providencia_pdf?
-    return true if (self.doc_providencia.url.split('.').last rescue nil) == 'pdf'
-    return false
-  end
-
-  def doc_plan_forestal_pdf?
-    return true if (self.doc_plan_forestal.url.split('.').last rescue nil) == 'pdf'
-    return false
   end
 
 end

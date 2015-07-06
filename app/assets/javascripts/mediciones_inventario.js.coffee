@@ -1,5 +1,7 @@
 #= require moment
 #= require bootstrap-datetimepicker
+#= require jquery-ui/jquery-ui.js
+#= require jquery.appendGrid/jquery.appendGrid-1.5.2.js
 #= require moment/es
 
 jQuery(document).ready ($) ->
@@ -79,4 +81,20 @@ form_parcela_submit = ->
       data: form
       success: (data) ->
         console.log(data)
+  $('#table_arboles_inventario').appendGrid
+    caption: 'Arboles de Inventario'
+    initRows: 20,
+    columns: [
+      {name: 'duad', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'required'},
+      {name: 'fi', display: 'Fi', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'required'},
+      {name: 'arbol', display: 'Árbol', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'required'},
+      {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'required'},
+      {name: 'especie', display: 'Especie', type: 'text', ctrlAttr: { maxlength: 60 }, ctrlCss: { width: '300px'}, ctrlClass: 'required'},
+      {name: 'dap_cap', display: 'CAP/DAP', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'required'},
+      {name: 'altura_fuste', display: 'Altura Fuste', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'required'},
+      {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '100px'}, ctrlOptions: { 0: 'B', 1: 'R', 2: 'M'}},
+    ]
+    hideButtons:
+      removeLast: true
   return false
+

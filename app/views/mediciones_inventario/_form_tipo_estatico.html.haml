@@ -34,7 +34,7 @@
                   .col-md-6
                     .form-group
                       = g.label :baquiano, class: 'col-sm-5 control-label' do
-                        Ténico Forestal:
+                        Baquiano:
                       .col-sm-7.input-group
                         = g.text_field :baquiano, class: 'form-control'
               .col-md-3
@@ -52,10 +52,11 @@
                       = g.radio_button :medicion_dap, false
                       = g.label :medicion_dap do
                         CAP
-            .row
-              .col-sm-3
-                %a.btn.btn-primary#send_form
-                  Guardar
-                  %i.fa.fa-floppy
+          = render 'table_arboles_inventario'
+          -#.row
+          -#  .col-sm-3
+          -#    %a.btn.btn-primary#send_form
+          -#      Guardar
+          -#      %i.fa.fa-floppy
 
 
