@@ -45,13 +45,16 @@ load_tipo_parcela = ->
       $('#loading_form_tipo_parcela').show()
       $.ajax
         type: "POST"
-        url: "/mediciones_inventario_estatico/load_form"
+        url: "/mediciones_inventario_estatico/load_tipo_parcela"
         dataType: "HTML"
         data:
-          parcela_id: $(this).val()
+          tipo_parcela_inventario: $(this).val()
+          parcela_id: $('#parcela_inventario_id').val()
         success: (data) ->
-          $('#form_parcela').empty()
-          $('#form_parcela').append(data)
+          $('#form_tipo_parcela').empty()
+          $('#form_tipo_parcela').append(data)
+          datetime_pickers()
+          form_parcela_submit()
     else
       $('#form_tipo_parcela').empty()
 
@@ -63,3 +66,17 @@ datetime_pickers = ->
   $('#fecha_fin_datetimepicker').datetimepicker
     viewMode: 'months',
     locale: 'es'
+
+form_parcela_submit = ->
+  $('#send_form').click ->
+    form = $('#form-parcela-inventario , #form-parcela-inventario-1').serialize();
+    console.log(form)
+    $.ajax
+      url: '/mediciones_inventario_estatico/save'
+      type: 'POST'
+      dataType: 'json'
+      beforeSend: (xhr) -> xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      data: form
+      success: (data) ->
+        console.log(data)
+  return false

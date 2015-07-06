@@ -59,7 +59,7 @@ class UnidadOrdenacion::BloqueManejosController < ApplicationController
     end
 
     def bloque_manejo_params
-      params.require(:bloque_manejo).permit(:codigo, :area, parcela_manejos_attributes: [:codigo, :area])
+      params.require(:bloque_manejo).permit(:codigo, :area, parcela_manejos_attributes: [:id, :codigo, :area, :_destroy])
     end
 
     def set_bloque_manejo

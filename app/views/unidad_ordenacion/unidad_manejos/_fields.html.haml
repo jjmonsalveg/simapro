@@ -54,60 +54,7 @@
             Tipo de Bosque:
           .col-sm-10
             = f.select :tipo_bosque_id, options_from_collection_for_select(TipoBosque.all, :id, :nombre_h), {}, class: 'form-control'
-        .form-group.doc-feedback
-          .group
-            = f.label :doc_providencia, class: 'col-sm-2 control-label' do
-              Documento Dígital de la Providencia:
-            .col-sm-8
-              .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
-                .form-control{"data-trigger" => "fileinput"}
-                  %i.fa.fa-upload.fileinput-exists.pull-left
-                  -if f.object.doc_providencia.present?
-                    %i.fa.fa-upload.fileinput-new.pull-left
-                  %span.fileinput-filename
-                    = f.object.doc_providencia.present? ? f.object.doc_providencia.to_s.split('/').last : ""
-                %span.input-group-addon.btn.btn-success.btn-file
-                  - if f.object.doc_providencia.present?
-                    %span.fileinput-exists Cambiar
-                    %span.fileinput-new Cambiar
-                  - else
-                    %span.fileinput-new Subir Documento
-                    %span.fileinput-exists Cambiar
-                  = f.file_field :doc_providencia
-                %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-exists{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
-                -if f.object.doc_providencia.present?
-                  %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-new{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
-                  .form-group.doc-feedback
-            .col-sm-2
-              - if f.object.doc_providencia.present?
-                = link_to 'Ver Documento Dígital de la Providencia Actual', f.object.doc_providencia.url, rel: 'lightbox', "data-title" => "Documento Dígital de la Providencia Actual"
-
-        .form-group.doc-feedback
-          .group
-            = f.label :doc_plan_forestal, class: 'col-sm-2 control-label' do
-              Documento Dígital del Plan Forestal Operativo:
-            .col-sm-8
-              .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
-                .form-control{"data-trigger" => "fileinput"}
-                  %i.fa.fa-upload.fileinput-exists.pull-left
-                  -if f.object.doc_plan_forestal.present?
-                    %i.fa.fa-upload.fileinput-new.pull-left
-                  %span.fileinput-filename
-                    = f.object.doc_plan_forestal.present? ? f.object.doc_plan_forestal.to_s.split('/').last : ""
-                %span.input-group-addon.btn.btn-success.btn-file
-                  - if f.object.doc_plan_forestal.present?
-                    %span.fileinput-exists Cambiar
-                    %span.fileinput-new Cambiar
-                  - else
-                    %span.fileinput-new Subir Documento
-                    %span.fileinput-exists Cambiar
-                  = f.file_field :doc_plan_forestal
-                %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-exists{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
-                -if f.object.doc_plan_forestal.present?
-                  %a.fa.fa-times.input-group-addon.btn.btn-success.fileinput-new{"data-dismiss" => "fileinput", :href => "#", :style => "float: none"}
-            .col-sm-2
-              - if f.object.doc_plan_forestal.present?
-                = link_to 'Ver Documento Dígital del Plan Forestal Operativo Actual', f.object.doc_plan_forestal.url, rel: 'lightbox', "data-title" => "Documento Dígital del Plan Forestal Operativo Actual"
+        = render 'shared/documentos/show_modelo_documentos_no_paginados', model: f, list_documents: load_documentos(:subcuenca_docs, @unidad_manejo,true)
         .form-group
           =render 'shared/ubicacion_territorial/modal', modelo: f
         .form-group
