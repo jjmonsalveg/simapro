@@ -94,7 +94,7 @@ Myapp::Application.routes.draw do
   get 'mediciones_inventario_estatico', to: 'mediciones_inventario#wf_estatico', as: :mediciones_inventario_estatico
   post 'mediciones_inventario_estatico/select_parcela_inventario', to: 'mediciones_inventario#wf_select_parcela_inventario'
   post 'mediciones_inventario_estatico/load_form', to: 'mediciones_inventario#wf_load_form'
-  post 'mediciones_inventario_estatico/save', to: 'mediciones_inventario#wf_save_estatico', as: :mediciones_inventario_save_estatico
+  post 'mediciones_inventario_estatico/save', to: 'mediciones_inventario#wf_save_estatico', as: :mediciones_inventario_save_estatico, defaults: { format: 'json' }
   post 'mediciones_inventario_estatico/load_tipo_parcela', to: 'mediciones_inventario#wf_load_form_tipo_parcela'
   
   

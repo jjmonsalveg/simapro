@@ -54,6 +54,7 @@ load_tipo_parcela = ->
           $('#form_tipo_parcela').empty()
           $('#form_tipo_parcela').append(data)
           datetime_pickers()
+          form_parcela_submit()
     else
       $('#form_tipo_parcela').empty()
 
@@ -65,3 +66,17 @@ datetime_pickers = ->
   $('#fecha_fin_datetimepicker').datetimepicker
     viewMode: 'months',
     locale: 'es'
+
+form_parcela_submit = ->
+  $('#send_form').click ->
+    form = $('#form-parcela-inventario , #form-parcela-inventario-1').serialize();
+    console.log(form)
+    $.ajax
+      url: '/mediciones_inventario_estatico/save'
+      type: 'POST'
+      dataType: 'json'
+      beforeSend: (xhr) -> xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      data: form
+      success: (data) ->
+        console.log(data)
+  return false

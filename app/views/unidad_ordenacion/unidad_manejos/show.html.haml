@@ -69,28 +69,11 @@
                     %td= @unidad_manejo.tipo_bosque.nombre_h
                   %tr
                     %td
-                      %strong Documento Dígital de la Providencia
-                    %td
-                      - if @unidad_manejo.doc_providencia.present?
-                        -if @unidad_manejo.doc_providencia_pdf?
-                          = link_to @unidad_manejo.doc_providencia.url, 'Documento Plan Forestal PDF'
-                        -else
-                          = link_to image_tag(@unidad_manejo.doc_providencia.url, size: '230x150'), @unidad_manejo.doc_providencia.url, rel: 'lightbox', "data-title" => "Documento Dígital de la Providencia"
-                  %tr
-                    %td
-                      %strong Documento Dígital del Plan Forestal Operativo
-                    %td
-                      - if @unidad_manejo.doc_plan_forestal.present?
-                        -if @unidad_manejo.doc_plan_forestal_pdf?
-                          = link_to @unidad_manejo.doc_plan_forestal.url, 'Documento Plan Forestal PDF'
-                        -else
-                          = link_to image_tag(@unidad_manejo.doc_plan_forestal.url, size: '230x150'), @unidad_manejo.doc_plan_forestal.url, rel: 'lightbox', "data-title" => "Documento Dígital del Plan Forestal Operativo"
-                  %tr
-                    %td
                       %strong Municipios:
                     %td
                       - @unidad_manejo.municipios.each do |municipio|
                         = municipio.nombre + ' - '
+          = render 'shared/documentos/modelo_documentos', model: @unidad_manejo,nombre_vista_param: :subcuenca_docs
           .row
             .col-sm-3
               = link_to unidad_ordenacion_unidad_manejos_path(bo: @bloque_ordenacion), class: 'btn btn-success' do

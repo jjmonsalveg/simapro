@@ -42,7 +42,8 @@ puts 'Documentos de vista de registro(ALBUM) Empresa Forestal Creada'
 
 puts 'Documentos de vista de registro subcuenca Creada'
 
-vista_subcuenca.documento_requisitos<< DocumentoRequisito.create!(nombre: 'providencia_doc', descripcion: 'Documento Digital de la Providencia', cardinalidad_maxima: 1, paginado: false, obligatorio: true)
+vista_subcuenca.documento_requisitos<< DocumentoRequisito.create!([{nombre: 'providencia_doc', descripcion: 'Documento Dígital de la Providencia', cardinalidad_maxima: 1, paginado: false, obligatorio: true},
+                                                                    {nombre: 'plan_forestal_doc', descripcion: 'Documento Dígital del Plan Forestal Operativo', cardinalidad_maxima: 1, paginado: false, obligatorio: true}])
 
 puts 'Documentos de vista de providencia Creada'
 

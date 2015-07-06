@@ -22,12 +22,18 @@ class MedicionesInventarioController < ApplicationController
 
 
   def wf_save_estatico
-
+    respond_to do |format|
+      format.json{ render json: parcela_inventario_params.to_json }
+    end
   end
 
 
   private
     def self.permission
       :mediciones_inventario
+    end
+
+    def parcela_inventario_params
+      params.require(:parcela_inventario).permit(medicion_parcela_inventario: [:fecha_inicio, :fecha_fin, :tecnico, :baquiano])
     end
 end

@@ -1,5 +1,6 @@
-= form_for @parcela_inventario, url: {action: :wf_save_estatico}, html: {class: 'form-horizontal'} do |f|
+= form_for @parcela_inventario, url: {action: :wf_save_estatico}, html: {class: 'form-horizontal', id: 'form-parcela-inventario'} do |f|
   =f.fields_for @medicion_parcela_inventario do |g|
+    = csrf_meta_tag
     .row
       .col-md-12
         .ibox.float-e-margins
@@ -35,7 +36,7 @@
                       = g.label :baquiano, class: 'col-sm-5 control-label' do
                         Ténico Forestal:
                       .col-sm-7.input-group
-                        = g.text_field :tecnico, class: 'form-control'
+                        = g.text_field :baquiano, class: 'form-control'
               .col-md-3
                 .form-group
                   .row
@@ -53,7 +54,7 @@
                         CAP
             .row
               .col-sm-3
-                = g.button class: 'btn btn-primary' do
+                %a.btn.btn-primary#send_form
                   Guardar
                   %i.fa.fa-floppy
 

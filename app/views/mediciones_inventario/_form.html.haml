@@ -1,4 +1,5 @@
-= form_for @parcela_inventario, url: {action: :wf_save_estatico}, html: {class: 'form-horizontal'} do |f|
+= form_for @parcela_inventario, url: {action: :wf_save_estatico}, html: {class: 'form-horizontal', id: 'form-parcela-inventario-1'} do |f|
+  = csrf_meta_tag
   .row
     .col-md-12
       .ibox.float-e-margins
