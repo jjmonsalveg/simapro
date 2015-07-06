@@ -45,8 +45,8 @@
                         %th Codigo
                         %th Reserva Forestal
                         %th Nro Contrato
-                        %th Fecha de Otorgacion
-                        %th Fecha Vence
+                        %th Fecha de Otorgamiento
+                        %th Fecha Vencimiento
                         %th Area(ha)
                         %th Acciones
                         %th Zonas
@@ -57,8 +57,8 @@
                           %td= unidad_ordenacion.codigo
                           %td= unidad_ordenacion.reserva_forestal.nombre
                           %td= unidad_ordenacion.nro_contrato
-                          %td= unidad_ordenacion.fecha_otorgacion
-                          %td= unidad_ordenacion.fecha_vence
+                          %td= unidad_ordenacion.fecha_otorgamiento
+                          %td= unidad_ordenacion.fecha_vencimiento
                           %td= unidad_ordenacion.area
                           %td
                             - if can? :view, UnidadOrdenacion
