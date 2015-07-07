@@ -2,6 +2,8 @@ class MedicionesInventarioController < ApplicationController
   before_action :authenticate_user!
   authorize_resource class: :mediciones_inventario
 
+  respond_to :html, :json
+
   def wf_estatico
   end
 
@@ -27,6 +29,11 @@ class MedicionesInventarioController < ApplicationController
     end
   end
 
+  def wf_load_especies
+    @especies = Especie.joins(:empresa_forestal).where(empresas_forestales: {id: current_user.empresa_forestal_id})
+    respond_with(@especies)
+  end
+
 
   private
     def self.permission
@@ -34,6 +41,6 @@ class MedicionesInventarioController < ApplicationController
     end
 
     def parcela_inventario_params
-      params.require(:parcela_inventario).permit(medicion_parcela_inventario: [:fecha_inicio, :fecha_fin, :tecnico, :baquiano])
+      params.require(:parcela_inventario).permit(:coord_norte_utm, :coord_este_utm, :azimut, :id, medicion_parcela_inventario: [:tipo_parcela_inventario_id, :fecha_inicio, :fecha_fin, :tecnico, :baquiano])
     end
 end

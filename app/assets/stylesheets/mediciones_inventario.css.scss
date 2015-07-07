@@ -1,3 +1,19 @@
 //= require bootstrap-datetimepicker
 //= require jquery-ui/jquery-ui.css
 //= require jquery.appendGrid/jquery.appendGrid-1.5.2.css
+
+.tabla-arboles-inventario {
+  height: 700px;
+  overflow-y: scroll;
+}
+
+.appendGrid {
+  font-family: open sans, lucida grande, lucida sans unicode, helvetica, arial, sans-serif;
+}
+
+.arboles-error-placement {
+  min-height: 100px;
+  border: 1px dotted #7b7e80;
+}
+
+

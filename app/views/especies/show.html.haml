@@ -67,7 +67,7 @@
                     %td.text-right
                       %strong Grupo especie:
                     %td
-                      = @especie.grupo_especie
+                      = @especie.grupo_especie.nombre rescue ''
 
                   %tr
                     %td.text-right

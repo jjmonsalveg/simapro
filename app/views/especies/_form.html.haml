@@ -37,10 +37,10 @@
         .col-sm-2
           = f.text_field :dmc, class: 'form-control'
       .form-group
-        = f.label :grupo_especie, class: 'col-sm-2 control-label' do
+        = f.label :grupo_especie_id, class: 'col-sm-2 control-label' do
           Grupo de la Especie:
         .col-sm-10
-          -#= f.select :grupo_especie, options_from_collection_for_select(Gr) class: 'form-control'
+          = f.select :grupo_especie_id, options_from_collection_for_select(GrupoEspecie.all, :id, :codigo) , {include_blank: 'Seleccione un Grupo de Especie'}, {class: 'form-control'}
       .form-group
         = f.label :densidad, class: 'col-sm-2 control-label' do
           Densidad de la Madera:

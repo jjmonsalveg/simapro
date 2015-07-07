@@ -7,7 +7,7 @@ es:
     failure:
       already_authenticated: "Ya has iniciado sesión."
       inactive: "Su cuenta todavia no ha sido activada."
-      invalid: "Combinación de Email y Password Invalida."
+      invalid: "Combinación de Login y Password Invalida."
       locked: "Su cuenta esta bloqueada."
       last_attempt: "Usted tiene un(1) intento más antes de que su cuenta sea bloqueada."
       not_found_in_database: "Dirección de Correo o Contraseña Invalida"
