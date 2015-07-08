@@ -8,27 +8,38 @@
         .col-sm-10
           = f.select(:reserva_forestal_id, [['Seleccione Opción']] + @reserva_forestales.collect {|p| [p.nombre, p.id]}, {}, { id: :reserva_forestal_id, class: 'form-control'})
       .form-group
-        = f.label :codigo, class: 'col-sm-2 control-label'
+        = f.label :codigo, class: 'col-sm-2 control-label' do
+          Código:
+          %span.fa.fa-asterisk.red
         .col-sm-10
           = f.text_field :codigo, class: 'form-control'
       .form-group
-        = f.label :nro_contrato, class: 'col-sm-2 control-label'
+        = f.label :nro_contrato, class: 'col-sm-2 control-label' do
+          Nro del Contrato Administrativo:
+          %span.fa.fa-asterisk.red
         .col-sm-10
           = f.text_field :nro_contrato, class: 'form-control'
       .form-group
-        = f.label :fecha_otorgamiento, class: 'col-sm-2 control-label'
+        = f.label :fecha_otorgamiento, class: 'col-sm-2 control-label' do
+          Fecha de Otorgamiento:
+          %span.fa.fa-asterisk.red
         .col-sm-10
           = f.date_select :fecha_otorgamiento, class: 'form-control', start_year: 1900
       .form-group
-        = f.label :fecha_vencimiento, class: 'col-sm-2 control-label'
+        = f.label :fecha_vencimiento, class: 'col-sm-2 control-label' do
+          Fecha de Vencimiento:
+          %span.fa.fa-asterisk.red
         .col-sm-10
           = f.date_select :fecha_vencimiento, class: 'form-control', start_year: 1900
       .form-group
-        = f.label :area, class: 'col-sm-2 control-label'
+        = f.label :area, class: 'col-sm-2 control-label' do
+          Área (ha):
+          %span.fa.fa-asterisk.red
         .col-sm-10
           = f.text_field :area, class: 'form-control'
       .form-group
-        = f.label :descripcion, class: 'col-sm-2 control-label'
+        = f.label :descripcion, class: 'col-sm-2 control-label' do
+          Descripción:
         .col-sm-10
           = f.text_area :descripcion, class: 'form-control', rows: 5
       =render 'shared/documentos/show_modelo_documentos_no_paginados', model: f, list_documents: load_documentos(:unidad_ordenacion_docs, @unidad_ordenacion,true)
