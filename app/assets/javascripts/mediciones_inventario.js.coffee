@@ -87,22 +87,6 @@ form_parcela_submit = (especies) ->
   $.each especies, (index, especie) ->
     nombre_especies.push(especie.nombre_comun)
 
-  $('#table_arboles_inventario').appendGrid
-    initRows: 20,
-    columns: [
-      {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
-      {name: 'fi', display: 'Fi', type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'fi'},
-      {name: 'nro_arbol', display: 'Árbol', type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
-      {name: 'bi', display: 'BI', type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
-      {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
-      {name: 'dap_cap', display: 'CAP/DAP', type: 'text', ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
-      {name: 'altura_fuste', display: 'Altura Fuste', ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
-      {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '100px'}, ctrlOptions: { 0: 'B', 1: 'R', 2: 'M'}},
-    ]
-    hideRowNumColumn: true
-    hideButtons:
-      removeLast: true
-
   jQuery.validator.addClassRules({
     nro_cuadricula:
       required: true,
@@ -140,14 +124,31 @@ form_parcela_submit = (especies) ->
       maxlength: 4
   });
 
+  $('#table_arboles_inventario').appendGrid
+    initRows: 20,
+    columns: [
+      {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
+      {name: 'fi', display: 'Fi', type: 'text',ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'fi'},
+      {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
+      {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
+      {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
+      {name: 'dap_cap', display: 'CAP/DAP', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
+      {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
+      {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '100px'}, ctrlOptions: { 0: 'B', 1: 'R', 2: 'M'}},
+    ]
+    hideRowNumColumn: true
+    hideButtons:
+      removeLast: true
+
   $('#send_form').click ->
     console.log(document.forms[1])
     $('#table_arboles_inventario').appendGrid('removeEmptyRows')
-    $(document.forms[1]).validate
-      errorLabelContainer: '#ulError',
-      wrapper: 'li',
-      submitHandler:
-        send_form()
+    send_form()
+
+  $(document.forms[1]).validate
+    errorLabelContainer: '#ulError',
+    wrapper: 'li'
+
 
 
 send_form = ->

@@ -6,7 +6,7 @@
     &nbsp;
     &nbsp;
     .form-group
-      = f.text_field :area, class: 'form-control area_input', placeholder: 'Área', value: 20
+      = f.text_field :area, class: 'form-control area_input', placeholder: 'Área', value: f.object.area.present? ? f.object.area : 20
     .form-group
       = link_to_remove_association  f do
         %i.fa.fa-minus-square
