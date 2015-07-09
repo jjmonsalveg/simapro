@@ -44,7 +44,7 @@
                       Medición de:
                   .row
                     .col-sm-5.control-label
-                      = g.radio_button :medicion_dap, true
+                      = g.radio_button :medicion_dap, true, checked: true
                       = g.label :medicion_dap do
                         DAP
                   .row
@@ -52,11 +52,6 @@
                       = g.radio_button :medicion_dap, false
                       = g.label :medicion_dap do
                         CAP
-          .row
-            .col-sm-3
-              %a.btn.btn-primary#send_form
-                Guardar
-                %i.fa.fa-floppy
           = render 'table_arboles_inventario', g: g
 
 

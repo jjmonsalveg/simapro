@@ -6,7 +6,7 @@ class CreateArbolInventarioEstaticos < ActiveRecord::Migration
       t.integer :bi
       t.integer :tipo_fisiografia, default: 0
       t.integer :tipo_calidad_fuste, default: 0
-      t.decimal :dap, scale: 2
+      t.decimal :dap, scale: 2, precision: 12
       t.decimal :altura_fuste, scale: 2
       t.references :especie, index: true
       t.references :medicion_parcela_inventario

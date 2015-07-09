@@ -6,7 +6,7 @@ class CreateEspecies < ActiveRecord::Migration
       t.string :sinonimia
       t.string :familia
       t.integer :dmc, default: 40
-      t.decimal :densidad, precision: 9, scale: 2
+      t.decimal :densidad, precision: 12, scale: 2
       t.references :grupo_especie, index: true
       t.references :empresa_forestal, index: true
 

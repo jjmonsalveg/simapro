@@ -7,7 +7,7 @@ class CreateUnidadManejos < ActiveRecord::Migration
       t.string :nro_providencia, null:false, limit: 12
       t.date :fecha_otorgamiento
       t.date :fecha_vencimiento
-      t.decimal :area, scale: 2
+      t.decimal :area, scale: 2, precision: 12
       t.text :ubicacion
       t.text :descripcion
       t.references :bloque_ordenacion, index: true

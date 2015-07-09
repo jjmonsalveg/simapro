@@ -4,6 +4,8 @@ class MedicionesInventarioController < ApplicationController
 
   respond_to :html, :json
 
+  include MedicionesInventario
+
   def wf_estatico
   end
 
@@ -24,6 +26,7 @@ class MedicionesInventarioController < ApplicationController
 
 
   def wf_save_estatico
+    MedicionesInventario.save_mediciones_inventario(params, current_user)
     respond_to do |format|
       format.json{ render json: parcela_inventario_params.to_json }
     end
@@ -41,6 +44,6 @@ class MedicionesInventarioController < ApplicationController
     end
 
     def parcela_inventario_params
-      params.require(:parcela_inventario).permit(:coord_norte_utm, :coord_este_utm, :azimut, :id, medicion_parcela_inventario: [:tipo_parcela_inventario_id, :fecha_inicio, :fecha_fin, :tecnico, :baquiano])
+      params.require(:parcela_inventario).permit(:coord_norte_utm, :coord_este_utm, :azimut, :id, medicion_parcela_inventario: [:tipo_parcela_inventario_id, :fecha_inicio, :fecha_fin, :tecnico, :baquiano, :medicion_dap])
     end
 end

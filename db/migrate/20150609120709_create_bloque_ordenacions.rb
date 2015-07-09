@@ -4,7 +4,7 @@ class CreateBloqueOrdenacions < ActiveRecord::Migration
       # t.integer :bloque_ordenacion_id
       t.string :nombre, null: false, limit: 64, unique: true
       t.string :abreviado, null: false, limit: 12, unique: true
-      t.decimal :area, scale: 2, null: false
+      t.decimal :area, scale: 2, precision: 12, null: false
       t.text :descripcion
       t.references :unidad_ordenacion, index: true
 
