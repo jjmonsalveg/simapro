@@ -15,19 +15,21 @@ jQuery(document).ready ($) ->
       "aButtons": [
         {
           "sExtends":     "copy",
-          "sButtonText": 'Copiar &nbsp; <i class="fa fa-files-o"></i>'
+          "sButtonText":  'Copiar &nbsp; <i class="fa fa-files-o"></i>'
         },
         {
           "sExtends":     "csv",
-          "sButtonText": 'Excel &nbsp; <i class="fa fa-file-excel-o"></i>'
+          "sButtonText":  'Excel &nbsp; <i class="fa fa-file-excel-o"></i>'
         },
         {
-          "sExtends":     "pdf",
-          "sButtonText": 'PDF &nbsp; <i class="fa fa-file-pdf-o"></i>'
+          "sExtends":         "pdf",
+          "sPdfOrientation":  "landscape",
+          "sButtonText":      'PDF &nbsp; <i class="fa fa-file-pdf-o"></i>'
         },
         {
-          "sExtends":     "print",
-          "sButtonText": 'Imprimir &nbsp; <i class="fa fa-print"></i>'
+          "sExtends":         "print",
+          "sPdfOrientation":  "landscape",
+          "sButtonText":      'Imprimir &nbsp; <i class="fa fa-print"></i>'
         },
       ]
     "language": {
