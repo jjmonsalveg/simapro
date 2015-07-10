@@ -37,8 +37,10 @@ class EmpresasForestalesController < ApplicationController
   end
 
   def destroy
-    @empresa_forestal.destroy
-    respond_with(@empresa_forestal)
+    if @empresa_forestal.safe_to_delete
+      @empresa_forestal.destroy
+      respond_with(@empresa_forestal)
+    end
   end
 
   def default_or_value_view(param, value)

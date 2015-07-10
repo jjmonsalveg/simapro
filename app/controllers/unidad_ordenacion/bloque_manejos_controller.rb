@@ -43,11 +43,13 @@ class UnidadOrdenacion::BloqueManejosController < ApplicationController
   end
 
   def destroy
-    @bloque_manejo.destroy
-    respond_to do |format|
-      flash[:warning] =  'Bloque de manejo eliminado satisfactoriamente.'
-      format.html { redirect_to unidad_ordenacion_bloque_manejos_path  }
-      format.json { head :no_content }
+    if @bloque_manejo.safe_to_delete
+      @bloque_manejo.destroy
+      respond_to do |format|
+        flash[:warning] =  'Bloque de manejo eliminado satisfactoriamente.'
+        format.html { redirect_to unidad_ordenacion_bloque_manejos_path  }
+        format.json { head :no_content }
+      end
     end
   end
 

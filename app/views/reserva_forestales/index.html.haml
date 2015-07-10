@@ -48,8 +48,9 @@
                             %i.fa.fa-search
                           = link_to edit_reserva_forestal_path(reserva_forestal), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
                             %i.fa.fa-edit
-                          = link_to reserva_forestal_path(reserva_forestal), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
-                            %i.fa.fa-trash
+                          - if reserva_forestal.safe_to_delete
+                            = link_to reserva_forestal_path(reserva_forestal), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
+                              %i.fa.fa-trash
                         %td
                           = link_to new_unidad_ordenacion_path() do
                             Unidad de Ordenación

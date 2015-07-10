@@ -50,5 +50,6 @@
                             %i.fa.fa-edit
                             &nbsp;
                             &nbsp;
-                          = link_to unidad_ordenacion_bloque_manejo_path(id: bloque_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar el bloque de manejo #{bloque_manejo.codigo}?"} do
-                            %i.fa.fa-trash
+                          - if bloque_manejo.safe_to_delete
+                            = link_to unidad_ordenacion_bloque_manejo_path(id: bloque_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar el bloque de manejo #{bloque_manejo.codigo}?"} do
+                              %i.fa.fa-trash

@@ -34,4 +34,9 @@ class BloqueOrdenacion < ActiveRecord::Base
   def self.valid_cuencas(empresa_id)
     BloqueOrdenacion.joins(:reserva_forestal).where(reserva_forestales: {empresa_forestal_id: empresa_id})
   end
+
+  def safe_to_delete
+    self.unidad_manejos.any? ? false : true
+  end
+
 end

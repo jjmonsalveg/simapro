@@ -26,6 +26,7 @@ class UnidadOrdenacion < ActiveRecord::Base
   #asociaciones
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
+  has_many :bloque_ordenacions
 
   has_many :documentos,  dependent: :destroy, as: :modelo
   accepts_nested_attributes_for :documentos, allow_destroy: true
@@ -39,4 +40,7 @@ class UnidadOrdenacion < ActiveRecord::Base
     codigo + ', '+ reserva_forestal.nombre
   end
 
+  def safe_to_delete
+    return (self.bloque_ordenacions.any? || self.zona_ordenamientos.any?) ? false : true
+  end
 end

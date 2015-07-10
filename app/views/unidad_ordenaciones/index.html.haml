@@ -57,8 +57,8 @@
                           %td= unidad_ordenacion.codigo
                           %td= unidad_ordenacion.reserva_forestal.nombre
                           %td= unidad_ordenacion.nro_contrato
-                          %td= unidad_ordenacion.fecha_otorgamiento
-                          %td= unidad_ordenacion.fecha_vencimiento
+                          %td= unidad_ordenacion.fecha_otorgacion
+                          %td= unidad_ordenacion.fecha_vence
                           %td= unidad_ordenacion.area
                           %td
                             - if can? :view, UnidadOrdenacion
@@ -67,7 +67,7 @@
                             - if can? :update, UnidadOrdenacion
                               = link_to edit_unidad_ordenacion_path(unidad_ordenacion), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
                                 %i.fa.fa-edit
-                            - if can? :destroy, UnidadOrdenacion
+                            - if can? :destroy, UnidadOrdenacion && unidad_ordenacion.safe_to_delete
                               = link_to unidad_ordenacion_path(unidad_ordenacion), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
                                 %i.fa.fa-trash
                           %td

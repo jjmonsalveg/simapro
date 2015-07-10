@@ -36,8 +36,10 @@ class UnidadOrdenacionesController < ApplicationController
   end
 
   def destroy
-    @unidad_ordenacion.destroy
-    respond_with(@unidad_ordenacion)
+    if @unidad_ordenacion.safe_to_delete
+      @unidad_ordenacion.destroy
+      respond_with(@unidad_ordenacion)
+    end
   end
 
   private

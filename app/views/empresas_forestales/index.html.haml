@@ -61,7 +61,7 @@
                             - if can? :update, EmpresaForestal
                               = link_to  edit_empresa_forestal_path(empresa_forestal) do
                                 %i.fa.fa-pencil-square-o
-                            - if can? :destroy, EmpresaForestal
+                            - if (can? :destroy, EmpresaForestal) && empresa_forestal.safe_to_delete
                               = link_to  empresa_forestal, method: :delete, data: { confirm: '¿Seguro que desea Eliminar Empresa?' } do
                                 %i.fa.fa-trash-o
                             - if (can? :create, EmpresaForestal) and (can? :update ,EmpresaForestal)

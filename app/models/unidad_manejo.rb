@@ -62,4 +62,8 @@ class UnidadManejo < ActiveRecord::Base
     self.area.to_s + ' ha'
   end
 
+  def safe_to_delete
+    (self.users.any? || self.bloque_manejos.any?) ? false : true
+  end
+
 end

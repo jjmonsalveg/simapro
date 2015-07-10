@@ -63,8 +63,9 @@
                             %i.fa.fa-edit
                             &nbsp;
                             &nbsp;
-                          = link_to unidad_ordenacion_unidad_manejo_destroy_path(bo: @bloque_ordenacion, id: unidad_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar la subcuenca #{unidad_manejo.nombre}?"} do
-                            %i.fa.fa-trash
+                          - if unidad_manejo.safe_to_delete
+                            = link_to unidad_ordenacion_unidad_manejo_destroy_path(bo: @bloque_ordenacion, id: unidad_manejo), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar', data: {confirm: "¿Seguro que desa eliminar la subcuenca #{unidad_manejo.nombre}?"} do
+                              %i.fa.fa-trash
                         %td
                           -#= link_to unidad_ordenacion_unidad_manejos_path(bo: unidad_manejo), rel: 'tooltip', title: 'Subcuencas' do
                           -#  Subcuencas

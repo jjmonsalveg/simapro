@@ -17,9 +17,14 @@
 class BloqueManejo < ActiveRecord::Base
   belongs_to :unidad_manejo
   has_many :parcela_manejos
+  has_many :parcela_inventarios, through: :parcela_manejos
+
   accepts_nested_attributes_for :parcela_manejos, reject_if: :all_blank, allow_destroy: true
 
   validates :codigo, presence: true
   validates :area, presence: true
 
+  def safe_to_delete
+    self.parcela_inventarios.any? ? false : true
+  end
 end

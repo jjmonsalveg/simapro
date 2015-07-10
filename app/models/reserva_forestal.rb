@@ -44,6 +44,11 @@ class ReservaForestal < ActiveRecord::Base
             presence: { message: 'El campo Abreviado es obligatorio'},
             length: {maximum: 12, message: 'El campo Abreviado debe contener máximo 12 caracteres'}
 
+
+  def safe_to_delete
+    return self.unidad_ordenacions.any? ? false : true
+  end
+
   # validate :fecha_creacion_actual?
   # validate :fecha_reglamento_actual?
   #

@@ -8,8 +8,6 @@ class ReservaForestalesController < ApplicationController
   def index
     @reserva_forestales = ReservaForestal.where(empresa_forestal_id: current_user.empresa_forestal_id)
     # respond_with(@reserva_forestales)
-    p 'cantidad de registros'
-    p @reserva_forestales.length
   end
 
   def show
@@ -49,10 +47,12 @@ class ReservaForestalesController < ApplicationController
   end
 
   def destroy
-    @reserva_forestal.destroy
-    respond_to do |format|
-      format.html { redirect_to reserva_forestales_path, notice:  'Reserva Forestal eliminado satisfactoriamente.' }
-      format.json { head :no_content }
+    if @reserva_forestal.safe_to_delete
+      @reserva_forestal.destroy
+      respond_to do |format|
+        format.html { redirect_to reserva_forestales_path, notice:  'Reserva Forestal eliminado satisfactoriamente.' }
+        format.json { head :no_content }
+      end
     end
   end
 

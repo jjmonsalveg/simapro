@@ -44,7 +44,7 @@ class UnidadOrdenacion::BloqueOrdenacionsController < ApplicationController
   end
 
   def destroy
-    if User.joins(:unidad_manejos).where(unidad_manejos: { bloque_ordenacion_id: @bloque_ordenacion.id} ).nil?
+    if @bloque_ordenacion.safe_to_delete
       @bloque_ordenacion.destroy
       respond_to do |format|
         flash[:warning] =  'Cuenca eliminada satisfactoriamente.'

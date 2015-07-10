@@ -42,7 +42,7 @@ class UnidadOrdenacion::UnidadManejosController < ApplicationController
   end
 
   def destroy
-    if User.where(unidad_manejo_id: @unidad_manejo.id).nil?
+    if @unidad_manejo.safe_to_delete
       @unidad_manejo.destroy
       respond_to do |format|
         flash[:warning] =  'Subcuenca eliminada satisfactoriamente.'
