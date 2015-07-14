@@ -1,17 +1,14 @@
--#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+= provide(:title, "Simapro - Grupo Especie")
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-sm-10
     %h2
-      %i.fa.fa-pagelines
-      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
-      -#\- Cuencas
+      %i.fa.fa-tree
+      Grupo Especie
     %ol.breadcrumb
       %li
-        -#= link_to 'Inicio', root_url
-      %li
-        -#= link_to 'Cuencas', unidad_ordenacion_bloque_ordenacions_path
+        = link_to 'Inicio', root_url
       %li.active
         %strong
-          -#Nueva Cuenca
+          Nuevo Grupo Especie
 .wrapper.wrapper-content.animated.fadeInRight
   = render 'form'

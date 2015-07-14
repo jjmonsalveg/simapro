@@ -1,56 +1,87 @@
-= provide(:title, "Simapro - Reserva Forestal")
+= provide(:title, 'Listar Reservas Forestales')
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     %h2
-      %i.fa.fa-tree
-      Reserva Forestal
-    %ol.breadcrumb
-      %li
-        = link_to 'Inicio', root_url
-      %li.active
-        %strong
-          Reserva Forestal
-.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
-  .row
-    .col-lg-12
-      .ibox.float-e-margins
-        .ibox-content
-          .row
+      Reservas Forestales
+      %span
+        %i.fa.fa-building
+
+.wrapper.wrapper-content.animated.fadeInRight
+  - if @reserva_forestales.empty?
+    - if can? :create, ReservaForestal
+      .row
+        .col-md-12.col-md-offset-0
+          %ul.text-muted.leyenda
+            %li.text-justify
+              Puede registrar una Reserva Forestal haciendo click en
+              %span.amarillo
+                Nueva Reserva
+    .ibox-content.text-center
+      %h3.font-bold No hay Reservas Forestales Registradas
+      - if can? :create, ReservaForestal
+        =link_to  'Nueva Reserva',new_reserva_forestal_path ,  class: 'btn btn-primary pull-center'
+  -else
+    .row
+      .col-md-12.col-md-offset-0
+        .ibox.float-e-margins
+          .ibox-content
             .col-sm-3
-              = link_to new_reserva_forestal_path, class: 'btn btn-primary btn-responsive' do
-                Nueva Reserva forestal
-                %i.fa.fa-plus
-          %br
-          %br
-          .row
-            .col-md-12
-              .table-responsive
-                %table.table.table-striped.table-bordered.table-hover.datatable-table
-                  %thead
-                    %tr
-                      %th Nombre
-                      %th Nombre Abreviado
-                      %th Fecha de Creación
-                      %th Fecha del Reglamento de Uso
-                      %th Area(ha)
-                      %th.text-center Acciones
-                      %th
-                  %tbody
-                    - @reserva_forestales.each do |reserva_forestal|
+              - if can? :create, ReservaForestal
+                = link_to new_reserva_forestal_path, class: 'btn btn-primary btn-block' do
+                  Nueva Reserva
+                  %i.fa.fa-plus
+            %br
+            %br
+            .row
+              .col-md-12
+                .table-responsive
+                  %table.table.table-striped.table-bordered.table-hover.datatable-table
+                    %thead
                       %tr
-                        %td= reserva_forestal.nombre
-                        %td= reserva_forestal.abreviado
-                        %td= reserva_forestal.fecha_creacion.strftime('%d.%m.%Y')
-                        %td= reserva_forestal.fecha_reglamento
-                        %td= reserva_forestal.area
-                        %td
-                          = link_to reserva_forestal_path(reserva_forestal),  rel: 'tooltip',  title: 'Ver' do
-                            %i.fa.fa-search
-                          = link_to edit_reserva_forestal_path(reserva_forestal), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
-                            %i.fa.fa-edit
-                          - if reserva_forestal.safe_to_delete
-                            = link_to reserva_forestal_path(reserva_forestal), method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
-                              %i.fa.fa-trash
-                        %td
-                          = link_to new_unidad_ordenacion_path() do
-                            Unidad de Ordenación
+                        %th Nombre
+                        %th Nombre Abreviado
+                        %th Fecha de Creación
+                        %th Fecha del Reglamento de Uso
+                        %th Area(ha)
+                        %th.text-center Acciones
+                        %th
+                    %tbody
+                      - @reserva_forestales.each do |reserva_forestal|
+                        %tr
+                          %td= reserva_forestal.nombre
+                          %td= reserva_forestal.abreviado
+                          %td= reserva_forestal.fecha_creacion.strftime('%d.%m.%Y')
+                          %td= reserva_forestal.fecha_reglamento
+                          %td= reserva_forestal.area
+                          %td.text-center
+                            - if can? :view, ReservaForestal
+                              = link_to reserva_forestal do
+                                %i.fa.fa-search
+                            - if can? :update, ReservaForestal
+                              = link_to  edit_reserva_forestal_path(reserva_forestal) do
+                                %i.fa.fa-pencil-square-o
+                            - if (can? :destroy, ReservaForestal) && reserva_forestal.safe_to_delete
+                              = link_to  reserva_forestal, method: :delete, data: { confirm: '¿Seguro que desea Eliminar Empresa?' } do
+                                %i.fa.fa-trash-o
+                            -#- if (can? :create, ReservaForestal) and (can? :update ,ReservaForestal)
+                            -#  -documento_requisito = Vista.find_documentos_requisitos(:reserva_forestal_docs).last
+                            -#  =link_to '#',{"data-toggle"=>"modal","data-target"=>"##{documento_requisito.nombre.camelize+reserva_forestal.id.to_s}"} do
+                            -#    %span.fa.fa-picture-o
+                            -#  %div.modal.fade{id:documento_requisito.nombre.camelize+reserva_forestal.id.to_s,"aria-hidden" => "true", "aria-labelledby" => "poderNotariadoModalLabel", :role => "dialog", :tabindex => "-1"}
+                            -#    .modal-dialog.modal-lg
+                            -#      .modal-content
+                            -#        .modal-header.blue-bg
+                            -#          %button.close{"data-dismiss" => "modal", :type => "button"}
+                            -#            %span{"aria-hidden" => "true"} &times;
+                            -#          %h4.modal-title
+                            -#            =documento_requisito.descripcion
+                            -#        .modal-body
+                            -#          = render 'shared/documentos/jquery_file_upload', modelo: reserva_forestal, vista: :registro_reserva_forestal, documento_requisito: documento_requisito
+                            -#        .modal-footer
+                            -#          Al cargar el documento completo:
+                            -#          %a.btn{"data-dismiss" => "modal"}
+                            -#            Cerrar Ventana
+                            -#            %span{"aria-hidden" => "true"} &times;
+                          %td
+                            = link_to new_unidad_ordenacion_path() do
+                              Unidad de Ordenación
