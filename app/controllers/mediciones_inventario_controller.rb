@@ -37,6 +37,14 @@ class MedicionesInventarioController < ApplicationController
     respond_with(@especies)
   end
 
+  def wf_save_especie
+    if params[:especie].present? && Especie.create(nombre_comun: params.require(:especie), empresa_forestal: current_user.empresa_forestal)
+      render json: true
+    else
+      render json: false
+    end
+  end
+
 
   private
     def self.permission

@@ -12,7 +12,6 @@ jQuery(document).ready ($) ->
       number: true,
       minlength: 1,
       maxlength: 1
-      message: 'HOLA'
   });
   jQuery.validator.addClassRules( 'fi', {
     required: true,
@@ -126,36 +125,38 @@ datetime_pickers = ->
 
 form_parcela_submit = (especies) ->
 
+  #CREACIÓN DE ARRAY DE ESPECIES QUE VIENEN DE LA TABLA
   nombre_especies = [];
   $.each especies, (index, especie) ->
     nombre_especies.push(especie.nombre_comun)
 
+  #TABLA TIPO EXCEL PARA LA INSERCION DE ARBOLES
   $('#table_arboles_inventario').appendGrid
     initRows: 20,
     columns: [
       {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
-      {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { 0: 'B', 1: 'L', 2: 'C'}, ctrlClass: 'fi'},
+      {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { Ba: 'B', La: 'L', Ca: 'C'}, ctrlClass: 'fi'},
       {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
       {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
       {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
       {name: 'dap_cap', display: 'CAP/DAP', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
       {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
-      {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { 0: 'B', 1: 'R', 2: 'M'}},
+      {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
     ]
     hideRowNumColumn: true
     hideButtons:
       removeLast: true
+      moveUp: true
+      moveDown: true
 
   $('#send_form').click ->
     $('#table_arboles_inventario').appendGrid('removeEmptyRows')
     send_form()
 
-  #  $(document.forms[1]).validate
-  #    errorLabelContainer: '#ulError',
-  #    wrapper: 'li',
-  #    submitHandler:
+  table_behavior()
 
-
+  $('.append').click ->
+    table_behavior()
 
 
 
@@ -170,5 +171,44 @@ send_form = ->
     beforeSend: (xhr) -> xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
     data: form
     success: (data) ->
-      console.log("HOLA")
       console.log(data)
+
+table_behavior = ->
+
+  #FUNCION PARA PONER EL NUMERO DEL CUADRANTE DEL ARBOL SELECCIONADO EN EL SIGUIENTE ARBOL
+  $(".nro_cuadricula").blur ->
+    num = $(this).val()
+    id_array = $(this).attr('id').split('_')
+    row = id_array[id_array.length-1]
+    row = parseInt(row) + 1
+    $('#table_arboles_inventario_numero_cuadricula_'+ row ).val(num)
+
+  #GUARDAR LA ESPECIE SI NO SE ENCUENTRA Y AGREGARLA AL ARRAY DE AUTOCOMPLETE
+  $('.especie').blur ->
+    especie = $(this).val()
+    unless (jQuery.inArray(especie, nombre_especies) > -1)
+      $.ajax
+        type: "POST"
+        url: "/mediciones_inventario_estatico/save_especie"
+        dataType: "JSON"
+        data:
+          especie: $(this).val()
+        success: (data) ->
+          nombre_especies.push(especie)
+
+  #PONER ARBOL SIGUIENTE
+  $('.bi').blur ->
+    id_array = $(this).attr('id').split('_')
+    row = parseInt(id_array[id_array.length-1])
+    num = parseInt($('#table_arboles_inventario_nro_arbol_' + row ).val())
+    row += 1
+    if($(this).val() == '1')
+      $('#table_arboles_inventario_nro_arbol_' + row ).val(num)
+      $('#table_arboles_inventario_bi_' + row ).val('2')
+    if($(this).val() == '0')
+      num += 1
+      $('#table_arboles_inventario_nro_arbol_' + row ).val(num)
+
+  #ELIMINAR ARBOL
+  $('.remove').click ->
+    

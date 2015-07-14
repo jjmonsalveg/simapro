@@ -95,8 +95,11 @@ Myapp::Application.routes.draw do
   post 'mediciones_inventario_estatico/select_parcela_inventario', to: 'mediciones_inventario#wf_select_parcela_inventario'
   post 'mediciones_inventario_estatico/load_form', to: 'mediciones_inventario#wf_load_form'
   post 'mediciones_inventario_estatico/save', to: 'mediciones_inventario#wf_save_estatico', as: :mediciones_inventario_save_estatico, defaults: { format: :json }
+  patch 'mediciones_inventario_estatico/save', to: 'mediciones_inventario#wf_save_estatico', as: :mediciones_inventario_save_estatico_patch, defaults: { format: :json }
+  put 'mediciones_inventario_estatico/save', to: 'mediciones_inventario#wf_save_estatico', as: :mediciones_inventario_save_estatico_put, defaults: { format: :json }
   post 'mediciones_inventario_estatico/load_tipo_parcela', to: 'mediciones_inventario#wf_load_form_tipo_parcela'
   post 'mediciones_inventario_estatico/load_especies', to: 'mediciones_inventario#wf_load_especies', as: :mediciones_inventario_load_especies, defaults: { format: :json }
+  post 'mediciones_inventario_estatico/save_especie', to: 'mediciones_inventario#wf_save_especie', as: :mediciones_inventario_save_especie
   
   
   namespace :dynamic_select do
