@@ -100,6 +100,7 @@ Myapp::Application.routes.draw do
   post 'mediciones_inventario_estatico/load_tipo_parcela', to: 'mediciones_inventario#wf_load_form_tipo_parcela'
   post 'mediciones_inventario_estatico/load_especies', to: 'mediciones_inventario#wf_load_especies', as: :mediciones_inventario_load_especies, defaults: { format: :json }
   post 'mediciones_inventario_estatico/save_especie', to: 'mediciones_inventario#wf_save_especie', as: :mediciones_inventario_save_especie
+  post 'mediciones_inventario_estatico/delete_arbol_ajax', to: 'mediciones_inventario#wf_delete_arbol_ajax', as: :mediciones_inventario_estatico_delete_arbol_ajax
   
   
   namespace :dynamic_select do

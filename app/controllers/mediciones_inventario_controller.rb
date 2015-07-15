@@ -27,8 +27,14 @@ class MedicionesInventarioController < ApplicationController
 
   def wf_save_estatico
     MedicionesInventario.save_mediciones_inventario(params, current_user)
-    respond_to do |format|
-      format.json{ render json: parcela_inventario_params.to_json }
+    render json: 'true'.to_json
+  end
+
+  def wf_delete_arbol_ajax
+    if MedicionesInventario.delete_arbol_ajax(params, current_user)
+      render json: 'true'.to_json
+    else
+      render json: 'false'.to_json
     end
   end
 

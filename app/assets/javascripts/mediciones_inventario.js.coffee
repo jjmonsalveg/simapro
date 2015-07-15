@@ -8,10 +8,10 @@
 jQuery(document).ready ($) ->
 
   jQuery.validator.addClassRules( 'nro_cuadricula', {
-      required: true,
-      number: true,
-      minlength: 1,
-      maxlength: 1
+    required: true,
+    number: true,
+    minlength: 1,
+    maxlength: 1
   });
   jQuery.validator.addClassRules( 'fi', {
     required: true,
@@ -129,7 +129,8 @@ form_parcela_submit = (especies) ->
   nombre_especies = [];
   $.each especies, (index, especie) ->
     nombre_especies.push(especie.nombre_comun)
-
+  nro_arbol_delete = ''
+  bi_delete = ''
   #TABLA TIPO EXCEL PARA LA INSERCION DE ARBOLES
   $('#table_arboles_inventario').appendGrid
     initRows: 20,
@@ -148,22 +149,28 @@ form_parcela_submit = (especies) ->
       removeLast: true
       moveUp: true
       moveDown: true
+    beforeRowRemove: (caller, rowIndex) ->
+      rowIndex += 1
+      nro_arbol_delete = $('#table_arboles_inventario_nro_arbol_' + rowIndex).val()
+      bi_delete = $('#table_arboles_inventario_bi_' + rowIndex).val()
+      return confirm('¿Está seguro que desea eliminar el árbol?')
+    afterRowRemoved: (caller, rowIndex) ->
+      remove_tree(nro_arbol_delete, bi_delete);
 
   $('#send_form').click ->
     $('#table_arboles_inventario').appendGrid('removeEmptyRows')
     send_form()
 
-  table_behavior()
+  table_behavior(nombre_especies)
 
   $('.append').click ->
-    table_behavior()
+    table_behavior(nombre_especies)
 
 
 
 
 send_form = ->
   form = $('#form-parcela-inventario , #form-parcela-inventario-1').serialize()
-  console.log(form)
   $.ajax
     url: '/mediciones_inventario_estatico/save'
     type: 'POST'
@@ -172,8 +179,20 @@ send_form = ->
     data: form
     success: (data) ->
       console.log(data)
+      setTimeout ->
+        toastr.options = {
+          closeButton: true,
+          progressBar: true,
+          showMethod: 'slideDown',
+          timeOut: 2000
+        };
+        if data == 'true'
+          toastr.success('Se han guardado los datos con éxito');
+        else
+          toastr.warning('Ocurrio un error guardando los datos');
+        300
 
-table_behavior = ->
+table_behavior = (nombre_especies) ->
 
   #FUNCION PARA PONER EL NUMERO DEL CUADRANTE DEL ARBOL SELECCIONADO EN EL SIGUIENTE ARBOL
   $(".nro_cuadricula").blur ->
@@ -210,5 +229,32 @@ table_behavior = ->
       $('#table_arboles_inventario_nro_arbol_' + row ).val(num)
 
   #ELIMINAR ARBOL
-  $('.remove').click ->
-    
+
+
+remove_tree = (nro_arbol, bi) ->
+  if((nro_arbol != '') && (bi != ''))
+    $.ajax
+      type: "POST"
+      url: "/mediciones_inventario_estatico/delete_arbol_ajax"
+      dataType: "JSON"
+      data:
+        nro_arbol: nro_arbol
+        bi: bi
+        tipo_parcela: $('#tipo_parcela_inventario_select').val()
+        parcela_manejo_id: $('parcela_manejo_id').val()
+      success: (data) ->
+        setTimeout ->
+          toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            showMethod: 'slideDown',
+            timeOut: 2000
+          };
+          if data == 'true'
+            toastr.success('Árbol eliminado con éxito');
+          else
+            toastr.warning('Ocurrio un error eliminando el árbol');
+          300
+
+
+

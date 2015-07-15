@@ -34,7 +34,7 @@
               Inventario de:
             .col-sm-8
               = select_tag :tipo_parcela_inventario, options_from_collection_for_select(TipoParcelaInventario.all, :id, :tipo_human), {include_blank: 'Tipo de Parcela de Inventario', class: 'form-control', id: 'tipo_parcela_inventario_select'}
-              = hidden_field_tag :parcela_manejo_id, params[:parcela_id]
+              = hidden_field_tag :parcela_manejo_id, params[:parcela_id], id: 'parcela_manejo_id'
 
   %div#form_tipo_parcela
     .text-center#loading_form_tipo_parcela{style: 'display:none;'}
