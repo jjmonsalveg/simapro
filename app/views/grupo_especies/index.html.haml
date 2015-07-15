@@ -1,58 +1,66 @@
--#= provide(:title, "#{current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Simapro'} - Cuencas")
+= provide(:title, 'Simapro - Listar Grupo Especie')
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     %h2
-      %i.fa.fa-pagelines
-      -#= current_user.unidad_ordenacion.reserva_forestal.nombre rescue 'Reserva'
-      -#\- Cuencas
-    %ol.breadcrumb
-      %li
-        = link_to 'Inicio', root_url
-      %li.active
-        %strong
-          -#Cuencas
+      %i.fa.fa-tree
+      Grupo Especie
+
 .wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
-  .row
-    .col-lg-12
-      .ibox.float-e-margins
-        .ibox-content
-          .row
-            .col-sm-3
-              = link_to new_grupo_especie_path, class: 'btn btn-primary btn-responsive' do
-                Nuevo Grupo de Especies
-                %i.fa.fa-plus
-          %br
-          %br
-          .row
-            .col-md-12
-              .table-responsive
-                %table.table.table-striped.table-bordered.table-hover.datatable-table
-                  %thead
-                    %tr
-
-                      %th Codigo
-
-                      %th Nombre
-
-                      %th
-                      %th
-                  %tbody
-                    - @grupo_especies.each do |grupo_especie|
+  - if @grupo_especies.empty?
+    - if can? :create, GrupoEspecie
+      .row
+        .col-md-12.col-md-offset-0
+          %ul.text-muted.leyenda
+            %li.text-justify
+              Puede registrar un Grupo Especie haciendo click en
+              %span.amarillo
+                Nuevo Grupo
+    .ibox-content.text-center
+      %h3.font-bold No hay Grupo Especie Registrados
+      - if can? :create, GrupoEspecie
+        =link_to  'Nuevo Grupo',new_grupo_especie_path ,  class: 'btn btn-primary pull-center'
+  -else
+    .row
+      .col-lg-12
+        .ibox.float-e-margins
+          .ibox-content
+            .row
+              .col-sm-3
+                - if can? :create, GrupoEspecie
+                  = link_to new_grupo_especie_path, class: 'btn btn-primary btn-responsive' do
+                    Nuevo Grupo de Especies
+                    %i.fa.fa-plus
+            %br
+            %br
+            .row
+              .col-md-12
+                .table-responsive
+                  %table.table.table-striped.table-bordered.table-hover.datatable-table
+                    %thead
                       %tr
 
-                        %td= grupo_especie.codigo
+                        %th Código
 
-                        %td= grupo_especie.nombre
+                        %th Nombre
 
-                        %td
-                          = link_to grupo_especie,  rel: 'tooltip',  title: 'Ver' do
-                            %i.fa.fa-search
-                            &nbsp;
-                            &nbsp;
-                          = link_to edit_grupo_especie_path(grupo_especie), 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Editar' do
-                            %i.fa.fa-edit
-                            &nbsp;
-                            &nbsp;
-                          = link_to grupo_especie, data: { confirm: '¿Está seguro de realizar esta acción?' }, method: :delete, 'data-toggle'=> 'tooltip', 'data-placement' => 'left',  'title' => 'Eliminar' do
-                            %i.fa.fa-trash
-                        %td
+                        %th Acciones
+                        %th
+                    %tbody
+                      - @grupo_especies.each do |grupo_especie|
+                        %tr
+
+                          %td= grupo_especie.codigo
+
+                          %td= grupo_especie.nombre
+
+                          %td.text-center
+                            - if can? :view, GrupoEspecie
+                              = link_to grupo_especie do
+                                %i.fa.fa-search
+                            - if can? :update, GrupoEspecie
+                              = link_to  edit_grupo_especie_path(grupo_especie) do
+                                %i.fa.fa-pencil-square-o
+                            - if can? :destroy, GrupoEspecie
+                              = link_to  grupo_especie, method: :delete, data: { confirm: '¿Seguro que desea Eliminar Grupo?' } do
+                                %i.fa.fa-trash-o
+                          %td

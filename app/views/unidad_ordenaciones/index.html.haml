@@ -23,7 +23,7 @@
     .ibox-content.text-center
       %h3.font-bold No hay Unidades de Ordenación Registradas
       - if can? :create, UnidadOrdenacion
-        =link_to  'Nueva Unidad de Ordenación',new_unidad_ordenacion_path ,  class: 'btn btn-primary pull-center'
+        =link_to  'Nueva Unidad',new_unidad_ordenacion_path ,  class: 'btn btn-primary pull-center'
   -else
     .row
       .col-md-12.col-md-offset-0
@@ -57,8 +57,8 @@
                           %td= unidad_ordenacion.codigo
                           %td= unidad_ordenacion.reserva_forestal.nombre
                           %td= unidad_ordenacion.nro_contrato
-                          %td= unidad_ordenacion.fecha_otorgacion
-                          %td= unidad_ordenacion.fecha_vence
+                          %td= unidad_ordenacion.fecha_otorgamiento
+                          %td= unidad_ordenacion.fecha_vencimiento
                           %td= unidad_ordenacion.area
                           %td
                             - if can? :view, UnidadOrdenacion

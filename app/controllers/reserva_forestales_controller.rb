@@ -56,6 +56,12 @@ class ReservaForestalesController < ApplicationController
     end
   end
 
+  def default_or_value_view(param, value)
+    param.nil? ? value : param
+  end
+
+  helper_method :default_or_value_view
+
   private
     def set_reserva_forestal
       @reserva_forestal = ReservaForestal.find(params[:id])
