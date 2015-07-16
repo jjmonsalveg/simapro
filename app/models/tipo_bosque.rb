@@ -10,6 +10,7 @@
 
 class TipoBosque < ActiveRecord::Base
   has_many :unidad_manejos
+  has_many :tabla_alturas
 
   def nombre_h
     self.nombre.capitalize.humanize
