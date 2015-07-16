@@ -1,6 +1,6 @@
 class MedicionesInventarioController < ApplicationController
   before_action :authenticate_user!
-  authorize_resource class: :mediciones_inventario
+  # authorize_resource class: :mediciones_inventario
 
   respond_to :html, :json
 

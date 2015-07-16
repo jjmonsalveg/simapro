@@ -4,7 +4,7 @@ class CreateEcuacionVolumenes < ActiveRecord::Migration
       t.integer :dap_inicial
       t.integer :dap_final
       t.string :ecuacion_volumen
-
+      t.references :tipo_bosque, index: true
       t.timestamps
     end
   end

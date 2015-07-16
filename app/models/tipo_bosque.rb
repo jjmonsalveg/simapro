@@ -11,6 +11,8 @@
 class TipoBosque < ActiveRecord::Base
   has_many :unidad_manejos
   has_many :tabla_alturas
+  has_many :tabla_volumens
+  has_many :ecuacion_volumenes
 
   def nombre_h
     self.nombre.capitalize.humanize

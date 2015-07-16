@@ -18,7 +18,7 @@ class ParcelaInventario < ActiveRecord::Base
   def create_or_update_medicion_inventario(params, tipo_parcela_inventario_id)
     medicion_parcela = self.medicion_parcela_inventarios.find_by(tipo_parcela_inventario_id: tipo_parcela_inventario_id)
     medicion_parcela.nil? ?
-      (medicion_parcela = self.medicion_parcela_inventarios.create!(params.merge(tipo_parcela_inventario_id: tipo_parcela_inventario_id))) :
+      (medicion_parcela = self.medicion_parcela_inventarios.create(params.merge(tipo_parcela_inventario_id: tipo_parcela_inventario_id))) :
       medicion_parcela.update(params)
     return medicion_parcela
   end
