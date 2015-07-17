@@ -7,31 +7,38 @@ class MedicionParcelaInventario < ActiveRecord::Base
 
 
   def create_or_update_arbol(nro_cuadricula, fi, nro_arbol, bi, especie, dap_cap, altura_fuste, calidad, empresa_forestal_id)
-    arbol = self.arbol_inventario_estaticos.find_by(nro_arbol: nro_arbol, bi: bi)
-    especie = Especie.find_by(nombre_comun: especie, empresa_forestal_id: empresa_forestal_id) ||
-              Especie.create(nombre_comun: especie, empresa_forestal_id: empresa_forestal_id)
-    dap = self.medicion_dap ? dap_cap : (dap_cap / Math::PI)
-    area_basal = (Math::PI / 4) * (dap.to_f) * (dap.to_f)
-    puts dap
-    eq_volumen = EcuacionVolumen.where("ecuacion_volumenes.dap_inicial >= ? AND ecuacion_volumenes.dap_final <= ?", dap, dap).first.ecuacion_volumen
-
-    puts eq_volumen
-    if arbol.nil?
-      self.arbol_inventario_estaticos.create(nro_cuadricula: nro_cuadricula,
-                                             tipo_fisiografia: fi,
-                                             nro_arbol: nro_arbol,
-                                             bi: bi,
-                                             dap: dap,
-                                             altura_fuste: altura_fuste,
-                                             tipo_calidad_fuste: calidad,
-                                              especie: especie )
+    if nro_arbol.present? && bi.present?
+      arbol = self.arbol_inventario_estaticos.find_by(nro_arbol: nro_arbol, bi: bi)
+      especie = Especie.find_by(nombre_comun: especie, empresa_forestal_id: empresa_forestal_id) ||
+                Especie.create(nombre_comun: especie, empresa_forestal_id: empresa_forestal_id)
+      dap = self.medicion_dap ? dap_cap : (dap_cap / Math::PI)
+      area_basal = (Math::PI / 4) * (dap.to_f) * (dap.to_f)
+      eq_volumen = '0'
+      eq_volumen = EcuacionVolumen.where("dap_inicial <= ? AND dap_final >= ?", dap, dap).first.ecuacion_volumen if dap.present?
+      volumen = Dentaku(eq_volumen, d: dap.to_f, h: altura_fuste.to_f)
+      if arbol.nil?
+        self.arbol_inventario_estaticos.create(nro_cuadricula: nro_cuadricula,
+                                               tipo_fisiografia: fi,
+                                               nro_arbol: nro_arbol,
+                                               bi: bi,
+                                               dap: dap,
+                                               altura_fuste: altura_fuste,
+                                               tipo_calidad_fuste: calidad,
+                                               especie: especie,
+                                               volumen: volumen,
+                                               area_basal: area_basal)
+      else
+        arbol.update(nro_cuadricula: nro_cuadricula,
+                     tipo_fisiografia: fi,
+                     dap: dap,
+                     altura_fuste: altura_fuste,
+                     tipo_calidad_fuste: calidad,
+                     especie: especie,
+                     volumen: volumen,
+                     area_basal: area_basal)
+      end
     else
-      arbol.update(nro_cuadricula: nro_cuadricula,
-                   tipo_fisiografia: fi,
-                   dap: dap,
-                   altura_fuste: altura_fuste,
-                   tipo_calidad_fuste: calidad,
-                   especie: especie)
+      return false
     end
   end
 
