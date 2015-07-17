@@ -167,7 +167,10 @@ form_parcela_submit = (especies,  arboles) ->
     afterRowRemoved: (caller, rowIndex) ->
       remove_tree(nro_arbol_delete, bi_delete);
   else
-    $('#table_arboles_inventario').appendGrid 'init',
+    arboles_init = new Array();
+    $.each arboles, (index, arbol) ->
+      arboles_init.push({'numero_cuadricula': '1','fi': 'Ba', 'nro_arbol': '1', 'bi': '1', 'especie': 'shine on', 'dap_cap': '168.9', 'altura_fuste': '123', 'calidad': 'B' })
+    $('#table_arboles_inventario').appendGrid
       initRows: 20,
       columns: [
         {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
@@ -179,11 +182,7 @@ form_parcela_submit = (especies,  arboles) ->
         {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
         {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
       ]
-      initData: [
-        $.each arboles, (index, arbol) ->
-          console.log(arbol)
-          {'nro_cuadricula': '1','fi': 'Ba', 'nro_arbol': '1', 'bi': '1', 'especie': 'shine on', 'dap_cap': '168.9', 'altura_fuste': '123', 'calidad': 'B' }
-      ]
+      initData: arboles_init
       hideRowNumColumn: true
       hideButtons:
         removeLast: true
