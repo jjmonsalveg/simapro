@@ -91,6 +91,7 @@ Myapp::Application.routes.draw do
 
   end
 
+  # Mediciones de Inventario
   get 'mediciones_inventario_estatico', to: 'mediciones_inventario#wf_estatico', as: :mediciones_inventario_estatico
   post 'mediciones_inventario_estatico/select_parcela_inventario', to: 'mediciones_inventario#wf_select_parcela_inventario'
   post 'mediciones_inventario_estatico/load_form', to: 'mediciones_inventario#wf_load_form'
@@ -99,8 +100,10 @@ Myapp::Application.routes.draw do
   put 'mediciones_inventario_estatico/save', to: 'mediciones_inventario#wf_save_estatico', as: :mediciones_inventario_save_estatico_put, defaults: { format: :json }
   post 'mediciones_inventario_estatico/load_tipo_parcela', to: 'mediciones_inventario#wf_load_form_tipo_parcela'
   post 'mediciones_inventario_estatico/load_especies', to: 'mediciones_inventario#wf_load_especies', as: :mediciones_inventario_load_especies, defaults: { format: :json }
+  post 'mediciones_inventario_estatico/load_arboles', to: 'mediciones_inventario#wf_load_arboles', as: :mediciones_inventario_load_arboles, defaults: { format: :json }
   post 'mediciones_inventario_estatico/save_especie', to: 'mediciones_inventario#wf_save_especie', as: :mediciones_inventario_save_especie
   post 'mediciones_inventario_estatico/delete_arbol_ajax', to: 'mediciones_inventario#wf_delete_arbol_ajax', as: :mediciones_inventario_estatico_delete_arbol_ajax
+
   
   
   namespace :dynamic_select do

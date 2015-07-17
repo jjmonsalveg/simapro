@@ -24,6 +24,15 @@ class MedicionesInventarioController < ApplicationController
     render partial: 'form_tipo_estatico'
   end
 
+  def wf_load_arboles
+    parcela_inventario = ParcelaInventario.find_by(parcela_manejo_id: params[:parcela_id]) || ParcelaInventario.new
+    medicion_parcela_inventario = parcela_inventario.medicion_parcela_inventarios.find_by(tipo_parcela_inventario_id: params[:tipo_parcela_inventario]) || parcela_inventario.medicion_parcela_inventarios.build
+    @arbol_inventario_estaticos = medicion_parcela_inventario.arbol_inventario_estaticos
+    respond_to do |format|
+      format.json  { render json:  @arbol_inventario_estaticos }
+    end
+  end
+
 
   def wf_save_estatico
     MedicionesInventario.save_mediciones_inventario(params, current_user)

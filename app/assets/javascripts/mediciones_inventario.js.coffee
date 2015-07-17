@@ -87,6 +87,7 @@ load_formulario = ->
 load_tipo_parcela = ->
 
   especies = new Array();
+  arboles = new Array();
 
   $('#tipo_parcela_inventario_select').change ->
     if $(this).val() != ''
@@ -104,13 +105,22 @@ load_tipo_parcela = ->
           datetime_pickers()
           $.ajax
             type: "POST"
-            url: "/mediciones_inventario_estatico/load_especies"
+            url: "/mediciones_inventario_estatico/load_arboles"
             dataType: "json"
             data:
-              parcela_id: $('#parcela_inventario_id').val()
+              parcela_id: $('#parcela_manejo_id').val()
+              tipo_parcela_inventario: $('#tipo_parcela_inventario_select').val()
             success: (data) ->
-              especies = data
-              form_parcela_submit(especies)
+              arboles = data
+              $.ajax
+                type: "POST"
+                url: "/mediciones_inventario_estatico/load_especies"
+                dataType: "json"
+                data:
+                  parcela_id: $('#parcela_manejo_id').val()
+                success: (data) ->
+                  especies = data
+                  form_parcela_submit(especies, arboles)
     else
       $('#form_tipo_parcela').empty()
 
@@ -121,7 +131,7 @@ datetime_pickers = ->
   $('#fecha_fin_datetimepicker').datetimepicker
     locale: 'es'
 
-form_parcela_submit = (especies) ->
+form_parcela_submit = (especies,  arboles) ->
 
   #CREACIÓN DE ARRAY DE ESPECIES QUE VIENEN DE LA TABLA
   nombre_especies = [];
@@ -129,8 +139,10 @@ form_parcela_submit = (especies) ->
     nombre_especies.push(especie.nombre_comun)
   nro_arbol_delete = ''
   bi_delete = ''
+
   #TABLA TIPO EXCEL PARA LA INSERCION DE ARBOLES
-  $('#table_arboles_inventario').appendGrid
+  if jQuery.isEmptyObject(arboles)
+    $('#table_arboles_inventario').appendGrid
     initRows: 20,
     columns: [
       {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
@@ -154,6 +166,36 @@ form_parcela_submit = (especies) ->
       return confirm('¿Está seguro que desea eliminar el árbol?')
     afterRowRemoved: (caller, rowIndex) ->
       remove_tree(nro_arbol_delete, bi_delete);
+  else
+    $('#table_arboles_inventario').appendGrid 'init',
+      initRows: 20,
+      columns: [
+        {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
+        {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { Ba: 'B', La: 'L', Ca: 'C'}, ctrlClass: 'fi'},
+        {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
+        {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
+        {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
+        {name: 'dap_cap', display: 'CAP/DAP', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
+        {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
+        {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
+      ]
+      initData: [
+        $.each arboles, (index, arbol) ->
+          console.log(arbol)
+          {'nro_cuadricula': '1','fi': 'Ba', 'nro_arbol': '1', 'bi': '1', 'especie': 'shine on', 'dap_cap': '168.9', 'altura_fuste': '123', 'calidad': 'B' }
+      ]
+      hideRowNumColumn: true
+      hideButtons:
+        removeLast: true
+        moveUp: true
+        moveDown: true
+      beforeRowRemove: (caller, rowIndex) ->
+        rowIndex += 1
+        nro_arbol_delete = $('#table_arboles_inventario_nro_arbol_' + rowIndex).val()
+        bi_delete = $('#table_arboles_inventario_bi_' + rowIndex).val()
+        return confirm('¿Está seguro que desea eliminar el árbol?')
+      afterRowRemoved: (caller, rowIndex) ->
+        remove_tree(nro_arbol_delete, bi_delete);
 
   $('#send_form').click ->
     $('#table_arboles_inventario').appendGrid('removeEmptyRows')
