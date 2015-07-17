@@ -97,7 +97,7 @@ load_tipo_parcela = ->
         dataType: "HTML"
         data:
           tipo_parcela_inventario: $(this).val()
-          parcela_id: $('#parcela_inventario_id').val()
+          parcela_id: $('#parcela_manejo_id').val()
         success: (data) ->
           $('#form_tipo_parcela').empty()
           $('#form_tipo_parcela').append(data)
@@ -116,11 +116,9 @@ load_tipo_parcela = ->
 
 datetime_pickers = ->
   $('#fecha_inicio_datetimepicker').datetimepicker
-    viewMode: 'months',
     locale: 'es'
 
   $('#fecha_fin_datetimepicker').datetimepicker
-    viewMode: 'months',
     locale: 'es'
 
 form_parcela_submit = (especies) ->

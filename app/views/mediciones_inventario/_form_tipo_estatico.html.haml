@@ -13,7 +13,7 @@
                       = g.label :fecha_inicio, class: 'col-sm-5 control-label' do
                         Fecha y Hora de Inicio:
                       .col-sm-7.input-group.date#fecha_inicio_datetimepicker
-                        = g.text_field :fecha_inicio, class: 'form-control'
+                        = g.text_field :fecha_inicio, value: (g.object.fecha_inicio.present? ? g.object.fecha_inicio.strftime("%d/%m/%Y %H:%M") : ''), class: 'form-control'
                         %span.input-group-addon
                           %span.fa.fa-calendar
                   .col-md-6
@@ -21,7 +21,7 @@
                       = g.label :fecha_fin, class: 'col-sm-5 control-label' do
                         Fecha y Hora Fin:
                       .col-sm-7.input-group.date#fecha_fin_datetimepicker
-                        = g.text_field :fecha_fin, class: 'form-control'
+                        = g.text_field :fecha_fin, value: (g.object.fecha_fin.present? ? g.object.fecha_fin.strftime("%d/%m/%Y %H:%M") : ''), class: 'form-control'
                         %span.input-group-addon
                           %span.fa.fa-calendar
                 .row
