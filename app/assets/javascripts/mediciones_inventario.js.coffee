@@ -4,6 +4,8 @@
 #= require jquery.appendGrid/jquery.appendGrid-1.5.2.js
 #= require moment/es
 #= require jquery-validation-1.13.1/jquery.validate
+#= require jquery.inputmask/jquery.inputmask.js
+#= require jquery.inputmask/jquery.inputmask.regex.extensions
 
 jQuery(document).ready ($) ->
 
@@ -67,6 +69,7 @@ jQuery(document).ready ($) ->
 
 
 load_formulario = ->
+
   $('#parcela_manejo_select').change ->
     if $(this).val() != ''
       $('#loading_formulario').show()
@@ -85,13 +88,17 @@ load_formulario = ->
       $('#form_parcela').empty()
 
 load_tipo_parcela = ->
+  $('#nro_arboles_registrar').inputmask 'Regex',
+    regex: '[0-9]{1..3}'
 
   especies = new Array();
   arboles = new Array();
 
   $('#tipo_parcela_inventario_select').change ->
-    if $(this).val() != ''
+    nro_arboles = $('#nro_arboles_registrar').val()
+    if ($(this).val() != '') && (nro_arboles != '')
       $('#loading_form_tipo_parcela').show()
+      $('#nro_arboles_nulo').hide()
       $.ajax
         type: "POST"
         url: "/mediciones_inventario_estatico/load_tipo_parcela"
@@ -120,9 +127,12 @@ load_tipo_parcela = ->
                   parcela_id: $('#parcela_manejo_id').val()
                 success: (data) ->
                   especies = data
-                  form_parcela_submit(especies, arboles)
+                  form_parcela_submit(especies, arboles, nro_arboles)
     else
       $('#form_tipo_parcela').empty()
+      $('#nro_arboles_nulo').show()
+      $('#nro_arboles_registrar').focus()
+
 
 datetime_pickers = ->
   $('#fecha_inicio_datetimepicker').datetimepicker
@@ -131,7 +141,12 @@ datetime_pickers = ->
   $('#fecha_fin_datetimepicker').datetimepicker
     locale: 'es'
 
-form_parcela_submit = (especies,  arboles) ->
+form_parcela_submit = (especies,  arboles, nro_arboles) ->
+
+  console.log(nro_arboles)
+
+  $('#loading_table_arboles').hide()
+  $('#div_table_arboles').show()
 
   #CREACIÓN DE ARRAY DE ESPECIES QUE VIENEN DE LA TABLA
   nombre_especies = [];
@@ -143,7 +158,7 @@ form_parcela_submit = (especies,  arboles) ->
   #TABLA TIPO EXCEL PARA LA INSERCION DE ARBOLES
   if jQuery.isEmptyObject(arboles)
     $('#table_arboles_inventario').appendGrid
-      initRows: 20,
+      initRows: nro_arboles,
       columns: [
         {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
         {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { Ba: 'B', La: 'L', Ca: 'C'}, ctrlClass: 'fi'},
@@ -168,7 +183,7 @@ form_parcela_submit = (especies,  arboles) ->
         remove_tree(nro_arbol_delete, bi_delete);
   else
     $('#table_arboles_inventario').appendGrid
-      initRows: 20,
+      initRows: nro_arboles,
       columns: [
         {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
         {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { Ba: 'B', La: 'L', Ca: 'C'}, ctrlClass: 'fi'},
