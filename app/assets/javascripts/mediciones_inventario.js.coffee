@@ -143,33 +143,30 @@ form_parcela_submit = (especies,  arboles) ->
   #TABLA TIPO EXCEL PARA LA INSERCION DE ARBOLES
   if jQuery.isEmptyObject(arboles)
     $('#table_arboles_inventario').appendGrid
-    initRows: 20,
-    columns: [
-      {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
-      {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { Ba: 'B', La: 'L', Ca: 'C'}, ctrlClass: 'fi'},
-      {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
-      {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
-      {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
-      {name: 'dap_cap', display: 'CAP/DAP', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
-      {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
-      {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
-    ]
-    hideRowNumColumn: true
-    hideButtons:
-      removeLast: true
-      moveUp: true
-      moveDown: true
-    beforeRowRemove: (caller, rowIndex) ->
-      rowIndex += 1
-      nro_arbol_delete = $('#table_arboles_inventario_nro_arbol_' + rowIndex).val()
-      bi_delete = $('#table_arboles_inventario_bi_' + rowIndex).val()
-      return confirm('¿Está seguro que desea eliminar el árbol?')
-    afterRowRemoved: (caller, rowIndex) ->
-      remove_tree(nro_arbol_delete, bi_delete);
+      initRows: 20,
+      columns: [
+        {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
+        {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { Ba: 'B', La: 'L', Ca: 'C'}, ctrlClass: 'fi'},
+        {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
+        {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
+        {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
+        {name: 'dap_cap', display: 'CAP/DAP', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
+        {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
+        {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
+      ]
+      hideRowNumColumn: true
+      hideButtons:
+        removeLast: true
+        moveUp: true
+        moveDown: true
+      beforeRowRemove: (caller, rowIndex) ->
+        rowIndex += 1
+        nro_arbol_delete = $('#table_arboles_inventario_nro_arbol_' + rowIndex).val()
+        bi_delete = $('#table_arboles_inventario_bi_' + rowIndex).val()
+        return confirm('¿Está seguro que desea eliminar el árbol?')
+      afterRowRemoved: (caller, rowIndex) ->
+        remove_tree(nro_arbol_delete, bi_delete);
   else
-    arboles_init = new Array();
-    $.each arboles, (index, arbol) ->
-      arboles_init.push({'numero_cuadricula': '1','fi': 'Ba', 'nro_arbol': '1', 'bi': '1', 'especie': 'shine on', 'dap_cap': '168.9', 'altura_fuste': '123', 'calidad': 'B' })
     $('#table_arboles_inventario').appendGrid
       initRows: 20,
       columns: [
@@ -182,7 +179,7 @@ form_parcela_submit = (especies,  arboles) ->
         {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
         {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
       ]
-      initData: arboles_init
+      initData: arboles
       hideRowNumColumn: true
       hideButtons:
         removeLast: true
@@ -217,7 +214,6 @@ send_form = ->
     beforeSend: (xhr) -> xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
     data: form
     success: (data) ->
-      console.log(data)
       setTimeout ->
         toastr.options = {
           closeButton: true,

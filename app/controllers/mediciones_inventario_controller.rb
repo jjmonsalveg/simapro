@@ -27,9 +27,21 @@ class MedicionesInventarioController < ApplicationController
   def wf_load_arboles
     parcela_inventario = ParcelaInventario.find_by(parcela_manejo_id: params[:parcela_id]) || ParcelaInventario.new
     medicion_parcela_inventario = parcela_inventario.medicion_parcela_inventarios.find_by(tipo_parcela_inventario_id: params[:tipo_parcela_inventario]) || parcela_inventario.medicion_parcela_inventarios.build
-    @arbol_inventario_estaticos = medicion_parcela_inventario.arbol_inventario_estaticos
+    arbol_inventario_estaticos = Array.new
+    medicion_parcela_inventario.arbol_inventario_estaticos.each do |arbol|
+      arbol_hash = Hash.new
+      arbol_hash[:numero_cuadricula] = arbol.nro_cuadricula
+      arbol_hash[:fi] = arbol.tipo_fisiografia
+      arbol_hash[:nro_arbol] = arbol.nro_arbol
+      arbol_hash[:bi] = arbol.bi
+      arbol_hash[:especie] = arbol.especie.nombre_comun rescue ''
+      arbol_hash[:dap_cap] = arbol.dap
+      arbol_hash[:altura_fuste] = arbol.altura_fuste
+      arbol_hash[:calidad] = arbol.tipo_calidad_fuste
+      arbol_inventario_estaticos << arbol_hash
+    end
     respond_to do |format|
-      format.json  { render json:  @arbol_inventario_estaticos }
+      format.json  { render json:  arbol_inventario_estaticos.to_json }
     end
   end
 
