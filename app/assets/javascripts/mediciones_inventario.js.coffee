@@ -165,7 +165,7 @@ form_parcela_submit = (especies,  arboles, nro_arboles) ->
         {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
         {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
         {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
-        {name: 'dap_cap', display: 'DAP/CAP', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
+        {name: 'dap_cap', display: 'DAP/CAP', type: 'text', ctrlAttr: { maxlength: 6 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
         {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
         {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
       ]
@@ -190,7 +190,7 @@ form_parcela_submit = (especies,  arboles, nro_arboles) ->
         {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
         {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
         {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
-        {name: 'dap_cap', display: 'DAP/CAP', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
+        {name: 'dap_cap', display: 'DAP/CAP', type: 'text', ctrlAttr: { maxlength: 6 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
         {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
         {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
       ]
@@ -218,7 +218,11 @@ form_parcela_submit = (especies,  arboles, nro_arboles) ->
     table_behavior(nombre_especies)
 
 
+  valores_maximos_dap_cap()
 
+  restricciones_numericas()
+
+  cambio_dap_cap()
 
 send_form = ->
   form = $('#form-parcela-inventario , #form-parcela-inventario-1').serialize()
@@ -308,3 +312,49 @@ remove_tree = (nro_arbol, bi) ->
 
 
 
+valores_maximos_dap_cap = ->
+
+  $('.dap_cap').keyup ->
+    if $('#parcela_inventario_medicion_parcela_inventario_medicion_dap_true').prop('checked')
+      if $(this).val() > 250
+        $(this).val 250
+    else
+      if $(this).val() > 1800
+        $(this).val 1800
+
+restricciones_numericas = ->
+
+  $('.dap_cap').inputmask 'Regex',
+    regex: '[0-9.]{1..6}'
+
+  $('.altura_fuste').inputmask 'Regex',
+    regex: '[0-9.]{1..6}'
+
+  $('.nro_cuadricula').inputmask 'Regex',
+    regex: '[0-9]'
+
+  $('.nro_arbol').inputmask 'Regex',
+    regex: '[0-9]'
+
+  $('.bi').inputmask 'Regex',
+    regex: '[0-9]'
+
+cambio_dap_cap = ->
+
+  $('#parcela_inventario_medicion_parcela_inventario_medicion_dap_true').click ->
+    $(':input[class=dap_cap]').each (index, element) ->
+      old_value = $('#' + this.id).val()
+      if old_value != ''
+        new_value = (old_value / Math.PI).toFixed(2)
+      else
+        new_value = old_value
+      $('#' + this.id).val(new_value)
+
+  $('#parcela_inventario_medicion_parcela_inventario_medicion_dap_false').click ->
+    $(':input[class=dap_cap]').each (index, element) ->
+      old_value = $('#' + this.id).val()
+      if old_value != ''
+        new_value = (old_value * Math.PI).toFixed(2)
+      else
+        new_value = old_value
+      $('#' + this.id).val(new_value)

@@ -35,7 +35,7 @@ class MedicionesInventarioController < ApplicationController
       arbol_hash[:nro_arbol] = arbol.nro_arbol
       arbol_hash[:bi] = arbol.bi
       arbol_hash[:especie] = arbol.especie.nombre_comun rescue ''
-      arbol_hash[:dap_cap] = arbol.dap
+      arbol_hash[:dap_cap] = arbol.medicion_parcela_inventario.medicion_dap ? arbol.dap : (arbol.dap * Math::PI).round(2) rescue ''
       arbol_hash[:altura_fuste] = arbol.altura_fuste
       arbol_hash[:calidad] = arbol.tipo_calidad_fuste
       arbol_inventario_estaticos << arbol_hash
