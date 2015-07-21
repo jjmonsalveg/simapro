@@ -1,0 +1,91 @@
+= provide(:title, "Inventario Estático - Nivel Parcela")
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    %h2
+      %i.fa.fa-expand
+      Inventario Estático - Nivel Parcela
+    %ol.breadcrumb
+      %li
+        = link_to 'Inicio', root_url
+      %li.active
+        %strong
+          Reporte de la Masa Forestal por Criterio Floristico/Calidad
+.wrapper.wrapper-content.animated.fadeInRight#pagina_index_tiendas
+  .row.border-bottom.white-bg
+    .col-lg-12
+      %h2
+        Parametros de Generación del Reporte
+      .row.form-horizontal
+        .col-md-6
+          .form-group
+            = label_tag :subcuenca, class: 'col-sm-4 control-label' do
+              Subcuenca:
+            .col-sm-8
+              = text_field_tag :subcuenca, current_user.unidad_manejo.nombre ,  class: 'form-control', readonly: true
+        .col-md-6
+          .form-group
+            = label_tag :tipo_inventario, class: 'col-sm-4 control-label' do
+              Inventario de:
+            .col-sm-8
+              = select_tag :tipo_inventario, options_for_select(TipoParcelaInventario.all.collect { |p| [p.tipo_human, p.id]}), class: 'form-control'
+        .col-md-6
+          .form-group
+            = label_tag :parcela, class: 'col-sm-4 control-label' do
+              Parcela Nro:
+            .col-sm-8
+              = select_tag :parcela, options_from_collection_for_select(current_user.unidad_manejo.parcela_inventarios, :id, :azimut), include_blank: 'Seleccione un bloque de manejo', class: 'form-control'
+        .col-md-6
+          .form-group
+            = label_tag :especificacion_diametrica, class: 'col-sm-6 control-label' do
+              Especificación Diamétrica >=
+            .col-sm-6
+              = text_field_tag :especificacion_diametrica, 0 ,  class: 'form-control'
+      .form-group
+        .col-sm-6.col-sm-offset-3
+          %fieldset
+            %legend
+              = 'Criterio Florístico/Calidad'
+            %div{class: "text-center"}
+              %label{class: 'radio-inline'}
+                = radio_button_tag(:criterio, "especie", checked: true)
+                = 'Especie'
+              %label{class: 'radio-inline'}
+                = radio_button_tag(:criterio, "grupo_especie")
+                = 'Grupo de Especies'
+              %label{class: 'radio-inline'}
+                = radio_button_tag(:criterio, "calidad_fuste")
+                = 'Calidad de Fuste'
+      .row.form-horizontal
+        .col-md-4
+          %a.btn.btn-info#send_form
+            Procesar
+            %i.fa.fa-cog
+      %hr
+      .form-group
+        %fieldset
+          %legend
+            = 'Reporte'
+        .ibox.float-e-margins
+          .ibox-content.border-bottom
+            .row
+              .table-responsive.tabla-arboles-inventario
+                %table.table.table-striped.table-bordered.table-hover.datatable-table.center-table#table_reporte
+                  %thead
+                    %tr
+                      %th Criterio Floristico/Calidad
+                      %th Densidad (arb/ha)
+                      %th Área Basal (m²/ha)
+                      %th Volumen (m³/ha)
+                      %th Abundancia Efectiva
+                  %tbody
+              -#.col-md-4
+              -#  %a.btn.btn-primary#send_form
+              -#    Guardar
+              -#    %i.fa.fa-floppy-o
+
+
+
+  %div#parcela_inventario_medicion
+    .text-center#loading_parcela{style: 'display:none;'}
+      %h1
+        %i.fa.fa-spin.fa-spinner
