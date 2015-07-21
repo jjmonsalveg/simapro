@@ -22,4 +22,9 @@ class ParcelaInventario < ActiveRecord::Base
       medicion_parcela.update(params)
     return medicion_parcela
   end
+
+  def self.por_unidad_manejo(unidad_manejo_id)
+    return UnidadManejo.find(unidad_manejo_id).parcela_inventarios
+  end
+
 end

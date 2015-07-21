@@ -25,4 +25,5 @@ class Especie < ActiveRecord::Base
   belongs_to :empresa_forestal
   has_and_belongs_to_many :tipo_uso_especies, join_table: 'uso_especies'
   validates :nombre_comun, presence: true, uniqueness: true
+  validates :grupo_especie_id, presence: true
 end

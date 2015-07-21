@@ -32,6 +32,8 @@ class UnidadManejo < ActiveRecord::Base
   has_many :division_politico_territorial, as: :modelo
   has_many :municipios, through:  :division_politico_territorial
   has_many :bloque_manejos
+  has_many :parcela_manejos, through: :bloque_manejos
+  has_many :parcela_inventarios, through: :parcela_manejos
   belongs_to :tipo_bosque
 
   #DOCUMENTOS - NESTED ES OBLIGATORIO

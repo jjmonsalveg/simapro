@@ -1,6 +1,14 @@
 Myapp::Application.routes.draw do
 
 
+  get 'reporte_masa_forestalx_criterio', to: 'reporte_masa_forestalx_criterio#index', as: :reporte_masa_forestalx_criterio
+
+  post 'reporte_masa_forestalx_criterio/imprimir'
+
+  post 'reporte_masa_forestalx_criterio/exportar'
+
+  post 'reporte_masa_forestalx_criterio/procesar'
+
   # You can have the root of your site routed with "root"
   root to: 'static#index'
 
