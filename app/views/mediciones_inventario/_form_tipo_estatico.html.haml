@@ -1,7 +1,7 @@
 = form_for @parcela_inventario, url: {action: :wf_save_estatico}, html: {class: 'form-horizontal', id: 'form-parcela-inventario'} do |f|
   =f.fields_for @medicion_parcela_inventario do |g|
     = csrf_meta_tag
-    .row.border-bottom.white-bg
+    .row
       .col-md-12
         %br
         .row

@@ -2,17 +2,19 @@
   .col-md-12
     %br
     .row
-      .col-sm-12
+      .col-sm-8
         %h3
           Árboles de Inventario
+      .col-sm-4
+        %a.btn.btn-primary#send_form
+          Guardar Medición
+          %i.fa.fa-floppy-o
+    %br
     .row
-      .col-md-8
+      .col-md-12
         .table-responsive.tabla-arboles-inventario
           %table.center-table#table_arboles_inventario
-      .col-md-4
-        %a.btn.btn-primary#send_form
-          Guardar
-          %i.fa.fa-floppy-o
+
         -#.row
         -#  .col-md-12
         -#    .arboles-error-placement#divErrorPlacement
