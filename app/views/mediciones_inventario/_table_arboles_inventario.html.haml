@@ -1,17 +1,18 @@
-.row
+.row.border-bottom.white-bg
   .col-md-12
-    %h2
-      Árboles de Inventario
-    .ibox.float-e-margins
-      .ibox-content.border-bottom
-        .row
-          .col-md-8
-            .table-responsive.tabla-arboles-inventario
-              %table.center-table#table_arboles_inventario
-          .col-md-4
-            %a.btn.btn-primary#send_form
-              Guardar
-              %i.fa.fa-floppy-o
+    %br
+    .row
+      .col-sm-12
+        %h3
+          Árboles de Inventario
+    .row
+      .col-md-8
+        .table-responsive.tabla-arboles-inventario
+          %table.center-table#table_arboles_inventario
+      .col-md-4
+        %a.btn.btn-primary#send_form
+          Guardar
+          %i.fa.fa-floppy-o
         -#.row
         -#  .col-md-12
         -#    .arboles-error-placement#divErrorPlacement

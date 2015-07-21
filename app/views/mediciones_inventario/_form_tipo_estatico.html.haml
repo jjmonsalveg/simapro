@@ -1,57 +1,57 @@
 = form_for @parcela_inventario, url: {action: :wf_save_estatico}, html: {class: 'form-horizontal', id: 'form-parcela-inventario'} do |f|
   =f.fields_for @medicion_parcela_inventario do |g|
     = csrf_meta_tag
-    .row
+    .row.border-bottom.white-bg
       .col-md-12
-        .ibox.float-e-margins
-          .ibox-content
-            .row
-              .col-md-9
-                .row
-                  .col-md-6
-                    .form-group
-                      = g.label :fecha_inicio, class: 'col-sm-5 control-label' do
-                        Fecha y Hora de Inicio:
-                      .col-sm-7.input-group.date#fecha_inicio_datetimepicker
-                        = g.text_field :fecha_inicio, value: (g.object.fecha_inicio.present? ? g.object.fecha_inicio.strftime("%d/%m/%Y %H:%M") : ''), class: 'form-control'
-                        %span.input-group-addon
-                          %span.fa.fa-calendar
-                  .col-md-6
-                    .form-group
-                      = g.label :fecha_fin, class: 'col-sm-5 control-label' do
-                        Fecha y Hora Fin:
-                      .col-sm-7.input-group.date#fecha_fin_datetimepicker
-                        = g.text_field :fecha_fin, value: (g.object.fecha_fin.present? ? g.object.fecha_fin.strftime("%d/%m/%Y %H:%M") : ''), class: 'form-control'
-                        %span.input-group-addon
-                          %span.fa.fa-calendar
-                .row
-                  .col-md-6
-                    .form-group
-                      = g.label :tecnico, class: 'col-sm-5 control-label' do
-                        Ténico Forestal:
-                      .col-sm-7.input-group
-                        = g.text_field :tecnico, class: 'form-control'
-                  .col-md-6
-                    .form-group
-                      = g.label :baquiano, class: 'col-sm-5 control-label' do
-                        Baquiano:
-                      .col-sm-7.input-group
-                        = g.text_field :baquiano, class: 'form-control'
-              .col-md-3
-                .form-group
-                  .row
-                    = g.label :medicion_dap, class: 'col-sm-5 control-label' do
-                      Medición de:
-                  .row
-                    .col-sm-5.control-label
-                      = g.radio_button :medicion_dap, true, checked: true
-                      = g.label :medicion_dap do
-                        DAP
-                  .row
-                    .col-sm-5.control-label
-                      = g.radio_button :medicion_dap, false
-                      = g.label :medicion_dap do
-                        CAP
-          = render 'table_arboles_inventario', g: g
+        %br
+        .row
+          .col-md-4
+            .form-group
+              = g.label :fecha_inicio, class: 'col-sm-5 control-label' do
+                Fecha y Hora de Inicio:
+              .col-sm-7.input-group.date#fecha_inicio_datetimepicker
+                = g.text_field :fecha_inicio, value: (g.object.fecha_inicio.present? ? g.object.fecha_inicio.strftime("%d/%m/%Y %H:%M") : ''), class: 'form-control'
+                %span.input-group-addon
+                  %span.fa.fa-calendar
+          .col-md-4
+            .form-group
+              = g.label :fecha_fin, class: 'col-sm-5 control-label' do
+                Fecha y Hora Fin:
+              .col-sm-7.input-group.date#fecha_fin_datetimepicker
+                = g.text_field :fecha_fin, value: (g.object.fecha_fin.present? ? g.object.fecha_fin.strftime("%d/%m/%Y %H:%M") : ''), class: 'form-control'
+                %span.input-group-addon
+                  %span.fa.fa-calendar
+          .col-md-4
+            .form-group
+              .row
+                .col-sm-12
+                  = g.label :medicion_dap, class: 'col-sm-5 control-label' do
+                    Medición de:
+                  = g.radio_button :medicion_dap, true, checked: true
+                  = g.label :medicion_dap do
+                    DAP
+                  = g.radio_button :medicion_dap, false
+                  = g.label :medicion_dap do
+                    CAP
+        .row
+          .col-md-4
+            .form-group
+              = g.label :tecnico, class: 'col-sm-5 control-label' do
+                Ténico Forestal:
+              .col-sm-7.input-group
+                = g.text_field :tecnico, class: 'form-control'
+          .col-md-4
+            .form-group
+              = g.label :baquiano, class: 'col-sm-5 control-label' do
+                Baquiano:
+              .col-sm-7.input-group
+                = g.text_field :baquiano, class: 'form-control'
+    %div#loading_table_arboles.text-center
+      %h1
+        %i.fa.fa-spin.fa-spinner
+      %h4
+        Cargando árboles de inventario...
+    %div#div_table_arboles{style: 'display:none'}
+      = render 'table_arboles_inventario', g: g
 
 

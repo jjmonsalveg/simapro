@@ -158,11 +158,11 @@
           %ul{:class => "nav nav-second-level #{is_active_controller('especies')}"}
             - if can? :wf_asignar_usos, Especie
               %li{class: is_active_action('wf_asignar_usos')}= link_to 'Asignar Usos', asignar_usos_especies_path
-      -#- if can? :wf_estatico, :mediciones_inventario
-      -#  %li{class: is_active_controller('mediciones_inventario')}
-      -#    = link_to mediciones_inventario_estatico_path do
-      -#      %i.fa.fa-expand
-      -#      %span.nav-label Mediciones de de Inventario Estático
+      - if can? :wf_estatico, :mediciones_inventario
+        %li{class: is_active_controller('mediciones_inventario')}
+          = link_to mediciones_inventario_estatico_path do
+            %i.fa.fa-expand
+            %span.nav-label Mediciones de de Inventario Estático
 
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
