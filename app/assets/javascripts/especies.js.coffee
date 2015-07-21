@@ -17,6 +17,10 @@ jQuery(document).ready ($) ->
         validators:
           notEmpty:
             message: 'El campo Nombre Común es obligatorio.'
+      "especie[grupo_especie_id]":
+        validators:
+          notEmpty:
+            message: 'El campo Grupo Especie es obligatorio.'
 
   $('#especie_dmc').inputmask("Regex", {
     regex: "[0-9.]{1,9}%"
