@@ -121,7 +121,6 @@ Myapp::Application.routes.draw do
 
   # Inventario Estatico
   namespace :inventario_estatico do
-    get ''
   end
 
 
