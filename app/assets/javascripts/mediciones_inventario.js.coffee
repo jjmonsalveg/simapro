@@ -331,10 +331,10 @@ restricciones_numericas = ->
     regex: '[0-9.]{1..6}'
 
   $('.nro_cuadricula').inputmask 'Regex',
-    regex: '[0-9]'
+    regex: '[0-9]{1..4}'
 
   $('.nro_arbol').inputmask 'Regex',
-    regex: '[0-9]'
+    regex: '[0-9]{1..4}'
 
   $('.bi').inputmask 'Regex',
     regex: '[0-9]'

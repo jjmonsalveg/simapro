@@ -165,7 +165,12 @@
             %span.nav-label Mediciones de de Inventario Estático
       - if can? :index, :reporte_masa_foresta_parcela
         %li{class: is_active_controller('reporte_masa_foresta_parcela')}
-          = link_to
+          %a{:href => ""}
+            %i.fa.fa-connectdevelop
+            %span.nav-label Reportes Inventario Estático
+            %span.fa.arrow
+          %ul{:class => "nav nav-second-level #{is_active_controller('grupo_especies')}"}
+            = link_to reporte_masa_forestal_parcela_path
 
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}
