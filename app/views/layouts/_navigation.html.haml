@@ -163,6 +163,9 @@
           = link_to mediciones_inventario_estatico_path do
             %i.fa.fa-expand
             %span.nav-label Mediciones de de Inventario Estático
+      - if can? :index, :reporte_masa_foresta_parcela
+        %li{class: is_active_controller('reporte_masa_foresta_parcela')}
+          = link_to
 
       -#%li{:class => is_active_controller('dashboards')}
       -#  %a{:href => ""}

@@ -160,13 +160,13 @@ form_parcela_submit = (especies,  arboles, nro_arboles) ->
     $('#table_arboles_inventario').appendGrid
       initRows: nro_arboles,
       columns: [
-        {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
+        {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
         {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { Ba: 'B', La: 'L', Ca: 'C'}, ctrlClass: 'fi'},
-        {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
+        {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 4 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
         {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
         {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
         {name: 'dap_cap', display: 'DAP/CAP', type: 'text', ctrlAttr: { maxlength: 6 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
-        {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
+        {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 6 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
         {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
       ]
       hideRowNumColumn: true
@@ -185,13 +185,13 @@ form_parcela_submit = (especies,  arboles, nro_arboles) ->
     $('#table_arboles_inventario').appendGrid
       initRows: nro_arboles,
       columns: [
-        {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 1 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
+        {name: 'numero_cuadricula', display: 'Cuad.', type: 'text', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '70px'}, ctrlClass: 'nro_cuadricula'},
         {name: 'fi', display: 'Fi', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { Ba: 'B', La: 'L', Ca: 'C'}, ctrlClass: 'fi'},
-        {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 2 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
+        {name: 'nro_arbol', display: 'Árbol', ctrlAttr: { maxlength: 4 }, type: 'text', ctrlCss: { width: '70px'}, ctrlClass: 'nro_arbol'},
         {name: 'bi', display: 'BI', type: 'text', ctrlAttr: { maxlength: 2 }, ctrlCss: { width: '70px'}, ctrlClass: 'bi'},
         {name: 'especie', display: 'Especie', type: 'ui-autocomplete', uiOption: { source: nombre_especies } , ctrlAttr: { maxlength: 120 }, ctrlCss: { width: '300px'}, ctrlClass: 'especie'},
         {name: 'dap_cap', display: 'DAP/CAP', type: 'text', ctrlAttr: { maxlength: 6 }, ctrlCss: { width: '100px'}, ctrlClass: 'dap_cap'},
-        {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 4 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
+        {name: 'altura_fuste', display: 'Altura Fuste', ctrlAttr: { maxlength: 6 }, ctrlCss: { width: '100px'}, ctrlClass: 'altura_fuste'},
         {name: 'calidad', display: 'Calidad', type: 'select', ctrlCss: { width: '70px'}, ctrlOptions: { B: 'B', R: 'R', M: 'M'}},
       ]
       initData: arboles

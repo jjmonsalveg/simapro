@@ -57,7 +57,7 @@ Myapp::Application.routes.draw do
   resources :roles
 
   #TODO clean this
-  #------------------JJ-don't touch bitch------------------------------
+  #------------------JJ-don't touch this (8) MC HAMMER------------------------------
   resources :empresas_forestales
   resources :zonas_ordenamiento
   resources :paises, except: :show
@@ -113,10 +113,15 @@ Myapp::Application.routes.draw do
   post 'mediciones_inventario_estatico/delete_arbol_ajax', to: 'mediciones_inventario#wf_delete_arbol_ajax', as: :mediciones_inventario_estatico_delete_arbol_ajax
 
   
-  
+  # Dynamic Selects y Controladores Dinamicos
   namespace :dynamic_select do
     get ':bo/subcuencas', to: 'dynamic_subcuencas#index', as: :dynamic_subcuencas
     get ':reserva_forestal_id/unidad_ordenacion', to: 'dynamic_unidad_ordenacion#index', as: :dynamic_unidad_ordenacion
+  end
+
+  # Inventario Estatico
+  namespace :inventario_estatico do
+    get ''
   end
 
 
