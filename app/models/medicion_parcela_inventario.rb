@@ -11,7 +11,7 @@ class MedicionParcelaInventario < ActiveRecord::Base
       arbol = self.arbol_inventario_estaticos.find_by(nro_arbol: nro_arbol, bi: bi)
       especie = Especie.find_by(nombre_comun: especie, empresa_forestal_id: empresa_forestal_id) ||
                 Especie.create(nombre_comun: especie, empresa_forestal_id: empresa_forestal_id)
-      dap = self.medicion_dap ? dap_cap : (dap_cap.to_f / Math::PI)
+      dap = self.medicion_dap ? dap_cap.round(2) : (dap_cap.to_f / Math::PI).round(2)
       area_basal = (Math::PI / 4) * (dap.to_f) * (dap.to_f)
       eq_volumen = '0'
       eq_volumen = EcuacionVolumen.where("dap_inicial <= ? AND dap_final >= ?", dap, dap).first.ecuacion_volumen if dap.present?

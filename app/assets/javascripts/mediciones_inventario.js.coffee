@@ -143,8 +143,6 @@ datetime_pickers = ->
 
 form_parcela_submit = (especies,  arboles, nro_arboles) ->
 
-  console.log(nro_arboles)
-
   $('#loading_table_arboles').hide()
   $('#div_table_arboles').show()
 
@@ -181,6 +179,10 @@ form_parcela_submit = (especies,  arboles, nro_arboles) ->
         return confirm('¿Está seguro que desea eliminar el árbol?')
       afterRowRemoved: (caller, rowIndex) ->
         remove_tree(nro_arbol_delete, bi_delete);
+      afterRowInserted: (caller, parentRowIndex, addedRowIndex) ->
+        table_behavior(nombre_especies)
+        restricciones_numericas()
+        valores_maximos_dap_cap()
   else
     $('#table_arboles_inventario').appendGrid
       initRows: nro_arboles,
@@ -207,6 +209,10 @@ form_parcela_submit = (especies,  arboles, nro_arboles) ->
         return confirm('¿Está seguro que desea eliminar el árbol?')
       afterRowRemoved: (caller, rowIndex) ->
         remove_tree(nro_arbol_delete, bi_delete);
+      afterRowInserted: (caller, parentRowIndex, addedRowIndex) ->
+        table_behavior(nombre_especies)
+        restricciones_numericas()
+        valores_maximos_dap_cap()
 
   $('#send_form').click ->
     $('#table_arboles_inventario').appendGrid('removeEmptyRows')
@@ -282,9 +288,7 @@ table_behavior = (nombre_especies) ->
       num += 1
       $('#table_arboles_inventario_nro_arbol_' + row ).val(num)
 
-  #ELIMINAR ARBOL
-
-
+#ELIMINAR ARBOL
 remove_tree = (nro_arbol, bi) ->
   if((nro_arbol != '') && (bi != ''))
     $.ajax
