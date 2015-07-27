@@ -6,7 +6,7 @@ class MedicionesInventarioController < ApplicationController
 
   include MedicionesInventario
 
-  def wf_estatico
+    def wf_estatico
   end
 
   def wf_select_parcela_inventario
@@ -22,6 +22,11 @@ class MedicionesInventarioController < ApplicationController
     @parcela_inventario = ParcelaInventario.find_by(parcela_manejo_id: params[:parcela_id]) || ParcelaInventario.new
     @medicion_parcela_inventario = @parcela_inventario.medicion_parcela_inventarios.find_by(tipo_parcela_inventario_id: params[:tipo_parcela_inventario]) || @parcela_inventario.medicion_parcela_inventarios.build
     render partial: 'form_tipo_estatico'
+  end
+
+  def wf_select_postaprovechamiento
+    @parcela_inventario = ParcelaInventario.find_by(parcela_manejo_id: params[:parcela_id])
+    render partial: 'select_postaprovechamiento'
   end
 
   def wf_load_arboles

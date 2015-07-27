@@ -21,13 +21,16 @@ module MedicionesInventario
   end
 
   def self.delete_arbol_ajax(params, user)
-    parcela = ParcelaInventario.find_by(params[:parcela_manejo_id]) || (return true)
-    medicion_parcela_inventario = parcela.medicion_parcela_inventarios.find_by(tipo_parcela_inventario_id: params[:tipo_parcela_inventario]) || (return true)
+    parcela = ParcelaInventario.find_by(parcela_manejo_id: params[:parcela_manejo_id]) || (return false)
+    medicion_parcela_inventario = parcela.medicion_parcela_inventarios.find_by(tipo_parcela_inventario_id: params[:tipo_parcela]) || (return false)
     arbol = medicion_parcela_inventario.arbol_inventario_estaticos.find_by(nro_arbol: params[:nro_arbol], bi: params[:bi])
     unless arbol.nil?
       arbol.destroy
       return true
+    else
+      return false
     end
+    return false
   end
 
   def self.parcela_inventario_params(params)

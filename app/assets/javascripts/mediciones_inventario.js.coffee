@@ -299,7 +299,7 @@ remove_tree = (nro_arbol, bi) ->
         nro_arbol: nro_arbol
         bi: bi
         tipo_parcela: $('#tipo_parcela_inventario_select').val()
-        parcela_manejo_id: $('parcela_manejo_id').val()
+        parcela_manejo_id: $('#parcela_manejo_id').val()
       success: (data) ->
         setTimeout ->
           toastr.options = {
@@ -313,8 +313,6 @@ remove_tree = (nro_arbol, bi) ->
           else
             toastr.warning('Ocurrio un error eliminando el árbol');
           300
-
-
 
 valores_maximos_dap_cap = ->
 

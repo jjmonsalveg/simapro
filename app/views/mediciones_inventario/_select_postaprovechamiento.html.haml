@@ -1,0 +1,7 @@
+.row.form-horizontal
+  .col-md-6
+    .form-group
+      = label_tag :postaprovechamiento, class: 'col-sm-5 control-label' do
+        Técnico y Fecha Inicio de la Medición:
+      .col-sm-7
+        = select_tag :postaprovechamiento, options_from_collection_for_select(@medicion_parcela_inventario, :id, :tecnico_fecha), {include_blank: 'Mediciones de Post aprovechamiento' , class: 'form-control', id: 'postaprovechamiento_select'}
