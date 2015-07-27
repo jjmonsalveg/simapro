@@ -26,4 +26,8 @@ class Especie < ActiveRecord::Base
   has_and_belongs_to_many :tipo_uso_especies, join_table: 'uso_especies'
   validates :nombre_comun, presence: true, uniqueness: true
   # validates :grupo_especie_id, presence: true
+
+  def self.all_empresa(empresa_forestal)
+    return Especie.where(empresa_forestal_id: empresa_forestal.id)
+  end
 end

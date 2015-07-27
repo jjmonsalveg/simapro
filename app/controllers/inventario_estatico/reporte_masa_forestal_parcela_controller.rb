@@ -1,6 +1,6 @@
 class InventarioEstatico::ReporteMasaForestalParcelaController < ApplicationController
   before_action :authenticate_user!
-  authorize_resource class: :reporte_masa_foresta_parcela
+  # authorize_resource class: :reporte_masa_foresta_parcela
 
   def index
 
