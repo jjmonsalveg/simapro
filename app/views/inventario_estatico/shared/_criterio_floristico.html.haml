@@ -6,11 +6,54 @@
   .col-sm-4
     .form-group
       = label_tag :especie, class: 'col-sm-4 control-label' do
+        = radio_button_tag :especie, true, checked: true
         Especie:
       .col-sm-8
-        = select :especie,:especie,  options_from_collection_for_select(Especie.all_empresa(current_user.empresa_forestal), :id, :nombre_comun), {include_blank: 'Seleccione una Especie'}, {class: 'form-control', id: 'especie_select'}
+        = select :especie,:especie,  options_from_collection_for_select(current_user.empresa_forestal.especies, :id, :nombre_comun), {include_blank: 'Seleccione una Especie'}, {class: 'form-control', id: 'especie_select'}
   .col-sm-4
     .form-group
       = label_tag :grupo_especie, class: 'col-sm-4 control-label' do
+        = radio_button_tag :especie, false
         Grupo de Especie:
-        
+      .col-sm-8
+        .grupo_especies_criterio
+          %table.table.table-striped
+            %thead
+              %th
+              %th Código
+              %th Nombre
+            %tbody
+              = collection_check_boxes :grupo_especie, :grupo_especie_id, current_user.empresa_forestal.grupo_especies, :id, :codigo do |g|
+                %tr
+                  %td
+                    = g.check_box
+                  %td
+                    = g.label
+                  %td
+                    = g.object.nombre
+  .col-sm-4
+    .form-group
+      = label_tag :calidad, class: 'col-sm-4 control-label' do
+        Calidad de Fuste:
+      .col-sm-8
+        .calidad_fuste_criterio
+          %table.table.table-striped
+            %thead
+              %th
+              %th Calidad
+            %tbody
+              %tr
+                %td= check_box_tag :buena
+                %td Buena
+              %tr
+                %td= check_box_tag :regular
+                %td Regular
+              %tr
+                %td= check_box_tag :mala
+                %td Mala
+.row
+  .col-md-12
+    %a{href: '#'}
+
+
+

@@ -27,7 +27,5 @@ class Especie < ActiveRecord::Base
   validates :nombre_comun, presence: true, uniqueness: true
   # validates :grupo_especie_id, presence: true
 
-  def self.all_empresa(empresa_forestal)
-    return Especie.where(empresa_forestal_id: empresa_forestal.id)
-  end
+
 end

@@ -34,6 +34,7 @@ class EmpresaForestal < ActiveRecord::Base
 
   #asociaciones
   has_many :especies
+  has_many :grupo_especies, through: :especies
   belongs_to :pais
   accepts_nested_attributes_for :pais
   has_many :users
