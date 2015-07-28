@@ -9,6 +9,8 @@ Myapp::Application.routes.draw do
 
   post 'reporte_masa_forestalx_criterio/procesar'
 
+  post 'reporte_masa_forestalx_criterio/find_parcelas_por_tipo_inventario'
+
   # You can have the root of your site routed with "root"
   root to: 'static#index'
 

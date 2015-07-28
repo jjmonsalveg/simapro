@@ -15,7 +15,7 @@
     .col-lg-12
       %h2
         Parametros de Generación del Reporte
-      .row.form-horizontal
+      .row.form-horizontal#reporte_form
         .col-md-6
           .form-group
             = label_tag :subcuenca, class: 'col-sm-4 control-label' do
@@ -33,7 +33,7 @@
             = label_tag :parcela, class: 'col-sm-4 control-label' do
               Parcela Nro:
             .col-sm-8
-              = select_tag :parcela, options_from_collection_for_select(current_user.unidad_manejo.parcela_inventarios, :id, :azimut), include_blank: 'Seleccione un bloque de manejo', class: 'form-control'
+              = select_tag :parcela,  options_from_collection_for_select(@tipo_parcela_inventarios, "id", "azimut"), include_blank: 'Seleccione un bloque de manejo', class: 'form-control'
         .col-md-6
           .form-group
             = label_tag :especificacion_diametrica, class: 'col-sm-6 control-label' do
@@ -65,23 +65,25 @@
         %fieldset
           %legend
             = 'Reporte'
-        .ibox.float-e-margins
-          .ibox-content.border-bottom
-            .row
-              .table-responsive.tabla-arboles-inventario
-                %table.table.table-striped.table-bordered.table-hover.datatable-table.center-table#table_reporte
-                  %thead
-                    %tr
-                      %th Criterio Floristico/Calidad
-                      %th Densidad (arb/ha)
-                      %th Área Basal (m²/ha)
-                      %th Volumen (m³/ha)
-                      %th Abundancia Efectiva
-                  %tbody
-              -#.col-md-4
-              -#  %a.btn.btn-primary#send_form
-              -#    Guardar
-              -#    %i.fa.fa-floppy-o
+          .form-group
+            .table-responsive
+              %table.table.table-striped.table-bordered.table-hover.datatable-table.center-table#table_reporte
+                %thead
+                  %tr
+                    %th Criterio Floristico/Calidad
+                    %th Densidad (arb/ha)
+                    %th Área Basal (m²/ha)
+                    %th Volumen (m³/ha)
+                    %th Abundancia Efectiva
+                %tbody#table_reporte_body
+
+
+
+
+            -#.col-md-4
+            -#  %a.btn.btn-primary#send_form
+            -#    Guardar
+            -#    %i.fa.fa-floppy-o
 
 
 

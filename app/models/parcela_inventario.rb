@@ -15,6 +15,10 @@ class ParcelaInventario < ActiveRecord::Base
     return parcela_manejo.parcela_inventario
   end
 
+  def self.get_parcelas_tpi(unidad_manejo_id, tipo_parcela_inventario_id)
+    UnidadManejo.find(unidad_manejo_id).parcela_inventarios.joins(:medicion_parcela_inventarios).where(medicion_parcela_inventarios: { tipo_parcela_inventario_id: tipo_parcela_inventario_id })
+  end
+
   def create_or_update_medicion_inventario(params, tipo_parcela_inventario_id)
     medicion_parcela = self.medicion_parcela_inventarios.find_by(tipo_parcela_inventario_id: tipo_parcela_inventario_id)
     medicion_parcela.nil? ?
