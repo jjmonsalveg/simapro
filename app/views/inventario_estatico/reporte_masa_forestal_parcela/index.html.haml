@@ -15,8 +15,8 @@
   .row.form-horizontal
     .col-sm-4
       .form-group
-        .col-sm-4
-          %label.font-normal Subcuenca:
+        = label_tag :subcuenca, class: 'col-sm-4 control-label' do
+          Subcuenca:
         .col-sm-8
           = text_field_tag :subcuenca, current_user.unidad_manejo.nombre, class: 'form-control', readonly: true
     .col-sm-4
@@ -33,6 +33,21 @@
           = text_field_tag :especificacion_diametrica, nil, class: 'form-control', id: 'especificacion_diametrica_field'
 
   = render 'inventario_estatico/shared/criterio_floristico'
+  %br
+  .row
+    .col-sm-2.col-sm-offset-5
+      %a.btn.btn-primary.btn-block#procesar_masa_parcela{href: '#'}
+        Procesar
+  %br
+  %br
+  %div#table_reporte_masa_parcela_div
+  .row#loading_reporte_masa_parcela{style:'display:none;'}
+    .col-sm-2.col-sm-offset-5.text-center
+      %h2
+        Procesando
+        %br
+        %i.fa.fa-refresh.fa-spin.fa-2x
+
 
   -#  .col-sm-3
   -#    .form-group

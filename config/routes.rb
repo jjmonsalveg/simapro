@@ -122,6 +122,7 @@ Myapp::Application.routes.draw do
   # Inventario Estatico
   namespace :inventario_estatico do
     get 'reporte_masa_forestal_parcela', to: 'reporte_masa_forestal_parcela#index', as: :reporte_masa_forestal_parcela
+    post 'load_table_masa_parcela', to: 'reporte_masa_forestal_parcela#wf_load_table_masa_parcela'
   end
 
 

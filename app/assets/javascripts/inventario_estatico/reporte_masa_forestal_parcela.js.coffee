@@ -1,14 +1,44 @@
-#= require dataTables/jquery.dataTables.js
-#= require dataTables/dataTables.bootstrap.js
-#= require dataTables/dataTables.responsive.js
-#= require dataTables/dataTables.tableTools.min.js
-#= require jqGrid/i18n/grid.locale-el.js
-#= require jqGrid/jquery.jqGrid.min.js
-#= require jquery-ui/jquery-ui.min.js
-
+#= require datable
 jQuery(document).ready ($) ->
 
-  $('.datatable-table').dataTable
+  #HABILITAR O DESHABILITAR SELECT DE ESPECIES Y
+  #CHECK BOXES DE GRUPO DE ESPECIE
+  if $('#especie_true').is(':checked')
+    $('#especie_select').prop('disabled', false);
+    $('#table_grupo_especies input[type=checkbox]').attr('disabled','true');
+  else
+    $('#especie_select').prop('disabled', 'disabled');
+    $('#table_grupo_especies input[type=checkbox]').attr('disabled', false);
+
+  $('#especie_true').click ->
+    $('#especie_select').prop('disabled', false);
+    $('#table_grupo_especies input[type=checkbox]').attr('disabled','true');
+
+  $('#especie_false').click ->
+    $('#especie_select').prop('disabled', 'disabled');
+    $('#table_grupo_especies input[type=checkbox]').attr('disabled', false);
+
+
+  $('#procesar_masa_parcela').click ->
+    $(this).prop('disabled', 'disabled')
+    $('#table_reporte_masa_parcela_div').empty()
+    $('#loading_reporte_masa_parcela').show()
+    $.ajax
+      type: 'POST'
+      url: '/inventario_estatico/load_table_masa_parcela'
+      dataType: 'HTML'
+      data:
+        tipo_parcela_inventario_id: $('#tipo_parcela_inventario_select').val()
+        especificacion_diametrica: $('#especificacion_diametrica_field').val()
+      success: (data) ->
+        $('#loading_reporte_masa_parcela').hide()
+        $('#table_reporte_masa_parcela_div').empty()
+        $('#table_reporte_masa_parcela_div').append(data)
+        datatable_dinamico()
+
+
+datatable_dinamico = ->
+  $('#datatable-masa-parcela').dataTable
 
     'dom': 'T<"clear">lfrtip'
     'tableTools':
@@ -57,3 +87,4 @@ jQuery(document).ready ($) ->
         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
       }
     }
+

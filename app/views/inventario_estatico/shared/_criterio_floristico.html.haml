@@ -17,13 +17,13 @@
         Grupo de Especie:
       .col-sm-8
         .grupo_especies_criterio
-          %table.table.table-striped
+          %table.table.table-striped#table_grupo_especies
             %thead
               %th
               %th Código
               %th Nombre
             %tbody
-              = collection_check_boxes :grupo_especie, :grupo_especie_id, current_user.empresa_forestal.grupo_especies, :id, :codigo do |g|
+              = collection_check_boxes :grupo_especie, :grupo_especie_id, current_user.empresa_forestal.grupo_especies.order(:codigo), :id, :codigo do |g|
                 %tr
                   %td
                     = g.check_box
@@ -51,9 +51,7 @@
               %tr
                 %td= check_box_tag :mala
                 %td Mala
-.row
-  .col-md-12
-    %a{href: '#'}
+
 
 
 
