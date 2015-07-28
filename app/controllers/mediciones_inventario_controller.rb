@@ -33,7 +33,7 @@ class MedicionesInventarioController < ApplicationController
     parcela_inventario = ParcelaInventario.find_by(parcela_manejo_id: params[:parcela_id]) || ParcelaInventario.new
     medicion_parcela_inventario = parcela_inventario.medicion_parcela_inventarios.find_by(tipo_parcela_inventario_id: params[:tipo_parcela_inventario]) || parcela_inventario.medicion_parcela_inventarios.build
     arbol_inventario_estaticos = Array.new
-    medicion_parcela_inventario.arbol_inventario_estaticos.order(:nro_cuadricula).order(:nro_arbol).each do |arbol|
+    medicion_parcela_inventario.arbol_inventario_estaticos.order(:nro_cuadricula).order(:nro_arbol).order(:bi).each do |arbol|
       arbol_hash = Hash.new
       arbol_hash[:numero_cuadricula] = arbol.nro_cuadricula
       arbol_hash[:fi] = arbol.tipo_fisiografia
