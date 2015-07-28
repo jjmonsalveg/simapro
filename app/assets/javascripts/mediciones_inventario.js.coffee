@@ -260,7 +260,8 @@ table_behavior = (nombre_especies) ->
     id_array = $(this).attr('id').split('_')
     row = id_array[id_array.length-1]
     row = parseInt(row) + 1
-    $('#table_arboles_inventario_numero_cuadricula_'+ row ).val(num)
+    if $('#table_arboles_inventario_numero_cuadricula_'+ row ).val() == ''
+      $('#table_arboles_inventario_numero_cuadricula_'+ row ).val(num)
 
   #GUARDAR LA ESPECIE SI NO SE ENCUENTRA Y AGREGARLA AL ARRAY DE AUTOCOMPLETE
   $('.especie').blur ->
@@ -281,10 +282,10 @@ table_behavior = (nombre_especies) ->
     row = parseInt(id_array[id_array.length-1])
     num = parseInt($('#table_arboles_inventario_nro_arbol_' + row ).val())
     row += 1
-    if($(this).val() == '1')
+    if($(this).val() == '1') && ($('#table_arboles_inventario_bi_' + row ).val() == '')
       $('#table_arboles_inventario_nro_arbol_' + row ).val(num)
       $('#table_arboles_inventario_bi_' + row ).val('2')
-    if($(this).val() == '0')
+    if($(this).val() == '0') && ($('#table_arboles_inventario_bi_' + row ).val() == '')
       num += 1
       $('#table_arboles_inventario_nro_arbol_' + row ).val(num)
 
